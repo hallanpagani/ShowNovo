@@ -1,0 +1,57 @@
+﻿@model ShowRoomModelo.model.adm.AccountLoginModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutInicio.cshtml";
+    ViewBag.Title = "Entrar no sistema";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="right-column sisu">
+            <div class="row mx-0">
+                <div class="col-md-7 order-md-2 signin-right-column px-5 bg-dark"  style="background-image: url(&quot;../content/assets/img/bg-image-1.jpg&quot;);">
+                    <a class="signin-logo d-sm-block d-md-none" href="#">
+                        <p class="logo"><h3><b>Show</b>Room</h3></p>
+                    </a>
+                    <h1 class="display-4"><b>Show</b>Room</h1>
+                    <p class="lead mb-5">
+                        Transformando Big data em informações úteis para tomada de decisões.
+                    </p>
+                </div>
+                <div class="col-md-5 order-md-1 signin-left-column bg-white px-5" style="height: 919px;">
+                    <a class="signin-logo d-sm-none d-md-block" href="#">
+                        <p class="logo"><h3><b>Show</b>Room</h3></p>
+                    </a>
+                    <form action="@Url.Action("login","sistema")" method="POST">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @autofocus = "autofocus" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control"} })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-gradient btn-block waves-effect waves-light">
+                            <span class="gradient">
+                                <i class="batch-icon batch-icon-key"></i>
+                                Entrar
+                            </span>
+                        </button>
+                       <!-- <hr>
+                        <p class="text-center">
+                            Não tem uma conta? <a href="#">Cadastre-se aqui</a>
+                        </p> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    
+}
