@@ -1,7 +1,8 @@
-D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\FlyAdminPersistencia.dll
-D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\FlyAdminPersistencia.pdb
+D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\ShowRoomPersistencia.dll
+D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\ShowRoomPersistencia.pdb
 D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\FlyAdminFuncoes.dll
 D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\MySql.Data.dll
 D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\ShowRoomModelo.dll
 D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\System.Web.Helpers.dll
 D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\System.Web.Mvc.dll
@@ -26,5 +27,5 @@ D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\pt-br\System.Web.WebPages.Depl
 D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\pt-br\System.Web.WebPages.Razor.resources.dll
 D:\CSharp\ShowRoom\ShowRoomPersistencia\obj\Debug\ShowRoomPersistencia.csprojResolveAssemblyReference.cache
 D:\CSharp\ShowRoom\ShowRoomPersistencia\obj\Debug\ShowRoomPersistencia.csproj.CoreCompileInputs.cache
-D:\CSharp\ShowRoom\ShowRoomPersistencia\obj\Debug\FlyAdminPersistencia.dll
-D:\CSharp\ShowRoom\ShowRoomPersistencia\obj\Debug\FlyAdminPersistencia.pdb
+D:\CSharp\ShowRoom\ShowRoomPersistencia\obj\Debug\ShowRoomPersistencia.dll
+D:\CSharp\ShowRoom\ShowRoomPersistencia\obj\Debug\ShowRoomPersistencia.pdb

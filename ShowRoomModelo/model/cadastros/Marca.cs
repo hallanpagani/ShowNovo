@@ -15,12 +15,14 @@ namespace ShowRoomModelo.model.cadastros
 
         [Column("marca")]
         [Display(Name = "Marca")]
-        [Required(ErrorMessage = "O nome da marca é obrigatório!", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "Marca é obrigatório!", AllowEmptyStrings = false)]
+        [MaxLength(10, ErrorMessage = "Campo 'Marca' pode ter no máximo 10 caracteres!")]  
         public string marca { get; set; }
 
         [Column("nome")]
         [Display(Name = "Nome da marca")]
         [Required(ErrorMessage = "O nome da marca é obrigatório!", AllowEmptyStrings = false)]
+        [MaxLength(100, ErrorMessage = "Campo 'Nome da marca' pode ter no máximo 100 caracteres!")]
         public string nome { get; set; }
 
         [Column("id_conta")]

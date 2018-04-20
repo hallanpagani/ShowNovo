@@ -30,7 +30,7 @@ namespace ShowRoom.Controllers
         {
             if (!ModelState.IsValid)
             {
-                View(model);
+                return View(model);
             }
             model.marca = model.marca.ToUpper();
             model.nome = model.nome.ToUpper();
@@ -67,5 +67,18 @@ namespace ShowRoom.Controllers
         {
             return View(DAL.ListarObjetos<Marca>(string.Format("id_conta={0}", UsuarioLogado.IdConta)));
         }
+
+        [HttpPost]
+        public ActionResult Deletar(int id = 0)
+        {
+            var model = new Marca();
+            if (id > 0)
+            {
+                model = DAL.GetObjeto<Marca>(string.Format("id_conta={0} and id={1}", UsuarioLogado.IdConta, id));
+                DAL.Excluir(model);
+            }
+            return RedirectToAction("Consultar");
+        }
+
     }
 }

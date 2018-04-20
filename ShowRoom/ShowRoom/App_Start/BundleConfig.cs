@@ -17,7 +17,8 @@ namespace ShowRoom
                          "~/Scripts/assets/plugins/velocity/velocity.ui.min.js",
                          "~/Scripts/assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js",
                          "~/Scripts/assets/plugins/jquery_visible/jquery.visible.min.js",
-                         "~/Scripts/assets/js/misc/ie10-viewport-bug-workaround.js"
+                         "~/Scripts/assets/js/misc/ie10-viewport-bug-workaround.js",
+                         "~/Scripts/sweetalert2.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/scriptsfim").Include(
@@ -42,6 +43,12 @@ namespace ShowRoom
                         "~/Content/assets/plugins/jvmaps/jqvmap.min.css",
                         "~/Content/assets/css/quillpro/quillpro.css"));
 
+
+           /* #if DEBUG
+                        BundleTable.EnableOptimizations = false;
+            #else
+                        BundleTable.EnableOptimizations = true;
+            #endif */
         }
     }
 }

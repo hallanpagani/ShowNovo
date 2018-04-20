@@ -274,25 +274,25 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>02/20/2018 14:30:48</publishTime>
     </File>
     <File Include="bin/ShowRoom.dll">
-      <publishTime>04/20/2018 10:56:00</publishTime>
+      <publishTime>04/20/2018 12:01:37</publishTime>
     </File>
     <File Include="bin/ShowRoom.pdb">
-      <publishTime>04/20/2018 10:56:00</publishTime>
+      <publishTime>04/20/2018 12:01:37</publishTime>
     </File>
     <File Include="bin/ShowRoomModelo.dll">
-      <publishTime>04/20/2018 10:27:15</publishTime>
+      <publishTime>04/20/2018 11:47:55</publishTime>
     </File>
     <File Include="bin/ShowRoomModelo.dll.config">
       <publishTime>04/17/2018 15:28:55</publishTime>
     </File>
     <File Include="bin/ShowRoomModelo.pdb">
-      <publishTime>04/20/2018 10:27:15</publishTime>
+      <publishTime>04/20/2018 11:47:55</publishTime>
     </File>
     <File Include="bin/ShowRoomPersistencia.dll">
-      <publishTime>04/20/2018 10:27:15</publishTime>
+      <publishTime>04/20/2018 11:47:55</publishTime>
     </File>
     <File Include="bin/ShowRoomPersistencia.pdb">
-      <publishTime>04/20/2018 10:27:15</publishTime>
+      <publishTime>04/20/2018 11:47:55</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
       <publishTime>07/19/2017 10:01:30</publishTime>
@@ -379,43 +379,43 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>04/05/2018 14:40:10</publishTime>
     </File>
     <File Include="Content/assets/fonts/batch-icons/batch-icons-webfont.eot">
-      <publishTime>04/05/2018 14:40:10</publishTime>
+      <publishTime>04/20/2018 11:11:12</publishTime>
     </File>
     <File Include="Content/assets/fonts/batch-icons/batch-icons-webfont.svg">
-      <publishTime>04/05/2018 14:40:10</publishTime>
+      <publishTime>04/20/2018 11:11:12</publishTime>
     </File>
     <File Include="Content/assets/fonts/batch-icons/batch-icons-webfont.ttf">
-      <publishTime>04/05/2018 14:40:10</publishTime>
+      <publishTime>04/20/2018 11:11:12</publishTime>
     </File>
     <File Include="Content/assets/fonts/batch-icons/batch-icons-webfont.woff">
-      <publishTime>04/05/2018 14:40:10</publishTime>
+      <publishTime>04/20/2018 11:11:12</publishTime>
     </File>
     <File Include="Content/assets/fonts/batch-icons/css/batch-icons.css">
-      <publishTime>04/05/2018 14:40:10</publishTime>
+      <publishTime>04/20/2018 11:11:12</publishTime>
     </File>
     <File Include="Content/assets/fonts/font-awesome/css/font-awesome.css">
-      <publishTime>04/05/2018 14:40:10</publishTime>
+      <publishTime>04/20/2018 11:11:12</publishTime>
     </File>
     <File Include="Content/assets/fonts/font-awesome/css/font-awesome.min.css">
-      <publishTime>04/05/2018 14:40:10</publishTime>
+      <publishTime>04/20/2018 11:11:12</publishTime>
     </File>
     <File Include="Content/assets/fonts/font-awesome/fonts/fontawesome-webfont.eot">
-      <publishTime>04/05/2018 14:40:10</publishTime>
+      <publishTime>04/20/2018 11:11:12</publishTime>
     </File>
     <File Include="Content/assets/fonts/font-awesome/fonts/fontawesome-webfont.svg">
-      <publishTime>04/05/2018 14:40:10</publishTime>
+      <publishTime>04/20/2018 11:11:12</publishTime>
     </File>
     <File Include="Content/assets/fonts/font-awesome/fonts/fontawesome-webfont.ttf">
-      <publishTime>04/05/2018 14:40:10</publishTime>
+      <publishTime>04/20/2018 11:11:12</publishTime>
     </File>
     <File Include="Content/assets/fonts/font-awesome/fonts/fontawesome-webfont.woff">
-      <publishTime>04/05/2018 14:40:10</publishTime>
+      <publishTime>04/20/2018 11:11:12</publishTime>
     </File>
     <File Include="Content/assets/fonts/font-awesome/fonts/fontawesome-webfont.woff2">
-      <publishTime>04/05/2018 14:40:10</publishTime>
+      <publishTime>04/20/2018 11:11:12</publishTime>
     </File>
     <File Include="Content/assets/fonts/font-awesome/fonts/FontAwesome.otf">
-      <publishTime>04/05/2018 14:40:10</publishTime>
+      <publishTime>04/20/2018 11:11:12</publishTime>
     </File>
     <File Include="Content/assets/img/album-image.jpg">
       <publishTime>04/05/2018 14:40:10</publishTime>
@@ -1952,6 +1952,45 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
     </File>
     <File Include="favicon.ico">
       <publishTime>04/05/2018 14:35:10</publishTime>
+    </File>
+    <File Include="fonts/batch-icons/batch-icons-webfont.eot">
+      <publishTime>04/05/2018 14:40:10</publishTime>
+    </File>
+    <File Include="fonts/batch-icons/batch-icons-webfont.svg">
+      <publishTime>04/05/2018 14:40:10</publishTime>
+    </File>
+    <File Include="fonts/batch-icons/batch-icons-webfont.ttf">
+      <publishTime>04/05/2018 14:40:10</publishTime>
+    </File>
+    <File Include="fonts/batch-icons/batch-icons-webfont.woff">
+      <publishTime>04/05/2018 14:40:10</publishTime>
+    </File>
+    <File Include="fonts/batch-icons/css/batch-icons.css">
+      <publishTime>04/05/2018 14:40:10</publishTime>
+    </File>
+    <File Include="fonts/font-awesome/css/font-awesome.css">
+      <publishTime>04/05/2018 14:40:10</publishTime>
+    </File>
+    <File Include="fonts/font-awesome/css/font-awesome.min.css">
+      <publishTime>04/05/2018 14:40:10</publishTime>
+    </File>
+    <File Include="fonts/font-awesome/fonts/fontawesome-webfont.eot">
+      <publishTime>04/05/2018 14:40:10</publishTime>
+    </File>
+    <File Include="fonts/font-awesome/fonts/fontawesome-webfont.svg">
+      <publishTime>04/05/2018 14:40:10</publishTime>
+    </File>
+    <File Include="fonts/font-awesome/fonts/fontawesome-webfont.ttf">
+      <publishTime>04/05/2018 14:40:10</publishTime>
+    </File>
+    <File Include="fonts/font-awesome/fonts/fontawesome-webfont.woff">
+      <publishTime>04/05/2018 14:40:10</publishTime>
+    </File>
+    <File Include="fonts/font-awesome/fonts/fontawesome-webfont.woff2">
+      <publishTime>04/05/2018 14:40:10</publishTime>
+    </File>
+    <File Include="fonts/font-awesome/fonts/FontAwesome.otf">
+      <publishTime>04/05/2018 14:40:10</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
       <publishTime>04/05/2018 14:35:15</publishTime>
@@ -3517,7 +3556,7 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>04/05/2018 14:35:10</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/18/2018 13:33:55</publishTime>
+      <publishTime>04/20/2018 13:43:11</publishTime>
     </File>
     <File Include="Views/Marcas/Cadastrar.cshtml">
       <publishTime>04/20/2018 10:24:39</publishTime>

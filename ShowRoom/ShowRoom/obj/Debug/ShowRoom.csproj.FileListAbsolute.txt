@@ -5,7 +5,6 @@ D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoom.pdb
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\Antlr3.Runtime.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\EntityFramework.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\EntityFramework.SqlServer.dll
-D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\FlyAdminPersistencia.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\Microsoft.AI.Agent.Intercept.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\Microsoft.AI.DependencyCollector.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\Microsoft.AI.PerfCounterCollector.dll
@@ -26,6 +25,7 @@ D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\Microsoft.Web.Infrastructure.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\Newtonsoft.Json.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\Owin.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomModelo.dll
+D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomPersistencia.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Diagnostics.DiagnosticSource.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Net.Http.Formatting.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Web.Helpers.dll
@@ -38,9 +38,10 @@ D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Web.WebPages.Deployment.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Web.WebPages.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Web.WebPages.Razor.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\WebGrease.dll
+D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\MySql.Data.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomModelo.pdb
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomModelo.dll.config
-D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\FlyAdminPersistencia.pdb
+D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomPersistencia.pdb
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\Antlr3.Runtime.pdb
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\EntityFramework.xml
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\EntityFramework.SqlServer.xml
