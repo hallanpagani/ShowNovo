@@ -274,25 +274,25 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>02/20/2018 14:30:48</publishTime>
     </File>
     <File Include="bin/ShowRoom.dll">
-      <publishTime>04/20/2018 12:01:37</publishTime>
+      <publishTime>04/20/2018 16:55:58</publishTime>
     </File>
     <File Include="bin/ShowRoom.pdb">
-      <publishTime>04/20/2018 12:01:37</publishTime>
+      <publishTime>04/20/2018 16:55:58</publishTime>
     </File>
     <File Include="bin/ShowRoomModelo.dll">
-      <publishTime>04/20/2018 11:47:55</publishTime>
+      <publishTime>04/20/2018 16:55:53</publishTime>
     </File>
     <File Include="bin/ShowRoomModelo.dll.config">
       <publishTime>04/17/2018 15:28:55</publishTime>
     </File>
     <File Include="bin/ShowRoomModelo.pdb">
-      <publishTime>04/20/2018 11:47:55</publishTime>
+      <publishTime>04/20/2018 16:55:53</publishTime>
     </File>
     <File Include="bin/ShowRoomPersistencia.dll">
-      <publishTime>04/20/2018 11:47:55</publishTime>
+      <publishTime>04/20/2018 16:55:53</publishTime>
     </File>
     <File Include="bin/ShowRoomPersistencia.pdb">
-      <publishTime>04/20/2018 11:47:55</publishTime>
+      <publishTime>04/20/2018 16:55:53</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
       <publishTime>07/19/2017 10:01:30</publishTime>
@@ -3510,6 +3510,9 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
     <File Include="Scripts/respond.min.js">
       <publishTime>04/17/2018 15:13:05</publishTime>
     </File>
+    <File Include="Scripts/sweetalert2.js">
+      <publishTime>04/20/2018 15:31:22</publishTime>
+    </File>
     <File Include="Scripts/umd/popper-utils.js">
       <publishTime>04/19/2018 14:42:53</publishTime>
     </File>
@@ -3556,22 +3559,22 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>04/05/2018 14:35:10</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>04/20/2018 13:43:11</publishTime>
+      <publishTime>04/20/2018 17:17:14</publishTime>
     </File>
     <File Include="Views/Marcas/Cadastrar.cshtml">
       <publishTime>04/20/2018 10:24:39</publishTime>
     </File>
     <File Include="Views/Marcas/Consultar.cshtml">
-      <publishTime>04/20/2018 10:23:07</publishTime>
+      <publishTime>04/20/2018 16:37:34</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>04/05/2018 14:35:10</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>04/17/2018 12:56:49</publishTime>
+      <publishTime>04/20/2018 15:52:44</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutInicio.cshtml">
-      <publishTime>04/17/2018 16:00:36</publishTime>
+      <publishTime>04/20/2018 16:45:26</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutSemCard.cshtml">
       <publishTime>04/06/2018 15:46:53</publishTime>
@@ -3581,6 +3584,9 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
     </File>
     <File Include="Views/Shared/_MenuTopo.cshtml">
       <publishTime>04/16/2018 15:34:05</publishTime>
+    </File>
+    <File Include="Views/Shared/_ModalDeletar.cshtml">
+      <publishTime>04/20/2018 14:54:57</publishTime>
     </File>
     <File Include="Views/Shared/_Notificacoes.cshtml">
       <publishTime>04/16/2018 16:37:31</publishTime>
