@@ -32,12 +32,13 @@ namespace ShowRoom.Controllers
             {
                 View(model);
             }
-            model.nm_marca = model.nm_marca.ToUpper();
+            model.marca = model.marca.ToUpper();
+            model.nome = model.nome.ToUpper();
             model.id_usuario = Convert.ToInt64(UsuarioLogado.IdUsuario);
             model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
             try
             {
-                var existe = DAL.GetObjeto<Marca>(string.Format("id_conta={0} and nm_marca='{1}'", UsuarioLogado.IdConta, model.nm_marca)) ?? new Marca();
+                var existe = DAL.GetObjeto<Marca>(string.Format("id_conta={0} and nome='{1}'", UsuarioLogado.IdConta, model.nome)) ?? new Marca();
                 if (existe.id > 0 && model.id == 0)
                 {
                     this.AddNotification("Marca já existe!", "Alerta");

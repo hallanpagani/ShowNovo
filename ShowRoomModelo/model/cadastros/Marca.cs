@@ -1,16 +1,10 @@
 ﻿using ShowRoomModelo.classes;
-using ShowRoomModelo.model.generico;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShowRoomModelo.model.cadastros
 {
-    [Table("tb_marca")]
+    [Table("tb_cadastro_marca")]
     public class Marca
     {
         [Key]
@@ -19,10 +13,15 @@ namespace ShowRoomModelo.model.cadastros
         [Column("id")]
         public long id { get; set; }
 
-        [Column("nm_marca")]
+        [Column("marca")]
+        [Display(Name = "Marca")]
+        [Required(ErrorMessage = "O nome da marca é obrigatório!", AllowEmptyStrings = false)]
+        public string marca { get; set; }
+
+        [Column("nome")]
         [Display(Name = "Nome da marca")]
         [Required(ErrorMessage = "O nome da marca é obrigatório!", AllowEmptyStrings = false)]
-        public string nm_marca { get; set; }
+        public string nome { get; set; }
 
         [Column("id_conta")]
         public long id_conta { get; set; }

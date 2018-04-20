@@ -5,7 +5,7 @@ using ShowRoomModelo.classes;
 
 namespace ShowRoomModelo.model.adm
 {
-    [Table("tb_conta")]
+    [Table("tb_sistema_conta")]
     public class Conta
     {
         [Key]

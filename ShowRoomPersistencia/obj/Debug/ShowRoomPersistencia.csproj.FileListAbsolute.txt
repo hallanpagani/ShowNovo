@@ -18,6 +18,12 @@ D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\System.Web.Razor.xml
 D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\System.Web.WebPages.xml
 D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\System.Web.WebPages.Razor.xml
+D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\pt-br\System.Web.Helpers.resources.dll
+D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\pt-br\System.Web.Mvc.resources.dll
+D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\pt-br\System.Web.Razor.resources.dll
+D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\pt-br\System.Web.WebPages.resources.dll
+D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\pt-br\System.Web.WebPages.Deployment.resources.dll
+D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Debug\pt-br\System.Web.WebPages.Razor.resources.dll
 D:\CSharp\ShowRoom\ShowRoomPersistencia\obj\Debug\ShowRoomPersistencia.csprojResolveAssemblyReference.cache
 D:\CSharp\ShowRoom\ShowRoomPersistencia\obj\Debug\ShowRoomPersistencia.csproj.CoreCompileInputs.cache
 D:\CSharp\ShowRoom\ShowRoomPersistencia\obj\Debug\FlyAdminPersistencia.dll

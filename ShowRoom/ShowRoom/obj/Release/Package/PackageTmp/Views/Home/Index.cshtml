@@ -64,11 +64,18 @@
 <div class="row">
 
     <div class="col-md-6 col-lg-6 col-xl-8 mb-5">
-        <div class="card">
+        <div class="card clearfix">
             <div class="card-header">
                 Aqui ficará o dashboard
             </div>
-              <div id="chart_div" class="card-body" ></div>
+            <div style="margin-left:50px"><canvas data-type="radial-gauge"
+                    data-value="65"
+                    data-width="200"
+                    data-height="350"
+                    data-bar-width="10"
+                    data-bar-shadow="5"
+                    data-color-bar-progress="rgba(50,200,50,.75)"></canvas>
+            </div>
 
         </div>
     </div>
@@ -809,29 +816,9 @@
     @Scripts.Render("~/bundles/dashboard")
 
     <script>
-        google.charts.load('current', { 'packages': ['gauge'] });
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-
-            var data = google.visualization.arrayToDataTable([
-                ['Label', 'Value'],
-                ['Coleções', 15]
-            ]);
-
-            var options = {
-                width: 500, height: 200,
-                redFrom: 90, redTo: 100,
-                yellowFrom: 75, yellowTo: 90,
-                minorTicks: 5
-            };
-
-            var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
-
-            data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
-            chart.draw(data, options);
-
-        }
+        var gauge = new RadialGauge({
+            renderTo: 'canvas-id'
+        }).draw();
     </script>
 
 }

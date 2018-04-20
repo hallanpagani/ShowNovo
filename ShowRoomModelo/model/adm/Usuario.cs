@@ -5,7 +5,7 @@ using ShowRoomModelo.model.generico;
 
 namespace ShowRoomModelo.model.adm
 {
-    [Table("tb_usuario")]
+    [Table("tb_sistema_usuario")]
     public class Usuario: BaseID
     {
         [Key]
