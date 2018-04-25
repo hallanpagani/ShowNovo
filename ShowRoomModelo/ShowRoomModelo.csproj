@@ -85,8 +85,16 @@
     <Compile Include="model\adm\Conta.cs" />
     <Compile Include="model\adm\Loja.cs" />
     <Compile Include="model\adm\Usuario.cs" />
+    <Compile Include="model\cadastros\PlanoDeContas.cs" />
+    <Compile Include="model\cadastros\Prospect.cs" />
+    <Compile Include="model\cadastros\Colecao.cs" />
+    <Compile Include="model\cadastros\Estado.cs" />
+    <Compile Include="model\cadastros\Cidade.cs" />
+    <Compile Include="model\cadastros\Pais.cs" />
+    <Compile Include="model\cadastros\MarcaGrupo.cs" />
+    <Compile Include="model\cadastros\RegiaoMicro .cs" />
+    <Compile Include="model\cadastros\Regiao.cs" />
     <Compile Include="model\cadastros\Marca.cs" />
-    <Compile Include="model\cadastros\Cartao.cs" />
     <Compile Include="model\cadastros\Cliente.cs" />
     <Compile Include="model\dw\BarChart.cs" />
     <Compile Include="model\dw\DashBoard.cs" />
