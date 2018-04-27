@@ -30,21 +30,20 @@ namespace ShowRoomModelo.model.cadastros
         public int qtdsemanas { get; set; }
 
         [Column("colecaoequivalente")]
-        [Display(Name = "Cidade")]
-        [Required(ErrorMessage = "Cidade é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(8, ErrorMessage = "Campo 'Cidade' pode ter no máximo 8 caracteres!")]
+        [Display(Name = "Coleção equivalente")]
+        [MaxLength(8, ErrorMessage = "Campo 'Coleção equivalente' pode ter no máximo 8 caracteres!")]
         public string colecaoequivalente { get; set; }
 
         [Column("colecao")]
-        [Display(Name = "Nome da Coleção")]
-        [Required(ErrorMessage = "O nome da região é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(30, ErrorMessage = "Campo 'Nome da Cidade' pode ter no máximo 100 caracteres!")]
+        [Display(Name = "Coleção")]
+        [Required(ErrorMessage = "O campo Coleção é obrigatório!", AllowEmptyStrings = false)]
+        [MaxLength(8, ErrorMessage = "Campo 'Coleção' pode ter no máximo 8 caracteres!")]
         public string colecao { get; set; }
 
         [Column("nome")]
         [Display(Name = "Nome da Coleção")]
-        [Required(ErrorMessage = "O nome da região é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(30, ErrorMessage = "Campo 'Nome da Cidade' pode ter no máximo 100 caracteres!")]
+        [Required(ErrorMessage = "O nome da coleção é obrigatório!", AllowEmptyStrings = false)]
+        [MaxLength(30, ErrorMessage = "Campo 'Nome da coleção' pode ter no máximo 30 caracteres!")]
         public string nome { get; set; }
 
         [Column("id_conta")]

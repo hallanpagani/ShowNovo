@@ -3,9 +3,6 @@ using ShowRoom.App_Helpers.Componentes;
 using ShowRoomModelo.model.cadastros;
 using ShowRoomPersistencia.banco;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ShowRoom.Controllers
@@ -32,7 +29,7 @@ namespace ShowRoom.Controllers
             {
                 return View(model);
             }
-            model.Regiao = model.Regiao.ToUpper();
+            model.regiao = model.regiao.ToUpper();
             model.nome = model.nome.ToUpper();
             model.id_usuario = Convert.ToInt64(UsuarioLogado.IdUsuario);
             model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
@@ -48,11 +45,11 @@ namespace ShowRoom.Controllers
 
                 if (model.id > 0 && id == 0)
                 {
-                    this.AddNotification("Regiao alterada!", "Sucesso");
+                    this.AddNotification("Região alterada!", "Sucesso");
                 }
                 else
                 {
-                    this.AddNotification("Regiao cadastrada!", "Sucesso");
+                    this.AddNotification("Região cadastrada!", "Sucesso");
                 }
             }
             catch (Exception e)
