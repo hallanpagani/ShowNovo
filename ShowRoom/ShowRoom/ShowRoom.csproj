@@ -1274,6 +1274,8 @@
     <Content Include="Views\Regiao\Consultar.cshtml" />
     <Content Include="Views\Colecao\Cadastrar.cshtml" />
     <Content Include="Views\Colecao\Consultar.cshtml" />
+    <Content Include="Views\ShowRoom\Cadastrar.cshtml" />
+    <Content Include="Views\ShowRoom\Consultar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
