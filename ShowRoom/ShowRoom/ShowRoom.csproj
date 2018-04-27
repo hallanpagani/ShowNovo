@@ -195,6 +195,8 @@
     <Compile Include="Controllers\Acesso\SistemaController.cs" />
     <Compile Include="Controllers\Generico\AppController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MarcasGrupoController.cs" />
+    <Compile Include="Controllers\RegiaoController.cs" />
     <Compile Include="Controllers\MarcasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1268,6 +1270,10 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\_ModalDeletar.cshtml" />
+    <Content Include="Views\Regiao\Cadastrar.cshtml" />
+    <Content Include="Views\Regiao\Consultar.cshtml" />
+    <Content Include="Views\Colecao\Cadastrar.cshtml" />
+    <Content Include="Views\Colecao\Consultar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
