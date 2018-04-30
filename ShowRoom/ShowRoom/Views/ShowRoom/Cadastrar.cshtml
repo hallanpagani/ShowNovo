@@ -1,4 +1,5 @@
 ﻿@model ShowRoomModelo.model.cadastros.ShowRoom
+@using ShowRoom.App_Helpers.Componentes
 
 @{
     ViewBag.Title = "Cadastro de ShowRoom";
@@ -7,36 +8,93 @@
     ViewBag.ActionName = "Consultar";
 }
 
-
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
-        <div class="form-group">
-            @Html.LabelFor(model => model.showroom, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.showroom, new { htmlAttributes = new { @class = "form-control", @autofocus = "autofocus" } })
-                @Html.ValidationMessageFor(model => model.showroom, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        
-        <div class="form-group">
-            @Html.LabelFor(model => model.razao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.razao, new { htmlAttributes = new { @class = "form-control", @autofocus = "autofocus" } })
-                @Html.ValidationMessageFor(model => model.razao, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.fantasia, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fantasia, new { htmlAttributes = new { @class = "form-control", @autofocus="autofocus" } })
-                @Html.ValidationMessageFor(model => model.fantasia, "", new { @class = "text-danger" })
+        <section class="col col-sm-12 col-md-3 col-lg-3">
+            @Html.LabelFor(model => model.cnpj, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxPadraoFor(model => model.cnpj, new { @onkeypress = "mascaraCC(this,CC)", @maxlength = "18" })
+                @Html.ValidationMessageFor(model => model.cnpj, "", new { @class = "text-danger" })
+            </div>
+        </section>
+
+        <div class="row" >
+
+            <section class="col col-sm-12 col-md-6 col-lg-6">
+                @Html.LabelFor(model => model.razao, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.TextBoxPadraoFor(model => model.razao, new { @maxlength = "60" })
+                    @Html.ValidationMessageFor(model => model.razao, "", new { @class = "text-danger" })
+                </div>
+            </section>
+
+            <section class="col col-sm-12 col-md-6 col-lg-6">
+                @Html.LabelFor(model => model.fantasia, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-12">
+                    @Html.TextBoxPadraoFor(model => model.fantasia, new { @maxlength = "60" })
+                    @Html.ValidationMessageFor(model => model.fantasia, "", new { @class = "text-danger" })
+                </div>
+            </section>
+
+            <section class="col col-sm-12 col-md-6 col-lg-6">
+                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.TextBoxPadraoFor(model => model.email, new { @maxlength = "60" })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </section>
+
+            <section class="col col-sm-12 col-md-2 col-lg-2">
+                @Html.LabelFor(model => model.fone1, htmlAttributes: new { @class = "control-label col-md-2" })
+                <label class="input">
+                    @Html.TextBoxPadraoFor(model => model.fone1, new { @onkeypress = "mascaraFONE(this,FONE)", @maxlength = "15" })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </label>
+            </section>
+
+            <section class="col col-sm-12 col-md-2 col-lg-2">
+                @Html.LabelFor(model => model.fone2)
+                <label class="input">
+                    @Html.TextBoxPadraoFor(model => model.fone2, new { @onkeypress = "mascaraFONE(this,FONE)", @maxlength = "15" })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </label>
+            </section>
+
+            <section class="col col-sm-12 col-md-6 col-lg-6">
+                @Html.LabelFor(model => model.contato, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.TextBoxPadraoFor(model => model.contato, new { @maxlength = "60" })
+                    @Html.ValidationMessageFor(model => model.contato, "", new { @class = "text-danger" })
+                </div>
+            </section>
+
+            <div class="row">
+
+                <section class="col col-sm-12 col-md-8 col-lg-10">
+                    @Html.LabelFor(model => model.endereco, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-12">
+                        @Html.TextBoxPadraoFor(model => model.endereco)
+                        @Html.ValidationMessageFor(model => model.endereco, "", new { @class = "text-danger" })
+                    </div>
+                </section>
+
+
+                <!--  <section class="col col-sm-12 col-md-12 col-lg-12">
+              <h4 class="subtitulo-form">Endereço Completo</h4>
+          </section> -->
+
+                <section class="col col-sm-12 col-md-4 col-lg-2">
+                    @Html.LabelFor(model => model.numero, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-12">
+                        @Html.TextBoxPadraoFor(model => model.numero)
+                        @Html.ValidationMessageFor(model => model.numero, "", new { @class = "text-danger" })
+                    </div>
+                </section>
             </div>
         </div>
 
@@ -49,5 +107,5 @@
 }
 
 @section Scripts {
-   @{ /* Scripts.Render("~/bundles/jqueryval") */ }
+    @{ /* Scripts.Render("~/bundles/jqueryval") */ }
 }

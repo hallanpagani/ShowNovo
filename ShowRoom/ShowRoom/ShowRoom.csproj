@@ -196,6 +196,10 @@
     <Compile Include="Controllers\Generico\AppController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarcasGrupoController.cs" />
+    <Compile Include="Controllers\ColecaoController.cs" />
+    <Compile Include="Controllers\EstadoController.cs" />
+    <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\ShowRoomController.cs" />
     <Compile Include="Controllers\RegiaoController.cs" />
     <Compile Include="Controllers\MarcasController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1242,6 +1246,11 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sweetalert2.js" />
+    <Content Include="Scripts\terceiros\cep.js" />
+    <Content Include="Scripts\terceiros\cpfcnpj.js" />
+    <Content Include="Scripts\terceiros\data.js" />
+    <Content Include="Scripts\terceiros\maskmoney.min.js" />
+    <Content Include="Scripts\terceiros\telefone.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -1276,6 +1285,16 @@
     <Content Include="Views\Colecao\Consultar.cshtml" />
     <Content Include="Views\ShowRoom\Cadastrar.cshtml" />
     <Content Include="Views\ShowRoom\Consultar.cshtml" />
+    <Content Include="Views\MicroRegiao\Cadastrar.cshtml" />
+    <Content Include="Views\MicroRegiao\Consultar.cshtml" />
+    <Content Include="Views\Pais\Cadastrar.cshtml" />
+    <Content Include="Views\Pais\Consultar.cshtml" />
+    <Content Include="Views\Estado\Cadastrar.cshtml" />
+    <Content Include="Views\Estado\Consultar.cshtml" />
+    <Content Include="Views\SubRegiao\Cadastrar.cshtml" />
+    <Content Include="Views\SubRegiao\Consultar.cshtml" />
+    <Content Include="Views\MarcasGrupo\Cadastrar.cshtml" />
+    <Content Include="Views\MarcasGrupo\Consultar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

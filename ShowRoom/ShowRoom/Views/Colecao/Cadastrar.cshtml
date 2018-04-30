@@ -31,10 +31,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.colecao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <section class="col col-sm-12 col-md-3 col-lg-5">
-                @Html.TextBoxPadraoFor(model => model.datainicio, new { @filtrar = "", @onclick = "this.focus();this.select()" })
-                @Html.ValidationMessageFor(model => model.datainicio, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.datainicio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <section class="col col-sm-12 col-md-3 col-lg-2">
+               @Html.TextBox("datainicio", "", new { @maxlength = "10", @data_dateformat = "dd/mm/yy", @onkeypress = "mascaraDT(this, DATA)", @autocomplete="off", @placeholder="DD/MM/YYYY" ,  @filtrar = "", @onclick = "this.focus();this.select()", @class = "form-control date datepicker" })
+               @Html.ValidationMessageFor(model => model.datainicio, "", new { @class = "text-danger" })
             </section>
         </div>
 
@@ -49,7 +49,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.colecaoequivalente, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-2">
-                @Html.EditorFor(model => model.qtdsemanas, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.colecaoequivalente, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.colecaoequivalente, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -60,8 +60,17 @@
             </div>
         </div>
     </div>
+
 }
 
 @section Scripts {
+
+    <script src="~/scripts/terceiros/data.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/scripts/assets/plugins/jquery-mask/jquery.mask.min.js"></script>
+
+    <script type="text/javascript">
+        
+
+    </script>
 
 }

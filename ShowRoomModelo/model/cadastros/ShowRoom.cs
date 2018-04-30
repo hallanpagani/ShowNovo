@@ -1,9 +1,6 @@
-﻿using System;
+﻿using ShowRoomModelo.classes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using ShowRoomModelo.classes;
-using ShowRoomModelo.model.generico;
-using System.Collections.Generic;
 
 namespace ShowRoomModelo.model.cadastros
 {

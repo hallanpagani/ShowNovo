@@ -1,0 +1,95 @@
+﻿@model ShowRoomModelo.model.cadastros.Estado
+
+
+@{
+    ViewBag.Title = "Cadastro de Estado";
+    ViewBag.SubTitle = "Cadastro de Estado";
+    ViewBag.LinkText = "Consultar";
+    ViewBag.ActionName = "Consultar";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control", @autofocus = "autofocus" } })
+                @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.uf, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-1">
+                @Html.EditorFor(model => model.uf, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.uf, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!-- <div class="form-group">
+             Html.LabelFor(model => model.pais, htmlAttributes: new { class = "control-label col-md-2" })
+             <div class="col-md-2">
+                 Html.EditorFor(model => model.pais, new { htmlAttributes = new { class = "form-control" } })
+                 Html.ValidationMessageFor(model => model.pais, "", new { class = "text-danger" })
+             </div>
+         </div>-->
+
+
+        <div class="form-group">
+            <section class="col col-sm-12 col-md-6 col-lg-6">
+                <label class="" for="Pais">País</label>
+                <select id="Pais" name="Pais" class="requerido" style="width:100%">
+                    @if (!Equals(Model.nm_pais, "") && (!(Model.pais == 0)))
+                    {
+                        <option value="@Model.pais">@Model.nm_pais</option>
+                    }
+                </select>
+            </section>
+        </div>
+
+        <!--  <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div> -->
+    </div>
+}
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var Url = '@Url.Action("GetPaises", "Pais")';
+            $("#Pais").select2({
+                placeholder: "Selecione um país",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+        });
+
+    </script>
+
+}

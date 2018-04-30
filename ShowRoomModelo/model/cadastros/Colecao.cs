@@ -26,7 +26,7 @@ namespace ShowRoomModelo.model.cadastros
         [Column("qtdsemanas")]
         [Display(Name = "Qtd.Semanas")]
         [Required(ErrorMessage = "Qtd.Semanas é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(3, ErrorMessage = "Campo 'Qtd.Semanas' pode ter no máximo 3 caracteres!")]
+        [Range(1, int.MaxValue, ErrorMessage = "Quantidade de semanas deve ser maior que 1.")]
         public int qtdsemanas { get; set; }
 
         [Column("colecaoequivalente")]
@@ -54,7 +54,7 @@ namespace ShowRoomModelo.model.cadastros
 
         public Colecao()
         {
-
+            datainicio = DateTime.Now;
         }
 
     }

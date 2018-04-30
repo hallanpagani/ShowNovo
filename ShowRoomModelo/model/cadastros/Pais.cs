@@ -28,14 +28,8 @@ namespace ShowRoomModelo.model.cadastros
         [Column("codigobacen")]
         [Display(Name = "Código bacen")]
         [Required(ErrorMessage = "O nome código bacen é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(30, ErrorMessage = "Campo 'Código bacen' pode ter no máximo 100 caracteres!")]
+        [MaxLength(30, ErrorMessage = "Campo 'Código bacen' pode ter no máximo 30 caracteres!")]
         public string codigo_bacen { get; set; }
-
-        [Column("id_conta")]
-        public long id_conta { get; set; }
-
-        [Column("id_usuario")]
-        public long id_usuario { get; set; }
 
         public Pais()
         {

@@ -33,6 +33,11 @@ namespace ShowRoomModelo.model.cadastros
         [MaxLength(6, ErrorMessage = "Campo 'País' pode ter no máximo 15 caracteres!")]
         public int pais { get; set; }
 
+        [OnlySelect]
+        [Column("(select nome from tb_cadastro_pais p where r.id = a.pais) as nm_pais")]
+        [Display(Name = "Nome do País")]
+        public string nm_pais { get; set; }
+
         [Column("id_conta")]
         public long id_conta { get; set; }
 

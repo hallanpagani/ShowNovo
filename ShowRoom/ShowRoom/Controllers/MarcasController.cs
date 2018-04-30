@@ -1,6 +1,7 @@
 ﻿using Conciliacao.Controllers.Generico;
 using ShowRoom.App_Helpers.Componentes;
 using ShowRoomModelo.model.cadastros;
+using ShowRoomModelo.model.generico;
 using ShowRoomPersistencia.banco;
 using System;
 using System.Collections.Generic;
@@ -80,5 +81,13 @@ namespace ShowRoom.Controllers
             return RedirectToAction("Consultar");
         }
 
+
+        [HttpGet]
+        [OutputCache(Duration = 30)]
+        public JsonResult GetMarcas(string term)
+        {
+            List<Lista> list = DAL.ListarObjetos<Marca>("", "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
+        }
     }
 }
