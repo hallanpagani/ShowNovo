@@ -52,6 +52,5 @@ D:\CSharp\ShowRoom\ShowRoomModelo\bin\roslyn\VBCSCompiler.exe
 D:\CSharp\ShowRoom\ShowRoomModelo\bin\roslyn\VBCSCompiler.exe.config
 D:\CSharp\ShowRoom\ShowRoomModelo\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\CSharp\ShowRoom\ShowRoomModelo\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\CSharp\ShowRoom\ShowRoomModelo\obj\Release\ShowRoomModelo.csprojResolveAssemblyReference.cache
 D:\CSharp\ShowRoom\ShowRoomModelo\obj\Release\ShowRoomModelo.dll
 D:\CSharp\ShowRoom\ShowRoomModelo\obj\Release\ShowRoomModelo.pdb

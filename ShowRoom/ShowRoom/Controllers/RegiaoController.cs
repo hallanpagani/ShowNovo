@@ -84,7 +84,7 @@ namespace ShowRoom.Controllers
         [OutputCache(Duration = 30)]
         public JsonResult GetRegiao(string term)
         {
-            List<Lista> list = DAL.ListarObjetos<Regiao>(term.Equals("") ? "" : string.Format("nome like '%{0}%'", term), "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
+            List<Lista> list = DAL.ListarObjetos<Regiao>((term ?? "").Equals("") ? "" : string.Format("nome like '%{0}%'", term), "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

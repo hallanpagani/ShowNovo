@@ -1,3 +1,4 @@
+D:\CSharp\ShowRoom\ShowRoom\ShowRoom\obj\Release\ShowRoom.csprojResolveAssemblyReference.cache
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ApplicationInsights.config
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoom.dll.config
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoom.dll
@@ -25,6 +26,7 @@ D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\Microsoft.Web.Infrastructure.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\Newtonsoft.Json.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\Owin.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomModelo.dll
+D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomPersistencia.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Diagnostics.DiagnosticSource.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Net.Http.Formatting.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Web.Helpers.dll
@@ -37,7 +39,9 @@ D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Web.WebPages.Deployment.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Web.WebPages.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Web.WebPages.Razor.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\WebGrease.dll
+D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\MySql.Data.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomModelo.pdb
+D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomPersistencia.pdb
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\Antlr3.Runtime.pdb
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\EntityFramework.xml
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\EntityFramework.SqlServer.xml
@@ -75,9 +79,5 @@ D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\pt-br\System.Web.WebPages.resources.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\pt-br\System.Web.WebPages.Deployment.resources.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\pt-br\System.Web.WebPages.Razor.resources.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\pt-br\System.Web.Optimization.resources.dll
-D:\CSharp\ShowRoom\ShowRoom\ShowRoom\obj\Release\ShowRoom.csprojResolveAssemblyReference.cache
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\obj\Release\ShowRoom.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\obj\Release\ShowRoom.pdb
-D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\MySql.Data.dll
-D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomPersistencia.dll
-D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomPersistencia.pdb

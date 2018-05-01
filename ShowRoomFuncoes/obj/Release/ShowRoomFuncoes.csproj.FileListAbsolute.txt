@@ -19,6 +19,5 @@ D:\CSharp\ShowRoom\ShowRoomFuncoes\bin\Release\pt-br\System.Web.Razor.resources.
 D:\CSharp\ShowRoom\ShowRoomFuncoes\bin\Release\pt-br\System.Web.WebPages.resources.dll
 D:\CSharp\ShowRoom\ShowRoomFuncoes\bin\Release\pt-br\System.Web.WebPages.Deployment.resources.dll
 D:\CSharp\ShowRoom\ShowRoomFuncoes\bin\Release\pt-br\System.Web.WebPages.Razor.resources.dll
-D:\CSharp\ShowRoom\ShowRoomFuncoes\obj\Release\ShowRoomFuncoes.csproj.CoreCompileInputs.cache
 D:\CSharp\ShowRoom\ShowRoomFuncoes\obj\Release\FlyAdminFuncoes.dll
 D:\CSharp\ShowRoom\ShowRoomFuncoes\obj\Release\FlyAdminFuncoes.pdb

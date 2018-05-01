@@ -1308,8 +1308,8 @@
     <Content Include="Views\Prospect\Consultar.cshtml" />
     <Content Include="Views\Cliente\Cadastrar.cshtml" />
     <Content Include="Views\Cliente\Consultar.cshtml" />
-    <Content Include="Views\ColecaoSemana\Cadastrar.cshtml" />
-    <Content Include="Views\ColecaoSemana\Consultar.cshtml" />
+    <Content Include="Views\SemanaColecao\Cadastrar.cshtml" />
+    <Content Include="Views\SemanaColecao\Consultar.cshtml" />
     <Content Include="Views\Cidade\Cadastrar.cshtml" />
     <Content Include="Views\Cidade\Consultar.cshtml" />
     <Content Include="Views\Vendedor\Cadastrar.cshtml" />

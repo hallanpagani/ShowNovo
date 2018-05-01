@@ -70,7 +70,7 @@
 
         <div class="form-group">
             <section class="col col-sm-12 col-md-6 col-lg-6">
-                <label class="" for="SubRegiao">Estado</label>
+                <label class="" for="id_uf">Estado</label>
                 <select id="id_uf" name="id_uf" class="requerido" style="width:100%">
                     @if (!Equals(Model.nm_estado, "") && (!(Model.id_uf == 0)))
                     {
@@ -163,7 +163,7 @@
             });
 
             var Url = '@Url.Action("GetMicroRegiao", "MicroRegiao")';
-            $("#SubRegiao").select2({
+            $("#MicroRegiao").select2({
                 placeholder: "Selecione uma MicroRegião",
                 minimumInputLength: 0,
                 language: "pt-BR",
@@ -187,7 +187,7 @@
             });
 
             var Url = '@Url.Action("GetEstado", "Estado")';
-            $("#Estado").select2({
+            $("#id_uf").select2({
                 placeholder: "Selecione um Estado",
                 minimumInputLength: 0,
                 language: "pt-BR",

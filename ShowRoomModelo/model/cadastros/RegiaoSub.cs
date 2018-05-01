@@ -29,7 +29,7 @@ namespace ShowRoomModelo.model.cadastros
         public long id_regiao { get; set; }
 
         [OnlySelect]
-        [Column("(select nome from tb_cadastro_regiao p where r.id = a.id_regiao) as nm_regiao")]
+        [Column("(select nome from tb_cadastro_regiao p where p.id = a.id_regiao) as nm_regiao")]
         [Display(Name = "Nome da Região")]
         public string nm_regiao { get; set; }
 

@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace ShowRoom.Controllers
 {
     [Authorize]
-    public class MarcaGrupoController : AppController
+    public class MarcasGrupoController : AppController
     {
         // GET: MarcaGrupos
         [HttpGet]

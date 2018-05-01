@@ -62,7 +62,7 @@ namespace ShowRoom.Controllers
         // GET: Regiao
         public ActionResult Consultar()
         {
-            return View(DAL.ListarObjetos<Pais>());
+            return View(DAL.ListarObjetos<Cidade>());
         }
 
         [HttpPost]
@@ -81,7 +81,7 @@ namespace ShowRoom.Controllers
         [OutputCache(Duration = 30)]
         public JsonResult GetCidades(string term)
         {
-            List<Lista> list = DAL.ListarObjetos<Cidade>(term.Equals("") ? "" : string.Format("nome like '%{0}%'",term ) , "nome").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
+            List<Lista> list = DAL.ListarObjetos<Cidade>((term ?? "").Equals("") ? "" : string.Format("nome like '%{0}%'",term ) , "nome").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
