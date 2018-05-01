@@ -38,7 +38,6 @@ D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Web.WebPages.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\System.Web.WebPages.Razor.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\WebGrease.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomModelo.pdb
-D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomModelo.dll.config
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\Antlr3.Runtime.pdb
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\EntityFramework.xml
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\EntityFramework.SqlServer.xml
@@ -77,7 +76,6 @@ D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\pt-br\System.Web.WebPages.Deployment.re
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\pt-br\System.Web.WebPages.Razor.resources.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\pt-br\System.Web.Optimization.resources.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\obj\Release\ShowRoom.csprojResolveAssemblyReference.cache
-D:\CSharp\ShowRoom\ShowRoom\ShowRoom\obj\Release\ShowRoom.csproj.CoreCompileInputs.cache
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\obj\Release\ShowRoom.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\obj\Release\ShowRoom.pdb
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\MySql.Data.dll

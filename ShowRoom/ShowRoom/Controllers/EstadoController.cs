@@ -1,8 +1,11 @@
 ﻿using Conciliacao.Controllers.Generico;
 using ShowRoom.App_Helpers.Componentes;
 using ShowRoomModelo.model.cadastros;
+using ShowRoomModelo.model.generico;
 using ShowRoomPersistencia.banco;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ShowRoom.Controllers
@@ -72,6 +75,14 @@ namespace ShowRoom.Controllers
                 DAL.Excluir(model);
             }
             return RedirectToAction("Consultar");
+        }
+
+        [HttpGet]
+        [OutputCache(Duration = 30)]
+        public JsonResult GetEstado(string term)
+        {
+            List<Lista> list = DAL.ListarObjetos<Estado>(term.Equals("") ? "" : string.Format("nome like '%{0}%'", term), "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
     }

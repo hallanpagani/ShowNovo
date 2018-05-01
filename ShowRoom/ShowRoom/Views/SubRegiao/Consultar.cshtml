@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ShowRoomModelo.model.cadastros.Regiao>
+﻿@model IEnumerable<ShowRoomModelo.model.cadastros.RegiaoSub>
 
 @{
-    ViewBag.Title = "Consultar regiões";
+    ViewBag.Title = "Consultar SubRegiões";
     ViewBag.LinkText = "Cadastrar";
     ViewBag.ActionName = "Cadastrar";
 }
@@ -11,7 +11,10 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.regiao)
+                    @Html.DisplayNameFor(model => model.nm_regiao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.subregiao)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.nome)
@@ -24,14 +27,17 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.regiao)
+                        @Html.DisplayFor(modelItem => item.nm_regiao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.subregiao)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.nome)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar", "Cadastrar", new { id = item.id }, new { @class = "btn btn-primary waves-effect waves-light" })
-                        @Html.ActionLink("Deletar", "Deletar", new { id = item.id }, new { @class = "btn btn-danger deletar", @id=@item.id })
+                        @Html.ActionLink("Editar", "Cadastrar", new { id = item.id }, new { @class = "btn btn-primary btn-sm waves-effect waves-light" })
+                        @Html.ActionLink("Deletar", "Deletar", new { id = item.id }, new { @class = "btn btn-danger btn-sm deletar", @id=@item.id })
                     </td>
                 </tr>
             }

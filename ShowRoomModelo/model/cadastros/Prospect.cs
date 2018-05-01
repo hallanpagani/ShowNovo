@@ -22,22 +22,22 @@ namespace ShowRoomModelo.model.cadastros
 
         [Required]
         [Column("cliente")]
-        [Display(Name = "Nome do cliente")]
-        public string nome { get; set; }
+        [Display(Name = "Cliente")]
+        public string cliente { get; set; }
 
         [Required]
         [Column("razao")]
-        [Display(Name = "Razão do cliente")]
+        [Display(Name = "Nome do cliente")]
         public string razao { get; set; }
 
         [Required]
         [Column("fantasia")]
-        [Display(Name = "fantasia")]
+        [Display(Name = "Nome Fantasia")]
         public string fantasia { get; set; }
 
         [Required]
         [Column("contato")]
-        [Display(Name = "contato")]
+        [Display(Name = "Contato")]
         public string contato { get; set; }
 
         [Required]
@@ -57,14 +57,36 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "Cidade")]
         public long cidade { get; set; }
 
+        [OnlySelect]
+        [Column("(select nome from tb_cadastro_cidade c where c.id = a.id_cidade) as nm_cidade")]
+        [Display(Name = "Cidade")]
+        public string nm_cidade { get; set; }
+
+        [Column("cep")]
+        [Display(Name = "CEP")]
+        public string cep { get; set; }
+
+        [Column("endereco")]
+        [Display(Name = "Endereço")]
+        public string endereco { get; set; }
+
         [Required]
         [Column("cnpj")]
-        [Display(Name = "Cnpj")]
+        [Display(Name = "CNPJ")]
         public string cnpj { get; set; }
 
         [Column("obs")]
-        [Display(Name = "obs")]
+        [Display(Name = "Observação")]
         public string obs { get; set; }
+
+        [Column("email")]
+        [Display(Name = "Email")]
+        public string email { get; set; }
+
+        [Required]
+        [Column("numero")]
+        [Display(Name = "Número")]
+        public string numero { get; set; }
 
         [Column("id_conta")]
         public long id_conta { get; set; }

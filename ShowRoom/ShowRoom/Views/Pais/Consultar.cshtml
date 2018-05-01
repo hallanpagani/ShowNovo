@@ -7,7 +7,7 @@
 }
 
 <div class="table-responsive">
-    <table id="datatable-1" class="table table-datatable  table-hover">
+    <table id="datatable-1" class="table table-datatable table-hover">
         <thead>
             <tr>
                 <th>
@@ -19,7 +19,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.codigo_bacen)
                 </th>
-                <th></th>
+             
             </tr>
         </thead>
         <tbody>
@@ -35,10 +35,10 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.codigo_bacen)
                     </td>
-                    <td>
-                        @Html.ActionLink("Editar", "Cadastrar", new { id = item.id }, new { @class = "btn btn-primary waves-effect waves-light" })
-                       <!-- Html.ActionLink("Deletar", "Deletar", new { id = item.id }, new { class = "btn btn-danger deletar", id=item.id }) -->
-                    </td>
+                   <!-- <td>
+                      Html.ActionLink("Editar", "Cadastrar", new { id = item.id }, new {class = "btn btn-primary waves-effect waves-light" })
+                        Html.ActionLink("Deletar", "Deletar", new { id = item.id }, new { class = "btn btn-danger deletar", id=item.id }) 
+                    </td> -->
                 </tr>
             }
         </tbody>

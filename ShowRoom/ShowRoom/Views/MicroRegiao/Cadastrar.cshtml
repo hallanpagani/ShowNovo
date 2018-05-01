@@ -10,17 +10,17 @@
 
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.regiao, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.microregiao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.regiao, new { htmlAttributes = new { @class = "form-control", @autofocus = "autofocus" } })
-                @Html.ValidationMessageFor(model => model.regiao, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.microregiao, new { htmlAttributes = new { @class = "form-control", @autofocus = "autofocus" } })
+                @Html.ValidationMessageFor(model => model.microregiao, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -46,8 +46,8 @@
 
         <div class="form-group">
             <section class="col col-sm-12 col-md-6 col-lg-6">
-                <label class="" for="Regiao">SubRegião</label>
-                <select id="Regiao" name="Regiao" class="requerido" style="width:100%">
+                <label class="" for="SubRegiao">SubRegião</label>
+                <select id="SubRegiao" name="SubRegiao" class="requerido" style="width:100%">
                     @if (!Equals(Model.nm_subregiao, "") && (!(Model.id_subregiao == 0)))
                     {
                         <option value="@Model.id_subregiao">@Model.nm_subregiao</option>
@@ -55,6 +55,7 @@
                 </select>
             </section>
         </div>
+
 
 
         <div class="form-group">
@@ -66,5 +67,58 @@
 }
 
 @section Scripts {
- 
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var Url = '@Url.Action("GetRegiao", "Regiao")';
+            $("#Regiao").select2({
+                placeholder: "Selecione uma região",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetSubRegiao", "SubRegiao")';
+            $("#SubRegiao").select2({
+                placeholder: "Selecione uma SubRegião",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+        });
+
+    </script>
 }

@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ShowRoomModelo.model.cadastros.Regiao>
+﻿@model IEnumerable<ShowRoomModelo.model.cadastros.RegiaoMicro>
 
 @{
-    ViewBag.Title = "Consultar regiões";
+    ViewBag.Title = "Consultar MicroRegiões";
     ViewBag.LinkText = "Cadastrar";
     ViewBag.ActionName = "Cadastrar";
 }
@@ -11,10 +11,13 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.regiao)
+                    @Html.DisplayNameFor(model => model.nome)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.nome)
+                    @Html.DisplayNameFor(model => model.nm_regiao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nm_subregiao)
                 </th>
                 <th></th>
             </tr>
@@ -24,14 +27,17 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.regiao)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.nome)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar", "Cadastrar", new { id = item.id }, new { @class = "btn btn-primary waves-effect waves-light" })
-                        @Html.ActionLink("Deletar", "Deletar", new { id = item.id }, new { @class = "btn btn-danger deletar", @id=@item.id })
+                        @Html.DisplayFor(modelItem => item.nm_regiao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nm_subregiao)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Cadastrar", new { id = item.id }, new { @class = "btn btn-primary btn-sm waves-effect waves-light" })
+                        @Html.ActionLink("Deletar", "Deletar", new { id = item.id }, new { @class = "btn btn-danger btn-sm deletar", @id=@item.id })
                     </td>
                 </tr>
             }

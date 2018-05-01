@@ -16,32 +16,29 @@ namespace ShowRoomModelo.model.cadastros
         [Column("id")]
         public int id { get; set; }
 
-        [Required]
-        [Column("cliente")]
-        [Display(Name = "Nome do cliente")]
-        public string nome { get; set; }
-
-        [Required]
         [Column("razao")]
         [Display(Name = "Razão do cliente")]
+        [Required(ErrorMessage = "Nome do cliente é obrigatório!", AllowEmptyStrings = false)]
+        [MaxLength(100, ErrorMessage = "Campo 'Razão' pode ter no máximo 100 caracteres!")]
         public string razao { get; set; }
 
-        [Required]
         [Column("cnpj")]
         [Display(Name = "CNPJ")]
+        [Required(ErrorMessage = "Campo CNPJ do cliente é obrigatório!", AllowEmptyStrings = false)]
         public string cnpj { get; set; }
 
         [Column("ie")]
-        [Display(Name = "ie")]
+        [Display(Name = "Inscr.Estadual")]
         public string ie { get; set; }
 
         [Column("contato")]
-        [Display(Name = "contato")]
+        [Display(Name = "Contato")]
         public string contato { get; set; }
 
-        [Required]
+       
         [Column("fone1")]
         [Display(Name = "Fone 1")]
+        [Required(ErrorMessage = "Campo Fone 1 é obrigatório!", AllowEmptyStrings = false)]
         public string fone1 { get; set; }
 
         [Column("fone2")]
@@ -60,6 +57,10 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "Número")]
         public string numero { get; set; }
 
+        [Column("endereco")]
+        [Display(Name = "Endereço")]
+        public string endereco { get; set; }
+
         [Column("corredor")]
         [Display(Name = "Corredor")]
         public string corredor { get; set; }
@@ -68,6 +69,11 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "Cidade")]
         public long cidade { get; set; }
 
+        [OnlySelect]
+        [Column("(select nome from tb_cadastro_cidade c where c.id = a.id_cidade) as nm_cidade")]
+        [Display(Name = "Cidade")]
+        public string nm_cidade { get; set; }
+
         [Column("email")]
         [Display(Name = "Email 1")]
         public string email { get; set; }
@@ -75,11 +81,6 @@ namespace ShowRoomModelo.model.cadastros
         [Column("email2")]
         [Display(Name = "Email 2")]
         public string email2 { get; set; }
-
-        [DataType(DataType.Date)]
-        [Column("dt_inc")]
-        [Display(Name = "Data do cadastro")]
-        public DateTime dt_inc { get; set; }
 
         [DataType(DataType.Date)]
         [Column("fundacao")]

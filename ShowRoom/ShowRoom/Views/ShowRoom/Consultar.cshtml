@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ShowRoomModelo.model.cadastros.ShowRoom>
 
 @{
-    ViewBag.Title = "Consultar marcas";
+    ViewBag.Title = "Consultar ShowRoom";
     ViewBag.LinkText = "Cadastrar";
     ViewBag.ActionName = "Cadastrar";
 }
@@ -11,10 +11,19 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.marca)
+                    @Html.DisplayNameFor(model => model.fantasia)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.nome)
+                    @Html.DisplayNameFor(model => model.cnpj)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fone1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.contato)
                 </th>
                 <th></th>
             </tr>
@@ -24,10 +33,19 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.marca)
+                        @Html.DisplayFor(modelItem => item.fantasia)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.nome)
+                        @Html.DisplayFor(modelItem => item.cnpj)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fone1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.contato)
                     </td>
                     <td>
                         @Html.ActionLink("Editar", "Cadastrar", new { id = item.id }, new { @class = "btn btn-primary waves-effect waves-light" })

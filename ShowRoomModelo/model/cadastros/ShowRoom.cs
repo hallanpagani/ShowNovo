@@ -42,11 +42,11 @@ namespace ShowRoomModelo.model.cadastros
         public string fone2 { get; set; }
 
         [Column("www")]
-        [Display(Name = "www")]
+        [Display(Name = "WWW")]
         public string www { get; set; }
 
         [Column("contato")]
-        [Display(Name = "contato")]
+        [Display(Name = "Contato")]
         public string contato { get; set; }
 
         [Required]
@@ -55,16 +55,21 @@ namespace ShowRoomModelo.model.cadastros
         public string cnpj { get; set; }
 
         [Column("endereco")]
-        [Display(Name = "endereco")]
+        [Display(Name = "Endereço")]
         public string endereco { get; set; }
 
         [Column("numero")]
-        [Display(Name = "numero")]
+        [Display(Name = "Número")]
         public string numero { get; set; }
 
         [Column("id_cidade")]
         [Display(Name = "Cidade")]
         public long cidade { get; set; }
+
+        [OnlySelect]
+        [Column("(select nome from tb_cadastro_cidade c where c.id = a.id_cidade) as nm_cidade")]
+        [Display(Name = "Cidade")]
+        public string nm_cidade { get; set; }
 
         [Column("id_conta")]
         public long id_conta { get; set; }

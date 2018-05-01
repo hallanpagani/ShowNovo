@@ -21,17 +21,37 @@ namespace ShowRoomModelo.model.cadastros
         [Column("id_regiao")]
         public long id_regiao { get; set; }
 
+        [OnlySelect]
+        [Column("(select nome from tb_cadastro_regiao p where r.id = a.id_regiao) as nm_regiao")]
+        [Display(Name = "Nome da Região")]
+        public string nm_regiao { get; set; }
+
         [Required]
         [Column("id_subregiao")]
         public long id_subregiao { get; set; }
+
+        [OnlySelect]
+        [Column("(select nome from tb_cadastro_subregiao p where r.id = a.id_subregiao) as nm_subregiao")]
+        [Display(Name = "Nome da SubRegião")]
+        public string nm_subregiao { get; set; }
 
         [Required]
         [Column("id_microregiao")]
         public long id_microregiao { get; set; }
 
+        [OnlySelect]
+        [Column("(select nome from tb_cadastro_microregiao p where r.id = a.id_microregiao) as nm_microregiao")]
+        [Display(Name = "Nome da SubRegião")]
+        public string nm_microregiao { get; set; }
+
         [Required]
         [Column("id_uf")]
         public long id_uf { get; set; }
+
+        [OnlySelect]
+        [Column("(select nome from tb_cadastro_estado p where p.id = a.id_uf) as nm_estado")]
+        [Display(Name = "Nome do Estado")]
+        public string nm_estado { get; set; }
 
         [Column("cidade")]
         [Display(Name = "Cidade")]
@@ -45,7 +65,7 @@ namespace ShowRoomModelo.model.cadastros
         [MaxLength(30, ErrorMessage = "Campo 'Nome da Cidade' pode ter no máximo 100 caracteres!")]
         public string nome { get; set; }
 
-        [Column("nome")]
+        [Column("ipc")]
         [Display(Name = "Nome da Cidade")]
         [MaxLength(30, ErrorMessage = "Campo 'Nome da Cidade' pode ter no máximo 100 caracteres!")]
         public decimal ipc { get; set; }

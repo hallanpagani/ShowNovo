@@ -18,7 +18,8 @@ namespace ShowRoom
                          "~/Scripts/assets/plugins/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js",
                          "~/Scripts/assets/plugins/jquery_visible/jquery.visible.min.js",
                          "~/Scripts/assets/js/misc/ie10-viewport-bug-workaround.js",
-                         "~/Scripts/sweetalert2.js"
+                         "~/Scripts/sweetalert2.js",
+                         "~/scripts/assets/plugins/select2/select2.min.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/scriptsfim").Include(

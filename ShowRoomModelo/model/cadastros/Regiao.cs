@@ -25,11 +25,11 @@ namespace ShowRoomModelo.model.cadastros
         [MaxLength(100, ErrorMessage = "Campo 'Nome da Região' pode ter no máximo 100 caracteres!")]
         public string nome { get; set; }
 
-        [Column("id_conta")]
+      /*  [Column("id_conta")]
         public long id_conta { get; set; }
 
         [Column("id_usuario")]
-        public long id_usuario { get; set; }
+        public long id_usuario { get; set; } */
 
         public Regiao()
         {

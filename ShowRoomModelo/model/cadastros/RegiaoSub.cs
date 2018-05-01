@@ -33,11 +33,11 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "Nome da Região")]
         public string nm_regiao { get; set; }
 
-        [Column("id_conta")]
+    /*     [Column("id_conta")]
         public long id_conta { get; set; }
 
         [Column("id_usuario")]
-        public long id_usuario { get; set; }
+        public long id_usuario { get; set; }  */
 
         public RegiaoSub()
         {

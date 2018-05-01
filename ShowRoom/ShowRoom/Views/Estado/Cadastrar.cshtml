@@ -42,7 +42,7 @@
         <div class="form-group">
             <section class="col col-sm-12 col-md-6 col-lg-6">
                 <label class="" for="Pais">País</label>
-                <select id="Pais" name="Pais" class="requerido" style="width:100%">
+                <select id="Pais" name="Pais" class="form-control" style="width:100%">
                     @if (!Equals(Model.nm_pais, "") && (!(Model.pais == 0)))
                     {
                         <option value="@Model.pais">@Model.nm_pais</option>

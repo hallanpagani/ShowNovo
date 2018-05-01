@@ -19,7 +19,7 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>44321</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -193,12 +193,19 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Acesso\SistemaController.cs" />
+    <Compile Include="Controllers\VendedorController.cs" />
+    <Compile Include="Controllers\SemanaColecaoController.cs" />
     <Compile Include="Controllers\Generico\AppController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MarcasGrupoController.cs" />
     <Compile Include="Controllers\ColecaoController.cs" />
     <Compile Include="Controllers\EstadoController.cs" />
+    <Compile Include="Controllers\CidadeController.cs" />
+    <Compile Include="Controllers\SubRegiaoController.cs" />
     <Compile Include="Controllers\PaisController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\ProspectController.cs" />
+    <Compile Include="Controllers\MicroRegiaoController.cs" />
     <Compile Include="Controllers\ShowRoomController.cs" />
     <Compile Include="Controllers\RegiaoController.cs" />
     <Compile Include="Controllers\MarcasController.cs" />
@@ -1185,6 +1192,8 @@
     <Content Include="Scripts\assets\plugins\prettify\css\prettify-bootstrap.min.css" />
     <Content Include="Scripts\assets\plugins\prettify\css\prettify.css" />
     <Content Include="Scripts\assets\plugins\prettify\js\prettify.js" />
+    <Content Include="Scripts\assets\plugins\select2\i18n\pt-BR.js" />
+    <Content Include="Scripts\assets\plugins\select2\select2.min.js" />
     <Content Include="Scripts\assets\plugins\tagsinput\bootstrap-tagsinput.min.css" />
     <Content Include="Scripts\assets\plugins\tagsinput\bootstrap-tagsinput.min.js" />
     <Content Include="Scripts\assets\plugins\timelify\css\animate.css" />
@@ -1295,6 +1304,16 @@
     <Content Include="Views\SubRegiao\Consultar.cshtml" />
     <Content Include="Views\MarcasGrupo\Cadastrar.cshtml" />
     <Content Include="Views\MarcasGrupo\Consultar.cshtml" />
+    <Content Include="Views\Prospect\Cadastrar.cshtml" />
+    <Content Include="Views\Prospect\Consultar.cshtml" />
+    <Content Include="Views\Cliente\Cadastrar.cshtml" />
+    <Content Include="Views\Cliente\Consultar.cshtml" />
+    <Content Include="Views\ColecaoSemana\Cadastrar.cshtml" />
+    <Content Include="Views\ColecaoSemana\Consultar.cshtml" />
+    <Content Include="Views\Cidade\Cadastrar.cshtml" />
+    <Content Include="Views\Cidade\Consultar.cshtml" />
+    <Content Include="Views\Vendedor\Cadastrar.cshtml" />
+    <Content Include="Views\Vendedor\Consultar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1346,9 +1365,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

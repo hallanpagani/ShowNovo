@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ShowRoomModelo.model.cadastros.Marca>
+﻿@model IEnumerable<ShowRoomModelo.model.cadastros.MarcaGrupo>
 
 @{
-    ViewBag.Title = "Consultar marcas";
+    ViewBag.Title = "Consultar grupo das marcas";
     ViewBag.LinkText = "Cadastrar";
     ViewBag.ActionName = "Cadastrar";
 }
@@ -11,7 +11,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.marca)
+                    @Html.DisplayNameFor(model => model.grupomarca)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.nome)
@@ -24,14 +24,14 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.marca)
+                        @Html.DisplayFor(modelItem => item.grupomarca)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.nome)
                     </td>
                     <td>
-                        @Html.ActionLink("Editar", "Cadastrar", new { id = item.id }, new { @class = "btn btn-primary waves-effect waves-light" })
-                        @Html.ActionLink("Deletar", "Deletar", new { id = item.id }, new { @class = "btn btn-danger deletar", @id=@item.id })
+                        @Html.ActionLink("Editar", "Cadastrar", new { id = item.id }, new { @class = "btn btn-primary btn-sm waves-effect waves-light" })
+                        @Html.ActionLink("Deletar", "Deletar", new { id = item.id }, new { @class = "btn btn-danger btn-sm deletar", @id=@item.id })
                     </td>
                 </tr>
             }

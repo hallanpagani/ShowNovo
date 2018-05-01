@@ -17,7 +17,7 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "Grupo Marca")]
         [Required(ErrorMessage = "Grupo marca é obrigatório!", AllowEmptyStrings = false)]
         [MaxLength(10, ErrorMessage = "Campo 'Grupo Marca' pode ter no máximo 10 caracteres!")]  
-        public string marca { get; set; }
+        public string grupomarca { get; set; }
 
         [Column("nome")]
         [Display(Name = "Nome grupo da marca")]

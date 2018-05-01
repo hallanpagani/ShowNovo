@@ -2,8 +2,8 @@
 
 @{
     ViewBag.Title = "Consultar Estado";
-    ViewBag.LinkText = "Cadastrar";
-    ViewBag.ActionName = "Cadastrar";
+   /* ViewBag.LinkText = "Cadastrar";
+    ViewBag.ActionName = "Cadastrar";*/
 }
 
 <div class="table-responsive">
@@ -19,7 +19,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.nm_pais)
                 </th>
-                <th></th>
+                
             </tr>
         </thead>
         <tbody>
@@ -35,10 +35,10 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.nm_pais)
                     </td>
-                    <td>
-                        @Html.ActionLink("Editar", "Cadastrar", new { id = item.id }, new { @class = "btn btn-primary waves-effect waves-light" })
-                       <!-- Html.ActionLink("Deletar", "Deletar", new { id = item.id }, new { class = "btn btn-danger deletar", id=item.id }) -->
-                    </td>
+                   <!-- <td>
+                        Html.ActionLink("Editar", "Cadastrar", new { id = item.id }, new { class = "btn btn-primary waves-effect waves-light" })
+                       <!-- Html.ActionLink("Deletar", "Deletar", new { id = item.id }, new { class = "btn btn-danger deletar", id=item.id }) 
+                    </td> -->
                 </tr>
             }
         </tbody>

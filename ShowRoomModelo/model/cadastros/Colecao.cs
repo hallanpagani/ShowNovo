@@ -1,10 +1,7 @@
-﻿using ShowRoomModelo.classes;
+﻿
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace ShowRoomModelo.model.cadastros
 {
@@ -12,14 +9,13 @@ namespace ShowRoomModelo.model.cadastros
     public class Colecao
     {
         [Key]
-        [AutoInc]
         [Required]
         [Column("id")]
         public long id { get; set; }
 
         [Column("datainicio")]
-        [Display(Name = "Data inicio")]
-        [Required(ErrorMessage = "Data inicio é obrigatório!", AllowEmptyStrings = false)]
+        [Display(Name = "Data início")]
+        [Required(ErrorMessage = "Data início é obrigatório!", AllowEmptyStrings = false)]
         [DataType(DataType.DateTime)]
         public DateTime datainicio { get; set; }
 
@@ -54,7 +50,7 @@ namespace ShowRoomModelo.model.cadastros
 
         public Colecao()
         {
-            datainicio = DateTime.Now;
+           // datainicio = DateTime.Now;
         }
 
     }

@@ -1,8 +1,11 @@
 ﻿using Conciliacao.Controllers.Generico;
 using ShowRoom.App_Helpers.Componentes;
 using ShowRoomModelo.model.cadastros;
+using ShowRoomModelo.model.generico;
 using ShowRoomPersistencia.banco;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ShowRoom.Controllers
@@ -74,6 +77,18 @@ namespace ShowRoom.Controllers
                 DAL.Excluir(model);
             }
             return RedirectToAction("Consultar");
+        }
+
+        [HttpGet]
+        [OutputCache(Duration = 30)]
+        public JsonResult GetColecao(string term)
+        {
+            List<Lista> list = DAL.ListarObjetos<Colecao>((term ?? "").Equals("") ? 
+                            string.Format("id_conta={0}", UsuarioLogado.IdConta) : 
+                            string.Format("id_conta={0} and nome like '%{1}%' ", UsuarioLogado.IdConta,term)
+                            , "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
+
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
     }

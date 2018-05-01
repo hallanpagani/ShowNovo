@@ -32,7 +32,7 @@ namespace ShowRoom.Controllers
             {
                 return View(model);
             }
-            model.marca = model.marca.ToUpper();
+            model.grupomarca = model.grupomarca.ToUpper();
             model.nome = model.nome.ToUpper();
             model.id_usuario = Convert.ToInt64(UsuarioLogado.IdUsuario);
             model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);

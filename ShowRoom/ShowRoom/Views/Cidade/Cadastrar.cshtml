@@ -1,0 +1,216 @@
+﻿@model ShowRoomModelo.model.cadastros.Cidade
+
+
+@{
+    ViewBag.Title = "Cadastro de Cidades";
+    ViewBag.SubTitle = "Cadastro de Cidades";
+    ViewBag.LinkText = "Consultar";
+    ViewBag.ActionName = "Consultar";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.cidade, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.cidade, new { htmlAttributes = new { @class = "form-control", @autofocus = "autofocus" } })
+                @Html.ValidationMessageFor(model => model.cidade, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <section class="col col-sm-12 col-md-6 col-lg-6">
+                <label class="" for="Regiao">Região</label>
+                <select id="Regiao" name="Regiao" class="requerido" style="width:100%">
+                    @if (!Equals(Model.nm_regiao, "") && (!(Model.id_regiao == 0)))
+                    {
+                        <option value="@Model.id_regiao">@Model.nm_regiao</option>
+                    }
+                </select>
+            </section>
+        </div>
+
+        <div class="form-group">
+            <section class="col col-sm-12 col-md-6 col-lg-6">
+                <label class="" for="SubRegiao">SubRegião</label>
+                <select id="SubRegiao" name="SubRegiao" class="requerido" style="width:100%">
+                    @if (!Equals(Model.nm_subregiao, "") && (!(Model.id_subregiao == 0)))
+                    {
+                        <option value="@Model.id_subregiao">@Model.nm_subregiao</option>
+                    }
+                </select>
+            </section>
+        </div>
+
+        <div class="form-group">
+            <section class="col col-sm-12 col-md-6 col-lg-6">
+                <label class="" for="MicroRegiao">MicroRegião</label>
+                <select id="MicroRegiao" name="MicroRegiao" class="requerido" style="width:100%">
+                    @if (!Equals(Model.nm_microregiao, "") && (!(Model.id_microregiao == 0)))
+                    {
+                        <option value="@Model.id_microregiao">@Model.nm_microregiao</option>
+                    }
+                </select>
+            </section>
+        </div>
+
+        <div class="form-group">
+            <section class="col col-sm-12 col-md-6 col-lg-6">
+                <label class="" for="SubRegiao">Estado</label>
+                <select id="id_uf" name="id_uf" class="requerido" style="width:100%">
+                    @if (!Equals(Model.nm_estado, "") && (!(Model.id_uf == 0)))
+                    {
+                        <option value="@Model.id_uf">@Model.nm_estado</option>
+                    }
+                </select>
+            </section>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-4 mb-4">
+                @Html.LabelFor(model => model.ipc, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.ipc, new { @class = "form-control", @maxlength = "15" })
+                @Html.ValidationMessageFor(model => model.ipc, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4 mb-4">
+                @Html.LabelFor(model => model.potencialpdv, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.potencialpdv, new { @class = "form-control", @maxlength = "15" })
+                @Html.ValidationMessageFor(model => model.potencialpdv, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4 mb-4">
+                @Html.LabelFor(model => model.consumomoda, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.consumomoda, new { @class = "form-control", @maxlength = "15" })
+                @Html.ValidationMessageFor(model => model.consumomoda, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var Url = '@Url.Action("GetRegiao", "Regiao")';
+            $("#Regiao").select2({
+                placeholder: "Selecione uma região",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetSubRegiao", "SubRegiao")';
+            $("#SubRegiao").select2({
+                placeholder: "Selecione uma SubRegião",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetMicroRegiao", "MicroRegiao")';
+            $("#SubRegiao").select2({
+                placeholder: "Selecione uma MicroRegião",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetEstado", "Estado")';
+            $("#Estado").select2({
+                placeholder: "Selecione um Estado",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+        });
+
+    </script>
+}

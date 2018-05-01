@@ -34,8 +34,8 @@ namespace ShowRoom.Controllers
             }
             model.regiao = model.regiao.ToUpper();
             model.nome = model.nome.ToUpper();
-            model.id_usuario = Convert.ToInt64(UsuarioLogado.IdUsuario);
-            model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
+           // model.id_usuario = Convert.ToInt64(UsuarioLogado.IdUsuario);
+           // model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
             try
             {
                 var existe = DAL.GetObjeto<Regiao>(string.Format("id_conta={0} and nome='{1}'", UsuarioLogado.IdConta, model.nome)) ?? new Regiao();
@@ -84,7 +84,7 @@ namespace ShowRoom.Controllers
         [OutputCache(Duration = 30)]
         public JsonResult GetRegiao(string term)
         {
-            List<Lista> list = DAL.ListarObjetos<Pais>("", "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
+            List<Lista> list = DAL.ListarObjetos<Regiao>(term.Equals("") ? "" : string.Format("nome like '%{0}%'", term), "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
