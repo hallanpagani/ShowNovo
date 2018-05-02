@@ -17,7 +17,7 @@ namespace ShowRoomModelo.model.cadastros
         public int id { get; set; }
 
         [Column("razao")]
-        [Display(Name = "Razão do Social")]
+        [Display(Name = "Razão Social")]
         [Required(ErrorMessage = "Campo razão social é obrigatório!", AllowEmptyStrings = false)]
         [MaxLength(100, ErrorMessage = "Campo 'Razão Social' deve ter no máximo 100 caracteres!")]
         public string razao { get; set; }
