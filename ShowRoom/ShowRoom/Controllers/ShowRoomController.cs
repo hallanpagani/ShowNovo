@@ -38,28 +38,28 @@ namespace ShowRoom.Controllers
             model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
             try
             {
-                var existe = DAL.GetObjeto<ShowRoomModelo.model.cadastros.ShowRoom>(string.Format("id_conta={0} and showroom={1}", UsuarioLogado.IdConta, model.showroom)) ?? new ShowRoomModelo.model.cadastros.ShowRoom();
+                var existe = DAL.GetObjeto<ShowRoomModelo.model.cadastros.ShowRoom>(string.Format("id_conta={0} and showroom='{1}'", UsuarioLogado.IdConta, model.showroom)) ?? new ShowRoomModelo.model.cadastros.ShowRoom();
                 if (existe.id > 0 && model.id == 0)
                 {
-                    this.AddNotification("ShowRoom já existe!", "Alerta");
+                    this.AddNotification("Show Room já existe!", "Alerta");
                     return View();
                 }
                 long id = DAL.Gravar(model);
 
                 if (model.id > 0 && id == 0)
                 {
-                    this.AddNotification("ShowRoom alterada!", "Sucesso");
+                    this.AddNotification("Show Room alterada!", "Sucesso");
                 }
                 else
                 {
-                    this.AddNotification("ShowRoom cadastrada!", "Sucesso");
+                    this.AddNotification("Show Room cadastrada!", "Sucesso");
                 }
             }
             catch (Exception e)
             {
                 this.AddNotification("Erro:" + e.Message, "Erro");
             }
-            return View();
+            return View(model);
         }
 
         // GET: ShowRoom

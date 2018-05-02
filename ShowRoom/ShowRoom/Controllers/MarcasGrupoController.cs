@@ -59,7 +59,7 @@ namespace ShowRoom.Controllers
             {
                 this.AddNotification("Erro:" + e.Message, "Erro");
             }
-            return View();
+            return View(model);
         }
 
         // GET: MarcaGrupos

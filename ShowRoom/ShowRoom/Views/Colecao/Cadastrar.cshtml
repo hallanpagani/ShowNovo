@@ -17,7 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.colecao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-2">
-                @Html.EditorFor(model => model.colecao, new { htmlAttributes = new { @class = "form-control", @autofocus = "autofocus" } })
+                @Html.EditorFor(model => model.colecao, new { htmlAttributes = new { @class = "form-control", @maxlength = "8", @autofocus = "autofocus" } })
                 @Html.ValidationMessageFor(model => model.colecao, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control", @maxlength = "30" } })
                 @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -49,7 +49,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.colecaoequivalente, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-2">
-                @Html.EditorFor(model => model.colecaoequivalente, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.colecaoequivalente, new { htmlAttributes = new { @class = "form-control", @maxlength = "8" } })
                 @Html.ValidationMessageFor(model => model.colecaoequivalente, "", new { @class = "text-danger" })
             </div>
         </div>

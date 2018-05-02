@@ -38,7 +38,7 @@ namespace ShowRoom.Controllers
            // model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
             try
             {
-                var existe = DAL.GetObjeto<Regiao>(string.Format("id_conta={0} and nome='{1}'", UsuarioLogado.IdConta, model.nome)) ?? new Regiao();
+                var existe = DAL.GetObjeto<Regiao>(string.Format("nome='{0}'", UsuarioLogado.IdConta, model.nome)) ?? new Regiao();
                 if (existe.id > 0 && model.id == 0)
                 {
                     this.AddNotification("Região já existe!", "Alerta");
@@ -59,13 +59,13 @@ namespace ShowRoom.Controllers
             {
                 this.AddNotification("Erro:" + e.Message, "Erro");
             }
-            return View();
+            return View(model);
         }
 
         // GET: Regiao
         public ActionResult Consultar()
         {
-            return View(DAL.ListarObjetos<Regiao>(string.Format("id_conta={0}", UsuarioLogado.IdConta)));
+            return View(DAL.ListarObjetos<Regiao>());
         }
 
         [HttpPost]
@@ -74,7 +74,7 @@ namespace ShowRoom.Controllers
             var model = new Regiao();
             if (id > 0)
             {
-                model = DAL.GetObjeto<Regiao>(string.Format("id_conta={0} and id={1}", UsuarioLogado.IdConta, id));
+                model = DAL.GetObjeto<Regiao>(string.Format("id={0}", UsuarioLogado.IdConta, id));
                 DAL.Excluir(model);
             }
             return RedirectToAction("Consultar");

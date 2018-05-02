@@ -11,7 +11,7 @@ namespace ShowRoomModelo.model.cadastros
         [AutoInc]
         [Required]
         [Column("id")]
-        public int id { get; set; }
+        public long id { get; set; }
 
         [Column("id_colecao")]
         [Display(Name = "Coleção")]

@@ -16,13 +16,19 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-row">
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.showroom, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.showroom, new { @maxlength = "10", @class = "form-control", @autofocus = "autofocus" })
+                @Html.ValidationMessageFor(model => model.showroom, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
 
             <div class="col-md-3 mb-2">
                 @Html.LabelFor(model => model.cnpj, htmlAttributes: new { @class = "control-label" })
-
-                @Html.TextBoxFor(model => model.cnpj, htmlAttributes: new { @onkeypress = "mascaraCC(this,CC)", @maxlength = "18", @class = "form-control", @autofocus="autofocus" })
+                @Html.TextBoxFor(model => model.cnpj, htmlAttributes: new { @onkeypress = "mascaraCC(this,CC)", @maxlength = "18", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.cnpj, "", new { @class = "text-danger" })
-
             </div>
 
             <div class="col-md-5 mb-3">
@@ -66,6 +72,9 @@
             </div>
 
         </div>
+
+        <hr />
+        <h4 class="subtitulo-form">Endereço</h4>
 
         <div class="form-row">
 

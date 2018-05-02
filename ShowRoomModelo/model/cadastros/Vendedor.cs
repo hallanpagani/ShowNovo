@@ -14,7 +14,7 @@ namespace ShowRoomModelo.model.cadastros
         [AutoInc]
         [Required]
         [Column("id")]
-        public int id { get; set; }
+        public long id { get; set; }
 
         [Column("razao")]
         [Display(Name = "Razão Social")]
@@ -34,7 +34,7 @@ namespace ShowRoomModelo.model.cadastros
         public string cnpj { get; set; }
 
         [Column("inscestadual")]
-        [Display(Name = "Inscr.Estadual")]
+        [Display(Name = "Inscrição Estadual")]
         public string ie { get; set; }
 
         [Column("contato")]
@@ -76,7 +76,7 @@ namespace ShowRoomModelo.model.cadastros
         public string email { get; set; }
 
         [Column("www")]
-        [Display(Name = "www")]
+        [Display(Name = "URL")]
         public string www { get; set; }
 
         [Column("id_conta")]

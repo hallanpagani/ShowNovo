@@ -14,35 +14,34 @@ namespace ShowRoomModelo.model.cadastros
         [AutoInc]
         [Required]
         [Column("id")]
-        public int id { get; set; }
-
-        [Required]
+        public long id { get; set; }
+        
         [Column("prospect")]
+        [Required(ErrorMessage = "Campo Prospect é obrigatório!", AllowEmptyStrings = false)]
         public int prospect { get; set; }
-
-        [Required]
-        [Column("cliente")]
-        [Display(Name = "Cliente")]
-        public string cliente { get; set; }
-
-        [Required]
+        
         [Column("razao")]
-        [Display(Name = "Nome do cliente")]
+        [Display(Name = "Razão Social")]
+        [Required(ErrorMessage = "Campo Razão Social é obrigatório!", AllowEmptyStrings = false)]
+        [MaxLength(30, ErrorMessage = "Campo 'Razão Social' deve ter no máximo 30 caracteres!")]
         public string razao { get; set; }
-
-        [Required]
+        
         [Column("fantasia")]
         [Display(Name = "Nome Fantasia")]
+        [Required(ErrorMessage = "Campo Nome Fantasia é obrigatório!", AllowEmptyStrings = false)]
+        [MaxLength(300, ErrorMessage = "Campo 'Nome Fantasia' deve ter no máximo 300 caracteres!")]
         public string fantasia { get; set; }
-
-        [Required]
+        
         [Column("contato")]
         [Display(Name = "Contato")]
+        [Required(ErrorMessage = "Campo Contato é obrigatório!", AllowEmptyStrings = false)]
+        [MaxLength(30, ErrorMessage = "Campo 'Contato' deve ter no máximo 30 caracteres!")]
         public string contato { get; set; }
-
-        [Required]
+        
         [Column("fone1")]
         [Display(Name = "Fone 1")]
+        [Required(ErrorMessage = "Campo Fone 1 é obrigatório!", AllowEmptyStrings = false)]
+        [MaxLength(30, ErrorMessage = "Campo 'Fone 1' deve ter no máximo 30 caracteres!")]
         public string fone1 { get; set; }
 
         [Column("fone2")]

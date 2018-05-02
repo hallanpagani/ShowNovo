@@ -17,10 +17,19 @@
 
         <div class="form-row">
 
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.prospect, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.prospect, new { @maxlength = "8", @class = "form-control", @autofocus = "autofocus" })
+                @Html.ValidationMessageFor(model => model.prospect, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
             <div class="col-md-3 mb-2">
                 @Html.LabelFor(model => model.cnpj, htmlAttributes: new { @class = "control-label" })
-
-                @Html.TextBoxFor(model => model.cnpj, htmlAttributes: new { @onkeypress = "mascaraCC(this,CC)", @maxlength = "18", @class = "form-control", @autofocus = "autofocus" })
+                @Html.TextBoxFor(model => model.cnpj, htmlAttributes: new { @onkeypress = "mascaraCC(this,CC)", @maxlength = "18", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.cnpj, "", new { @class = "text-danger" })
 
             </div>
@@ -66,12 +75,15 @@
             </div>
         </div>
 
+        <hr />
+        <h4 class="subtitulo-form">Endereço</h4>
+
         <div class="form-row">
 
             <div class="col-md-4 mb-4">
                 <label class="" for="Cidade">Cidade</label>
                 <select id="Cidade" name="Cidade" class="form-control" style="width:100%">
-                    @if (!Equals(Model.nm_cidade, "") && (!(Model.cidade == 0)))
+                    @if (!Equals(@Model.nm_cidade, "") && (!(@Model.cidade == 0)))
                     {
                         <option value="@Model.cidade">@Model.nm_cidade</option>
                     }

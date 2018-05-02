@@ -17,7 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.subregiao, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-4">
-                @Html.EditorFor(model => model.subregiao, new { htmlAttributes = new { @class = "form-control", @autofocus = "autofocus" } })
+                @Html.EditorFor(model => model.subregiao, new { htmlAttributes = new { @class = "form-control", @maxlength = "10", @autofocus = "autofocus" } })
                 @Html.ValidationMessageFor(model => model.subregiao, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control", @autofocus="autofocus" } })
+                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control", @maxlength = "30", @autofocus ="autofocus" } })
                 @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -34,7 +34,7 @@
             <section class="col col-sm-12 col-md-6 col-lg-6">
                 <label class="" for="Regiao">Região</label>
                 <select id="Regiao" name="Regiao" class="requerido" style="width:100%">
-                    @if (!Equals(Model.nm_regiao, "") && (!(Model.id_regiao == 0)))
+                    @if (!Equals(@Model.nm_regiao, "") && (!(@Model.id_regiao == 0)))
                     {
                         <option value="@Model.id_regiao">@Model.nm_regiao</option>
                     }
