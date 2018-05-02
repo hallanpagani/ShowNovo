@@ -41,7 +41,7 @@ namespace ShowRoomModelo.model.cadastros
 
         [OnlySelect]
         [Column("(select nome from tb_cadastro_microregiao p where p.id = a.id_microregiao) as nm_microregiao")]
-        [Display(Name = "Nome da SubRegião")]
+        [Display(Name = "Nome da micro região, por exemplo, região Sul do Brasil, sub região Sul de Santa Catarina, MICROREGIÃO AMREC")]
         public string nm_microregiao { get; set; }
 
         [Required]
@@ -56,35 +56,29 @@ namespace ShowRoomModelo.model.cadastros
         [Column("cidade")]
         [Display(Name = "Cidade")]
         [Required(ErrorMessage = "Cidade é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(6, ErrorMessage = "Campo 'Cidade' pode ter no máximo 6 caracteres!")]
+        [MaxLength(6, ErrorMessage = "Campo 'Cidade' deve ter no máximo 6 caracteres!")]
         public int cidade { get; set; }
 
         [Column("nome")]
         [Display(Name = "Nome da Cidade")]
         [Required(ErrorMessage = "O nome da região é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(30, ErrorMessage = "Campo 'Nome da Cidade' pode ter no máximo 100 caracteres!")]
+        [MaxLength(30, ErrorMessage = "Campo 'Nome da Cidade' deve ter no máximo 100 caracteres!")]
         public string nome { get; set; }
 
         [Column("ipc")]
-        [Display(Name = "Nome da Cidade")]
-        [MaxLength(30, ErrorMessage = "Campo 'Nome da Cidade' pode ter no máximo 100 caracteres!")]
+        [Display(Name = "Índice de Preço ao Consumidor")]
+        [MaxLength(30, ErrorMessage = "Campo 'IPC - Índice de preço ao consumidor' deve ter no máximo 100 caracteres!")]
         public decimal ipc { get; set; }
 
         [Column("consumomoda")]
-        [Display(Name = "Nome da Micro região")]
-        [MaxLength(15, ErrorMessage = "Campo 'Consumo moda' pode ter no máximo 15 caracteres!")]
+        [Display(Name = "Consumo")]
+        [MaxLength(15, ErrorMessage = "Campo 'Consumo' deve ter no máximo 15 caracteres!")]
         public decimal consumomoda { get; set; }
 
         [Column("potencialpdv")]
-        [Display(Name = "Nome da Micro região")]
-        [MaxLength(15, ErrorMessage = "Campo 'Potencial PDV' pode ter no máximo 15 caracteres!")]
+        [Display(Name = "Potencial do PDV")]
+        [MaxLength(15, ErrorMessage = "Campo 'Potencial PDV' deve ter no máximo 15 caracteres!")]
         public int potencialpdv { get; set; }
-
-        [Column("id_conta")]
-        public long id_conta { get; set; }
-
-        [Column("id_usuario")]
-        public long id_usuario { get; set; }
 
         public Cidade()
         {
