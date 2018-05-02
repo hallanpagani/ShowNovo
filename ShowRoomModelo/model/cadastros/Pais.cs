@@ -16,19 +16,19 @@ namespace ShowRoomModelo.model.cadastros
         [Column("pais")]
         [Display(Name = "Pais")]
         [Required(ErrorMessage = "País é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(6, ErrorMessage = "Campo 'País' pode ter no máximo 6 números!")]
+        [MaxLength(6, ErrorMessage = "Campo 'País' deve ter no máximo 6 números!")]
         public int pais { get; set; }
 
         [Column("nome")]
         [Display(Name = "Nome do país")]
         [Required(ErrorMessage = "O nome do país é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(100, ErrorMessage = "Campo 'Nome do país' pode ter no máximo 100 caracteres!")]
+        [MaxLength(100, ErrorMessage = "Campo 'Nome do país' deve ter no máximo 100 caracteres!")]
         public string nome { get; set; }
 
         [Column("codigobacen")]
         [Display(Name = "Código bacen")]
         [Required(ErrorMessage = "O nome código bacen é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(30, ErrorMessage = "Campo 'Código bacen' pode ter no máximo 30 caracteres!")]
+        [MaxLength(30, ErrorMessage = "Campo 'Código bacen' deve ter no máximo 30 caracteres!")]
         public string codigo_bacen { get; set; }
 
         public Pais()
