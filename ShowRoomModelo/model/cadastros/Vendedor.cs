@@ -17,15 +17,15 @@ namespace ShowRoomModelo.model.cadastros
         public int id { get; set; }
 
         [Column("razao")]
-        [Display(Name = "Razão do vendedor")]
-        [Required(ErrorMessage = "Nome do vendedor é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(100, ErrorMessage = "Campo 'Razão' pode ter no máximo 100 caracteres!")]
+        [Display(Name = "Razão Social")]
+        [Required(ErrorMessage = "Campo razão social é obrigatório!", AllowEmptyStrings = false)]
+        [MaxLength(100, ErrorMessage = "Campo 'Razão Social' deve ter no máximo 100 caracteres!")]
         public string razao { get; set; }
 
         [Column("fantasia")]
         [Display(Name = "Nome fantasia")]
         [Required(ErrorMessage = "Nome Fantasia é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(30, ErrorMessage = "Campo 'Fantasia' pode ter no máximo 30 caracteres!")]
+        [MaxLength(30, ErrorMessage = "Campo 'Nome Fantasia' deve ter no máximo 30 caracteres!")]
         public string fantasia { get; set; }
 
         [Column("cnpj")]

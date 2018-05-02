@@ -16,13 +16,13 @@ namespace ShowRoomModelo.model.cadastros
         [Column("subregiao")]
         [Display(Name = "SubRegião")]
         [Required(ErrorMessage = "SubRegião é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(10, ErrorMessage = "Campo 'Região' pode ter no máximo 10 caracteres!")]  
+        [MaxLength(10, ErrorMessage = "Campo 'Região' deve ter no máximo 10 caracteres!")]  
         public string subregiao { get; set; }
 
         [Column("nome")]
         [Display(Name = "Nome da região")]
         [Required(ErrorMessage = "O nome da SubRegião é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(100, ErrorMessage = "Campo 'Nome da Região' pode ter no máximo 100 caracteres!")]
+        [MaxLength(100, ErrorMessage = "Campo 'Nome da Região' deve ter no máximo 100 caracteres!")]
         public string nome { get; set; }
 
         [Column("id_regiao")]
