@@ -27,19 +27,19 @@ namespace ShowRoomModelo.model.cadastros
 
         [Column("colecaoequivalente")]
         [Display(Name = "Coleção equivalente")]
-        [MaxLength(8, ErrorMessage = "Campo 'Coleção equivalente' pode ter no máximo 8 caracteres!")]
+        [MaxLength(8, ErrorMessage = "Campo 'Coleção equivalente' deve ter no máximo 8 caracteres!")]
         public string colecaoequivalente { get; set; }
 
         [Column("colecao")]
         [Display(Name = "Coleção")]
         [Required(ErrorMessage = "O campo Coleção é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(8, ErrorMessage = "Campo 'Coleção' pode ter no máximo 8 caracteres!")]
+        [MaxLength(8, ErrorMessage = "Campo 'Coleção' deve ter no máximo 8 caracteres!")]
         public string colecao { get; set; }
 
         [Column("nome")]
         [Display(Name = "Nome da Coleção")]
         [Required(ErrorMessage = "O nome da coleção é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(30, ErrorMessage = "Campo 'Nome da coleção' pode ter no máximo 30 caracteres!")]
+        [MaxLength(30, ErrorMessage = "Campo 'Nome da coleção' deve ter no máximo 30 caracteres!")]
         public string nome { get; set; }
 
         [Column("id_conta")]
