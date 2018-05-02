@@ -26,12 +26,12 @@ namespace ShowRoomModelo.model.cadastros
         [Column("nome")]
         [Display(Name = "Nome do estado")]
         [Required(ErrorMessage = "O nome do estado é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(30, ErrorMessage = "Campo 'Nome do Estado' pode ter no máximo 100 caracteres!")]
+        [MaxLength(30, ErrorMessage = "Campo 'Nome do Estado' deve ter no máximo 100 caracteres!")]
         public string nome { get; set; }
 
         [Column("pais")]
         [Display(Name = "Nome do País")]
-        [MaxLength(6, ErrorMessage = "Campo 'País' pode ter no máximo 15 caracteres!")]
+        [MaxLength(6, ErrorMessage = "Campo 'País' deve ter no máximo 15 caracteres!")]
         public long pais { get; set; }
 
         [OnlySelect]
