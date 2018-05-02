@@ -96,7 +96,7 @@
             <div class="col-md-4 mb-4">
                 <label class="" for="Cidade">Cidade</label>
                 <select id="Cidade" name="Cidade" class="form-control" style="width:100%">
-                    @if (!Equals(Model.nm_cidade, "") && (!(Model.cidade == 0)))
+                    @if (!Equals(@Model.nm_cidade, "") && (!(@Model.cidade == 0)))
                     {
                         <option value="@Model.cidade">@Model.nm_cidade</option>
                     }

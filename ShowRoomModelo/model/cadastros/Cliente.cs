@@ -14,7 +14,7 @@ namespace ShowRoomModelo.model.cadastros
         [AutoInc]
         [Required]
         [Column("id")]
-        public int id { get; set; }
+        public long id { get; set; }
 
         [Column("razao")]
         [Display(Name = "Razão Social")]
@@ -85,7 +85,7 @@ namespace ShowRoomModelo.model.cadastros
         [DataType(DataType.Date)]
         [Column("fundacao")]
         [Display(Name = "Data da fundação")]
-        public DateTime fundacao { get; set; }
+        public Nullable<DateTime> fundacao { get; set; }
 
         [Column("facebook")]
         [Display(Name = "Facebook")]
