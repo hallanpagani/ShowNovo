@@ -16,13 +16,13 @@ namespace ShowRoomModelo.model.cadastros
         [Column("grupomarca")]
         [Display(Name = "Grupo de Marcas")]
         [Required(ErrorMessage = "Campo código do grupo de marcas é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(10, ErrorMessage = "Campo 'Grupo Marca' pode ter no máximo 10 caracteres!")]  
+        [MaxLength(10, ErrorMessage = "Campo 'Grupo Marca' deve ter no máximo 10 caracteres!")]  
         public string grupomarca { get; set; }
 
         [Column("nome")]
         [Display(Name = "Nome do grupo da marcas")]
         [Required(ErrorMessage = "O nome da grupo da marca é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(100, ErrorMessage = "Campo 'Nome grupo da marca' pode ter no máximo 100 caracteres!")]
+        [MaxLength(100, ErrorMessage = "Campo 'Nome grupo da marca' deve ter no máximo 100 caracteres!")]
         public string nome { get; set; }
 
         [Column("id_conta")]
