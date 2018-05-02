@@ -17,18 +17,18 @@ namespace ShowRoomModelo.model.cadastros
         public int id { get; set; }
 
         [Column("razao")]
-        [Display(Name = "Razão do cliente")]
-        [Required(ErrorMessage = "Nome do cliente é obrigatório!", AllowEmptyStrings = false)]
-        [MaxLength(100, ErrorMessage = "Campo 'Razão' pode ter no máximo 100 caracteres!")]
+        [Display(Name = "Razão do Social")]
+        [Required(ErrorMessage = "Campo razão social é obrigatório!", AllowEmptyStrings = false)]
+        [MaxLength(100, ErrorMessage = "Campo 'Razão Social' deve ter no máximo 100 caracteres!")]
         public string razao { get; set; }
 
         [Column("cnpj")]
         [Display(Name = "CNPJ")]
-        [Required(ErrorMessage = "Campo CNPJ do cliente é obrigatório!", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "Campo 'CNPJ do cliente' é obrigatório!", AllowEmptyStrings = false)]
         public string cnpj { get; set; }
 
         [Column("ie")]
-        [Display(Name = "Inscr.Estadual")]
+        [Display(Name = "Inscrição Estadual")]
         public string ie { get; set; }
 
         [Column("contato")]
@@ -38,7 +38,7 @@ namespace ShowRoomModelo.model.cadastros
        
         [Column("fone1")]
         [Display(Name = "Fone 1")]
-        [Required(ErrorMessage = "Campo Fone 1 é obrigatório!", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "Campo 'Fone 1' é obrigatório!", AllowEmptyStrings = false)]
         public string fone1 { get; set; }
 
         [Column("fone2")]
@@ -96,7 +96,7 @@ namespace ShowRoomModelo.model.cadastros
         public string instagram { get; set; }
 
         [Column("www")]
-        [Display(Name = "WWW")]
+        [Display(Name = "URL")]
         public string www { get; set; }
 
         [Column("id_conta")]
