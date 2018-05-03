@@ -138,7 +138,7 @@ namespace ShowRoomModelo.model.cadastros
 
         [Column("id_cliente")]
         [Display(Name = "Cliente")]
-        public long id_cliente { get; set; }
+        public long id_usuario { get; set; }
 
 
         public Agendamento()
