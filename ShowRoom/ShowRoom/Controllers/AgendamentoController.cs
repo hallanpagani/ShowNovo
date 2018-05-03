@@ -38,7 +38,7 @@ namespace ShowRoom.Controllers
            // model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
             try
             {
-                var existe = DAL.GetObjeto<Agendamento>(string.Format("nome='{0}'", UsuarioLogado.IdConta, model.nome)) ?? new Regiao();
+                var existe = DAL.GetObjeto<Agendamento>(string.Format("nome='{0}'", UsuarioLogado.IdConta, model.nome)) ?? new Agendamento();
                 if (existe.id > 0 && model.id == 0)
                 {
                     this.AddNotification("Agendamento já existe!", "Alerta");
@@ -65,16 +65,16 @@ namespace ShowRoom.Controllers
         // GET: Regiao
         public ActionResult Consultar()
         {
-            return View(DAL.ListarObjetos<Regiao>());
+            return View(DAL.ListarObjetos<Agendamento>());
         }
 
         [HttpPost]
         public ActionResult Deletar(int id = 0)
         {
-            var model = new Regiao();
+            var model = new Agendamento();
             if (id > 0)
             {
-                model = DAL.GetObjeto<Regiao>(string.Format("id={0}", UsuarioLogado.IdConta, id));
+                model = DAL.GetObjeto<Agendamento>(string.Format("id={0}", id));
                 DAL.Excluir(model);
             }
             return RedirectToAction("Consultar");
@@ -82,9 +82,9 @@ namespace ShowRoom.Controllers
 
         [HttpGet]
         [OutputCache(Duration = 30)]
-        public JsonResult GetRegiao(string term)
+        public JsonResult GetAgendamentos(string term)
         {
-            List<Lista> list = DAL.ListarObjetos<Regiao>((term ?? "").Equals("") ? "" : string.Format("nome like '%{0}%'", term), "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
+            List<Lista> list = DAL.ListarObjetos<Agendamento>((term ?? "").Equals("") ? "" : string.Format("nome like '%{0}%'", term), "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
