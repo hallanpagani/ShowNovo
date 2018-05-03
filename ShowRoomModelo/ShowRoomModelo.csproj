@@ -86,6 +86,7 @@
     <Compile Include="model\adm\Conta.cs" />
     <Compile Include="model\adm\Loja.cs" />
     <Compile Include="model\adm\Usuario.cs" />
+    <Compile Include="model\cadastros\Agendamento.cs" />
     <Compile Include="model\cadastros\Vendedor.cs" />
     <Compile Include="model\cadastros\ColecaoSemana.cs" />
     <Compile Include="model\cadastros\PlanoDeContas.cs" />
