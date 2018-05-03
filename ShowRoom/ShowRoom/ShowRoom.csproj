@@ -213,6 +213,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\VisualizarAgendaViewModel.cs" />
     <Compile Include="Models\UsuarioApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1237,6 +1238,11 @@
     <Content Include="Content\assets\fonts\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\assets\fonts\font-awesome\fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\img\bootstrap-colorpicker\alpha-horizontal.png" />
+    <Content Include="Scripts\img\bootstrap-colorpicker\alpha.png" />
+    <Content Include="Scripts\img\bootstrap-colorpicker\hue-horizontal.png" />
+    <Content Include="Scripts\img\bootstrap-colorpicker\hue.png" />
+    <Content Include="Scripts\img\bootstrap-colorpicker\saturation.png" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
@@ -1256,6 +1262,8 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sweetalert2.js" />
+    <Content Include="Scripts\terceiros\bootstrap-colorpicker.min.css" />
+    <Content Include="Scripts\terceiros\bootstrap-colorpicker.min.js" />
     <Content Include="Scripts\terceiros\cep.js" />
     <Content Include="Scripts\terceiros\cpfcnpj.js" />
     <Content Include="Scripts\terceiros\data.js" />
@@ -1315,6 +1323,13 @@
     <Content Include="Views\Cidade\Consultar.cshtml" />
     <Content Include="Views\Vendedor\Cadastrar.cshtml" />
     <Content Include="Views\Vendedor\Consultar.cshtml" />
+    <Content Include="Views\Agenda\Cadastrar.cshtml" />
+    <Content Include="Views\Agenda\AgendaVisualizar.cshtml" />
+    <Content Include="Views\Agenda\ListarAgendaPaciente.cshtml" />
+    <Content Include="Views\Agenda\ListarAgendaPacienteGeral.cshtml" />
+    <Content Include="Views\Agenda\VisualizarHistoricoAgendas.cshtml" />
+    <Content Include="Views\Agenda\_ListarAgendaHistorico.cshtml" />
+    <Content Include="Views\Agenda\_ListarAvaliacoesPaciente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

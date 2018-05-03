@@ -25,6 +25,12 @@ namespace ShowRoom.Controllers
             return View(model);
         }
 
+        // GET: Agenda
+        public ActionResult AgendaVisualizar(VisualizarCalendarioViewModel obj)
+        {
+            return View(obj);
+        }
+
         [HttpPost]
         public ActionResult Cadastrar(Agendamento model)
         {
@@ -32,13 +38,13 @@ namespace ShowRoom.Controllers
             {
                 return View(model);
             }
-            model.regiao = model.regiao.ToUpper();
-            model.nome = model.nome.ToUpper();
+           /* model.regiao = model.regiao.ToUpper(); 
+            model.nome = model.nome.ToUpper(); */
            // model.id_usuario = Convert.ToInt64(UsuarioLogado.IdUsuario);
            // model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
             try
             {
-                var existe = DAL.GetObjeto<Agendamento>(string.Format("nome='{0}'", UsuarioLogado.IdConta, model.nome)) ?? new Agendamento();
+                var existe = DAL.GetObjeto<Agendamento>(string.Format("id={0}", model.id)) ?? new Agendamento();
                 if (existe.id > 0 && model.id == 0)
                 {
                     this.AddNotification("Agendamento já existe!", "Alerta");
