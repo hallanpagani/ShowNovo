@@ -27,7 +27,7 @@ namespace ShowRoom.Controllers
         }
 
         [HttpPost]
-        public ActionResult Cadastrar(Marca model)
+        public ActionResult Cadastrar(Marca model, FormCollection frm)
         {
             if (!ModelState.IsValid)
             {
@@ -37,6 +37,7 @@ namespace ShowRoom.Controllers
             model.nome = model.nome.ToUpper();
             model.id_usuario = Convert.ToInt64(UsuarioLogado.IdUsuario);
             model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
+            model.cor_padrao = frm["cor_padrao"];
             try
             {
                 var existe = DAL.GetObjeto<Marca>(string.Format("id_conta={0} and nome='{1}'", UsuarioLogado.IdConta, model.nome)) ?? new Marca();

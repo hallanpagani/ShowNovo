@@ -25,6 +25,10 @@ namespace ShowRoomModelo.model.cadastros
         [MaxLength(100, ErrorMessage = "Campo 'Nome da marca' deve ter no máximo 100 caracteres!")]
         public string nome { get; set; }
 
+        [Column("cor_padrao")]
+        [Display(Name = "Cor Padrão")]
+        public string cor_padrao { get; set; }
+
         [Column("id_conta")]
         public long id_conta { get; set; }
 
