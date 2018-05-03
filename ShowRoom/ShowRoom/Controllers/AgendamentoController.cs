@@ -11,22 +11,22 @@ using System.Web.Mvc;
 namespace ShowRoom.Controllers
 {
     [Authorize]
-    public class RegiaoController : AppController
+    public class AgendamentoController : AppController
     {
         // GET: Regiao
         [HttpGet]
         public ActionResult Cadastrar(int id = 0)
         {
-            var model = new Regiao();
+            var model = new Agendamento();
             if (id > 0)
             {
-                model = DAL.GetObjetoById<Regiao>(id);
+                model = DAL.GetObjetoById<Agendamento>(id);
             }
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Cadastrar(Regiao model)
+        public ActionResult Cadastrar(Agendamento model)
         {
             if (!ModelState.IsValid)
             {
@@ -38,21 +38,21 @@ namespace ShowRoom.Controllers
            // model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
             try
             {
-                var existe = DAL.GetObjeto<Regiao>(string.Format("nome='{0}'",  model.nome)) ?? new Regiao();
+                var existe = DAL.GetObjeto<Agendamento>(string.Format("nome='{0}'", UsuarioLogado.IdConta, model.nome)) ?? new Regiao();
                 if (existe.id > 0 && model.id == 0)
                 {
-                    this.AddNotification("Região já existe!", "Alerta");
+                    this.AddNotification("Agendamento já existe!", "Alerta");
                     return View();
                 }
                 long id = DAL.Gravar(model);
 
                 if (model.id > 0 && id == 0)
                 {
-                    this.AddNotification("Região alterada!", "Sucesso");
+                    this.AddNotification("Agendamento alterada!", "Sucesso");
                 }
                 else
                 {
-                    this.AddNotification("Região cadastrada!", "Sucesso");
+                    this.AddNotification("Agendamento cadastrado!", "Sucesso");
                 }
             }
             catch (Exception e)
@@ -74,7 +74,7 @@ namespace ShowRoom.Controllers
             var model = new Regiao();
             if (id > 0)
             {
-                model = DAL.GetObjeto<Regiao>(string.Format("id={0}",  id));
+                model = DAL.GetObjeto<Regiao>(string.Format("id={0}", UsuarioLogado.IdConta, id));
                 DAL.Excluir(model);
             }
             return RedirectToAction("Consultar");

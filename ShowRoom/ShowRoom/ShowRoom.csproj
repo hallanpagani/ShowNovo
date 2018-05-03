@@ -193,6 +193,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Acesso\SistemaController.cs" />
+    <Compile Include="Controllers\AgendamentoController.cs" />
     <Compile Include="Controllers\VendedorController.cs" />
     <Compile Include="Controllers\SemanaColecaoController.cs" />
     <Compile Include="Controllers\Generico\AppController.cs" />
