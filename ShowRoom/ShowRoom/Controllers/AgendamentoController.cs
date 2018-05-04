@@ -1,5 +1,6 @@
 ﻿using Conciliacao.Controllers.Generico;
 using ShowRoom.App_Helpers.Componentes;
+using ShowRoom.Models;
 using ShowRoomModelo.model.cadastros;
 using ShowRoomModelo.model.generico;
 using ShowRoomPersistencia.banco;
@@ -26,7 +27,7 @@ namespace ShowRoom.Controllers
         }
 
         // GET: Agenda
-        public ActionResult AgendaVisualizar(VisualizarCalendarioViewModel obj)
+        public ActionResult AgendaVisualizar(VisualizarAgendaViewModel obj)
         {
             return View(obj);
         }
@@ -90,7 +91,7 @@ namespace ShowRoom.Controllers
         [OutputCache(Duration = 30)]
         public JsonResult GetAgendamentos(string term)
         {
-            List<Lista> list = DAL.ListarObjetos<Agendamento>((term ?? "").Equals("") ? "" : string.Format("nome like '%{0}%'", term), "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
+            List<Lista> list = DAL.ListarObjetos<Agendamento>((term ?? "").Equals("") ? "" : string.Format("id like '%{0}%'", term), "id").Select(i => new Lista { id = i.id, text = i.id.ToString().ToUpper() }).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
