@@ -2,263 +2,137 @@
 @using ShowRoom.App_Helpers.Componentes
 
 @{
-    ViewBag.Title = "Cadastro de agendamento";
-    ViewBag.Tamanho = "col-lg-8";
+    ViewBag.Title = "Cadastro de Agendamento";
+    ViewBag.SubTitle = "Cadastro de Agendamento";
+    ViewBag.LinkText = "agenda";
+    ViewBag.ActionName = "agendavisualizar";
+    ViewBag.Class = "btn btn-primary waves-effect waves-light";
 }
 
 @section css{
     <style>
-
         i[disabled], i:disabled {
-            background-color:lightgray!important;
+            background-color: lightgray !important;
         }
     </style>
+    <link rel="stylesheet" href="~/Scripts/assets/plugins/clockpicker/clockpicker.css">
+
 }
 
-    @using (Html.BeginForm("CadastroAgendaPaciente", "Agenda", FormMethod.Post, new { @class = "form-horizontal smart-form", @id = "agendamento" }))
-    {
-        @Html.AntiForgeryToken()
-        @Html.Partial("_ValidationSummary")
+@using (Html.BeginForm("Cadastrar", "Agendamento", FormMethod.Post, new { @class = "form-horizontal smart-form", @id = "agendamento" }))
+{
+    @Html.AntiForgeryToken()
 
-        @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.id)
 
-        <div class="row" style="padding-top: 20px;">
 
-            <div class="col col-sm-12 col-md-12 col-lg-12">
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label class="" for="cliente">Cliente</label>
+            <select id="cliente" name="cliente" class="requerido" style="width:100%">
+                @if ((Model.cliente != 0) && (Model.nm_cliente != null))
+                {
+                    <option value="@Model.cliente">@Model.nm_cliente</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.cliente, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-                <section class="col col-sm-12 col-md-7 col-lg-7">
-                    <label class="" for="id_cliente">Cliente</label>
-                    <select id="Clientes" name="id_cliente" class="requerido" style="width:100%">
-                        @if ((Model.id_cliente != 0) && (Model.nm_cliente != null))
-                        {
-                            <option value="@Model.id_cliente">@Model.nm_cliente</option>
-                        }
-                    </select>
-                </section>
 
-                <section class="col col-sm-12 col-md-2 col-lg-2">
-                    <label class="" for="sessao_atual">Sessão atual</label>
-                    <input name="sessao_atual" class="form-control" id="sessao_atual" disabled="" type="text" value="">
-                </section>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label class="" for="marca">Marca</label>
+            <select id="marca" name="marca" class="requerido" style="width:100%">
+                @if ((Model.marca != 0) && (Model.nm_marca != null))
+                {
+                    <option value="@Model.marca">@Model.nm_marca</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.marca, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-                <section class="col col-sm-12 col-md-3 col-lg-3">
-                    <label class="" for="sessao_faltante">Sessões faltantes</label>
-                    <div class="">
-                        <div class="input-group">
-                            <input name="sessao_faltante" class="form-control" id="sessao_faltante" disabled="" type="text" value="">
-                            <span class="input-group-btn">
-                                <button class="btn btn-secondary" type="button" id="apagar_agendamentos"><i class="fa fa-trash-o"></i></button>
-                            </span>
-                        </div>
-                    </div>
-                </section>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label class="" for="colecao">Coleção</label>
+            <select id="colecao" name="colecao" class="requerido" style="width:100%">
+                @if ((Model.marca != 0) && (Model.nm_colecao != null))
+                {
+                    <option value="@Model.colecao">@Model.nm_colecao</option>
+                }
+            </select>
+            @Html.ValidationMessageFor(model => model.colecao, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-                <section class="col col-sm-12 col-md-12 col-lg-12">
-                    <label class="" for="id_servico">Serviço</label>
 
-                    <select id="Servicos" name="id_servico" class="requerido" style="width:100%">
-                        @if ((Model.id_servico != 0) && (Model.nm_servico != null))
-                        {
-                            <option value="@Model.id_servico">@Model.nm_servico</option>
-                        }
-                    </select>
-                </section>
+    <div class="form-row">
 
-                <section class="col col-sm-12 col-md-12 col-lg-12">
-                    <label class="" for="id_colaborador">Colaborador</label>
-                    <select id="Colaboradores" name="id_colaborador" class="requerido form-control" style="width:100%">
-                        @if ((Model.id_colaborador != 0) && (Model.nm_colaborador != null))
-                        {
-                            <option value="@Model.id_colaborador">@Model.nm_colaborador</option>
-                        }
-                    </select>
-                </section>
-
-                <div class="row">
-
-                    <section class="col col-sm-12 col-md-3 col-lg-3">
-                        <label for="tp_agendamento">Tipo do agendamento</label>
-                        <div>
-                            <select class="form-control" id="tp_agendamento" name="tp_agendamento">
-                                <option value="0">PARTICULAR</option>
-                                <option value="1">PLANO DE SAÚDE</option>
-                                <option value="2">CORTESIA</option>
-                            </select>
-                        </div>
-                    </section>
-
-                    <section class="col col-sm-12 col-md-2 col-lg-2">
-                        @Html.LabelFor(model => model.qtd_sessoes)
-                        @Html.TextBoxPadraoFor(model => model.qtd_sessoes, new { @maxlength = "2", @type = "number" })
-                    </section>
-
-                    <section class="col col-sm-12 col-md-3 col-lg-3">
-                        @Html.LabelFor(model => model.vl_servico)
-                        @Html.TextBoxPadraoFor(model => model.vl_servico)
-                    </section>
-
-                    <section class="col col-sm-12 col-md-12 col-lg-12">
-                        <label>Nos dias da semana</label>
-                        <div class="inline-group" style="padding-bottom:9px;padding-top:6px;">
-                            <label class="checkbox">
-
-                                <input type="checkbox" name="ck_segunda" value="true" checked="checked">
-                                <i></i>Segunda
-                            </label>
-                            <label class="checkbox">
-
-                                <input type="checkbox" name="ck_terca" value="true" checked="">
-                                <i></i>Terça
-                            </label>
-                            <label class="checkbox">
-
-                                <input type="checkbox" name="ck_quarta" value="true" checked="">
-                                <i></i>Quarta
-                            </label>
-                            <label class="checkbox">
-
-                                <input type="checkbox" name="ck_quinta" value="true" checked="">
-                                <i></i>Quinta
-                            </label>
-                            <label class="checkbox">
-
-                                <input type="checkbox" name="ck_sexta" value="true" checked="">
-                                <i></i>Sexta
-                            </label>
-                        </div>
-                    </section>
-
-                </div>
-                <div class="row">
-
-                    <div class="row">
-                        <section class="col col-sm-12 col-md-3 col-lg-3">
-                            <label for="dt_agenda">Com início em</label>
-                            @Html.TextBoxPadraoFor(model => model.dt_agenda)
-                        </section>
-
-                        <section class="col col-sm-12 col-md-3 col-lg-3">
-                            <label for="hr_agenda">No horário</label>
-                            @Html.TextBoxPadraoFor(model => model.hr_agenda, "{0:hh\\:mm}")
-                        </section>
-
-                        <section class="col col-sm-12 col-md-2 col-lg-2">
-                            <label></label>
-                            <div class="inline-group" style="padding-bottom:9px;padding-top:6px;">
-                                <label class="checkbox">
-                                    Já pago?
-                                    <input type="checkbox" name="ja_pago" value="true" checked="checked">
-                                    <i id="ijapago"></i>
-                                </label>
-                            </div>
-                        </section>
-
-                        <section class="col col-sm-12 col-md-2 col-lg-2">
-                            <label></label>
-                            <div class="inline-group" style="padding-bottom:9px;padding-top:6px;">
-                                <label class="checkbox">
-                                    Trouxe guia?
-                                    <input type="checkbox" name="is_guia_entregue" id="is_guia_entregue" value="true" disabled checked="checked">
-                                    <i id="iguiaentregue" disabled></i>
-                                </label>
-                            </div>
-                        </section>
-
-                    </div>
-
-                </div>
-            </div>
-
-            <!--section class="col col-sm-12 col-md-12 col-lg-12">
-                <label class="">Observações: </label> <div class="">
-                    <textarea class="form-control" cols="30" rows="5" name="ds_cobranca" id="ds_cobranca"></textarea>
-                </div>
-            </section -->
-
+        <div class="col-md-3 mb-3">
+            <label for="dt_agenda">Data</label>
+            @Html.TextBox("dt_agenda", "", new { @maxlength = "10", @data_dateformat = "dd/mm/yy", @onkeypress = "mascaraDT(this, DATA)", @autocomplete = "off", @placeholder = "DD/MM/YYYY", @filtrar = "", @onclick = "this.focus();this.select()", @class = "form-control", @data_toggle = "datepicker", @style= "text-align: center;" })
         </div>
 
-        <footer>
-            @Html.BotaoSalvar()
-            <div class="pull-left">
-                @Html.ActionLink("Voltar", "AgendaVisualizar", "Agenda", null, new { @class = "btn btn-warning" })
+        <div class="col-md-3 mb-3">
+            <label for="hr_agenda">No horário</label>
+            <input length="10" name="hr_agenda" class="form-control requerido" id="hr_agenda" placeholder="HH:MM" maxlength="5" style="text-transform:uppercase;text-align: center;" type="text" value="">
+        </div>
+
+    </div>
+
+
+
+    <footer>
+        <div class="form-group">
+            <div class="">
+                <input type="submit" value="Salvar" class="btn btn-default" />
             </div>
-        </footer>
+        </div>
+    </footer>
 
-    }
+}
 
 
-    @section Scripts {
-        <script src="~/scripts/plugin/select2/i18n/pt-BR.js" type="text/javascript"></script>
-        <script src="~/scripts/terceiros/data.js" type="text/javascript"></script>
-        <script src="~/scripts/terceiros/maskmoney.min.js" type="text/javascript"></script>
-        <script src="~/scripts/plugin/clockpicker/clockpicker.min.js" type="text/javascript"></script>
+@section Scripts {
 
-        <script type="text/javascript">
+    <script src="~/Scripts/assets/plugins/select2/i18n/pt-BR.js" type="text/javascript"></script>
+    <script src="~/Scripts/terceiros/data.js" type="text/javascript"></script>
+    <script src="~/Scripts/terceiros/maskmoney.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/clockpicker/clockpicker.min.js" type="text/javascript"></script>
+    
+   <!-- <script src="/path/to/jquery.js"></script> jQuery is required -->
+    <link href="~/Scripts/assets/plugins/datepicker/datepicker.min.css" rel="stylesheet">
+    <script src="~/Scripts/assets/plugins/datepicker/datepicker.min.js"></script>
+    <script src="~/Scripts/assets/plugins/datepicker/datepicker.pt-BR.js"></script>
+
+
+    <script type="text/javascript">
+
+        $('[data-toggle="datepicker"]').datepicker({ language: 'pt-BR', showButtonPanel: true, autoHide:true});
+           
 
             $(document).ready(function () {
 
-                $("#agendamento").validate({
-                    // Rules for form validation
-                    rules: {
-                        dt_agenda: {
-                            required: true
+               
 
-                        },
-                        hr_agenda: {
-                            required: true
-                        }
-                    },
-
-                    // Messages for form validation
-                    messages: {
-                        dt_agenda: {
-                            required: "O campo Data do agendamento é obrigatório.",
-
-                        },
-                        hr_agenda: {
-                            required: "O campo Hora do agendamento é obrigatório.",
-                        }
-                    },
-
-                    // Do not change code below
-                    errorPlacement: function (error, element) {
-                        error.insertAfter(element.parent());
-                    }
-                });
-
-                $('#tp_agendamento').on("change", function (e) {
-                    e.preventDefault(); 
-                    var data = $("#tp_agendamento").val();
-                    if (data == 0) {
-                        $('#iguiaentregue').attr("disabled", true);
-                        $('#is_guia_entregue').attr("disabled", true);
-                    } else {
-                        $('#iguiaentregue').attr("disabled", false);
-                        $('#is_guia_entregue').attr("disabled", false);
-                    }
-                });
-
-                $("#dt_agenda").mask("99/99/9999");
                 $("#vl_servico").maskMoney({ allowNegative: false, thousands: '', decimal: ',', affixesStay: false });
                 $("#vl_servico").click(function () {
                     $(this).select();
                 });
 
+                
                 $("#hr_agenda").clockpicker({ autoclose: true });
 
                 $('#Servicos').on("change", function (e) {
-
                     var data = $(this).select2('data');
                     var res = data[0].text.split("-");
                     var moeda = res[1].trim().replace(".", ",").replace(".", "");
-
                     $('#vl_servico').val(moeda);
-
                 });
 
-
-                var Url = '@Url.Action("GetClientes", "Cadastros")';
-                $("#Clientes").select2({
+                var Url = '@Url.Action("GetCliente", "Cliente")';
+                $("#cliente").select2({
                     placeholder: "Selecione um cliente",
                     minimumInputLength: 0,
                     language: "pt-BR",
@@ -281,34 +155,9 @@
                     }
                 });
 
-                var Url = '@Url.Action("GetColaboradores", "Cadastros")';
-                $("#Colaboradores").select2({
-                    placeholder: "Selecione um colaborador",
-                    minimumInputLength: 0,
-                    allowClear: true,
-                    language: "pt-BR",
-                    ajax: {
-                        dataType: "json",
-                        url: Url,
-                        data: function (params) {
-                            return {
-                                term: params.term // search term
-                            };
-                        },
-                        processResults: function (data) {
-                            return {
-                                results: $.map(data, function (obj) {
-                                    return { id: obj.id, text: obj.text };
-                                })
-                            };
-                        },
-                        cache: true
-                    }
-                });
-
-                var Url = '@Url.Action("GetServicos", "Servico")';
-                $("#Servicos").select2({
-                    placeholder: "Selecione um serviço",
+                var Url = '@Url.Action("GetMarcas", "Marcas")';
+                $("#marca").select2({
+                    placeholder: "Selecione um marca",
                     minimumInputLength: 0,
                     language: "pt-BR",
                     ajax: {
@@ -330,59 +179,32 @@
                     }
                 });
 
-                $('#Clientes').on("change", function (e) {
-                    var cliente = $('#Clientes').select2('data')[0].id;
-
-                    $.ajax({
-                        url: '@Url.Action("GetSessaoAtual", "Agenda")',
-                        method: 'POST',
-                        dataType: 'json',
-                        data: { id: cliente }
-                    }).done(function (results) {
-                        $("#sessao_atual").val(Number(results));
-                    });
-
-                    $.ajax({
-                        url: '@Url.Action("GetSessaoFaltante", "Agenda")',
-                        method: 'POST',
-                        dataType: 'json',
-                        data: { id: cliente }
-                    }).done(function (results) {
-                        $("#sessao_faltante").val(Number(results));
-                    });
-
+                var Url = '@Url.Action("GetColecao", "Colecao")';
+                $("#colecao").select2({
+                    placeholder: "Selecione um coleção",
+                    minimumInputLength: 0,
+                    language: "pt-BR",
+                    ajax: {
+                        dataType: "json",
+                        url: Url,
+                        data: function (params) {
+                            return {
+                                term: params.term // search term
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data, function (obj) {
+                                    return { id: obj.id, text: obj.text };
+                                })
+                            };
+                        },
+                        cache: true
+                    }
                 });
 
-
-                $("#apagar_agendamentos").click(function () {
-                    var Url = '@Url.Action("DeletarAgendamentosCliente", "Agenda")';
-                    $.SmartMessageBox({
-                        title: "Deseja continuar?",
-                        content: "O registro agendados serão excluídos!",
-                        buttons: '[Não, cancelar!][Sim, continuar!]'
-                    }, function (ButtonPressed) {
-                        if (ButtonPressed === "Sim, continuar!") {
-                            $.ajax({
-                                type: 'POST',
-                                url: Url + "?idcliente=" + $('#Clientes').select2('data')[0].id,
-                                dataType: "json",
-                                contentType: "application/json",
-                                success: function (data) {
-                                    if (data.Sucesso) {
-                                        $('#sessao_faltante').val(0);
-                                    }
-                                }
-                            });
-                        }
-                    });
+        });
 
 
-                });
-
-
-
-
-            });
-
-        </script>
-    }
+    </script>
+}

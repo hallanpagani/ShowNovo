@@ -3,189 +3,57 @@
 
 @{
     ViewBag.Title = "Visualizar agenda";
+    Layout = "~/Views/Shared/_LayoutAgenda.cshtml";
+}
+
+@section css{ 
+   <link rel="stylesheet" href="~/Scripts/assets/plugins/fullcalendar/fullcalendar.min.css">
 
 }
 
-<!-- MAIN CONTENT -->
-<div id="content">
-
-    <div class="well padding-5 no-margin">
-        <form action="/Agenda/AgendaVisualizar" class="smart-form" id="pesquisar" method="POST">
-          
-            <div class="row">
-
-                <section class="col col-sm-12 col-md-3 col-lg-3">
-                    <label class="" for="filtro_grupo">Grupo do serviço</label>
-                    <select id="Grupos" name="filtro_grupo" class="requerido" style="width:100%">
-                        @if (@Model.filtro_grupo != 0)
-                        {
-                            <option value="@Model.filtro_grupo">@Model.filtro_nm_grupo</option>
-                        }
-                    </select>
-                    @Html.HiddenFor(model => model.filtro_nm_grupo)
-                </section>
-
-
-                <section class="col col-sm-12 col-md-3 col-lg-3">
-                    <label class="" for="filtro_colaborador">Colaborador</label>
-                    <select id="Colaboradores" name="filtro_colaborador" class="requerido" style="width:100%">
-                        @if (@Model.filtro_colaborador != 0)
-                        {
-                            <option value="@Model.filtro_colaborador">@Model.filtro_nm_colaborador</option>
-                        }
-                    </select>
-                    @Html.HiddenFor(model => model.filtro_nm_colaborador)
-                </section>
-                <section class="col col-sm-12 col-md-3 col-lg-3">
-                    <label class="" for="filtro_cliente">Cliente</label>
-                    <select id="Clientes" name="filtro_cliente" class="requerido" style="width:100%">
-                        @if (@Model.filtro_cliente != 0)
-                        {
-                            <option value="@Model.filtro_cliente">@Model.filtro_nm_cliente</option>
-                        }
-                    </select>
-                    @Html.HiddenFor(model => model.filtro_nm_cliente)
-                </section>
-
-
-                <section class="col col-sm-12 col-md-2 col-lg-2">
-                    <label class="" for="filtro_servico">Serviço</label>
-                    <select id="Servicos" name="filtro_servico" class="requerido" style="width:100%">
-                        @if (@Model.filtro_servico != 0)
-                        {
-                            <option value="@Model.filtro_servico">@Model.filtro_nm_servico</option>
-                        }
-                    </select>
-                    @Html.HiddenFor(model => model.filtro_nm_servico)
-                </section>
-
-                <section class="col col-sm-12 col-md-1 col-lg-1">
-                    <label class="">&nbsp;</label>
-                    <div>
-                        @{ /* style="margin-top: 16px !important; padding: 6px 12px !important;" */ }
-                        @Html.BotaoFiltrar()
-                    </div>
-                </section>
-
-            </div>
-        </form>
-    </div>
-
-    <div class="row no-padding no-margin">
-        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-        </div>
-        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
-            <ul id="sparks" class="">
-                <li class="sparks-info">
-                    <h5> Total <span class="txt-color-blue" style="text-align: center;" id="at"></span></h5>
-                </li>
-                <li class="sparks-info">
-                    <h5> Agendado <span class="txt-color-blue" style="text-align: center;" id="agen"></span></h5>
-                </li>
-                <li class="sparks-info">
-                    <h5> Confirmado <span class="txt-color-purple" style="text-align: center;" id="ac"></span></h5>
-                </li>
-                <li class="sparks-info">
-                    <h5> Desmarcou <span class="txt-color-greenDark" style="text-align: center;" id="ad"></span></h5>
-                </li>
-                <li class="sparks-info">
-                    <h5> Faltou <span class="txt-color-greenDark" style="text-align: center;" id="af"></span></h5>
-                </li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="row" >
-
-        <div class="col-sm-12 col-md-12 col-lg-12">
-
-            <!-- new widget -->
-            <div class="jarviswidget jarviswidget-color-blueDark">
-
-                <!-- widget options:
-                usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
-
-                data-widget-colorbutton="false"
-                data-widget-editbutton="false"
-                data-widget-togglebutton="false"
-                data-widget-deletebutton="false"
-                data-widget-fullscreenbutton="false"
-                data-widget-custombutton="false"
-                data-widget-collapsed="true"
-                data-widget-sortable="false"
-
-                -->
-                <header>
-                    <span class="widget-icon"> <i class="fa fa-calendar"></i> </span>
-                    <h2> Calendário </h2>
-                    <div class="widget-toolbar">
-                        <!-- add: non-hidden - to disable auto hide -->
-                        <div class="btn-group">
-                            <button class="btn dropdown-toggle btn-xs btn-default" id="tp_calendario" value="Hoje" data-toggle="dropdown">
-                                Hoje&nbsp;<i class="fa fa-caret-down"></i>
-                            </button>
-                            <ul class="dropdown-menu js-status-update pull-right">
-                                <li>
-                                    <a href="javascript:void(0);" id="mt">Mês&nbsp;</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" id="ag">Agenda&nbsp;</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" id="td">Hoje&nbsp;</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" id="lh">Listar Dia&nbsp;</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </header>
-
-
-
-                <div class="widget-body no-padding">
-                    <!-- content goes here -->
-                    <div class="widget-body-toolbar">
-
-                        <div id="calendar-buttons">
-
-                            <div class="btn-group">
-                                <a href="javascript:void(0)" class="btn btn-default btn-xs" id="btn-prev"><i class="fa fa-chevron-left"></i>&nbsp;Anterior</a>
-                                <a href="javascript:void(0)" class="btn btn-default btn-xs" id="btn-next">Próximo&nbsp;<i class="fa fa-chevron-right"></i></a>
-                            </div>
-                            
-                        </div>
-                    </div>
-
-                    <div id="calendar"></div>
-
-                    <!-- end content -->
+<main class="main-content p-5" role="main">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <a class="btn btn btn-dark waves-effect waves-light" href="/cliente/consultar">Filtrar</a>   
                 </div>
-
             </div>
-            <!-- end widget div -->
-
-
         </div>
-
     </div>
 
-    <!-- end row -->
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn btn-dark waves-effect waves-light" href="/cliente/consultar">Consultar</a>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-lg-12">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 
-</div>
-
-
-@Html.Partial("Modal/_EditarAgenda")
+<!-- Html.Partial("Modal/_EditarAgenda") -->
 
 <!-- END MAIN CONTENT -->
 @section Scripts {
-    <!-- PAGE RELATED PLUGIN(S)
-     <script src="/scripts/plugin/moment/moment.min.js"></script>
-    <script src="/scripts/plugin/fullcalendar/jquery.fullcalendar.min.js"></script> -->
-
-    <script type='text/javascript' src="~/scripts/assets/plugins/fullcalendar/src/_loader.js"></script>
-    <script type='text/javascript' src="~/scripts/assets/plugins/fullcalendar/locale/pt-br.js"></script>
+    <!-- PAGE RELATED PLUGIN(S) -->
+    
+    <!--  <script type='text/javascript' src="~/scripts/assets/plugins/fullcalendar/locale/pt-br.js"></script> -->
+    
+    
+    <script type='text/javascript' src="~/scripts/assets/plugins/moment/moment.min.js"></script>
+    <script type='text/javascript' src="~/scripts/assets/plugins/fullcalendar/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/scripts/assets/js/jquery/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>
+<!--     <script type="text/javascript" src="~/Scripts/assets/js/scripts.js"></script>-->
+    
     
 
     <script type="text/javascript">
@@ -322,15 +190,19 @@
             });
 
             var hdr = {
-                left: 'title',
-                center: 'month,agendaWeek,agendaDay,basicDay',
-                right: 'prev,today,next'
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
             };
 
-            /* initialize the calendar
-             -----------------------------------------------------------------*/
             var Url = '@Url.Action("ListarAgenda", "Agenda")';
             $('#calendar').fullCalendar({
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+                         
+
                 events: //método responsável por listar os eventos
                 {
                     url: Url,
@@ -353,10 +225,11 @@
 
                         
                     }
-                },
-                hiddenDays: [0, 6], // sabado, domingo não aparece
+                }, 
+              //  hiddenDays: [0, 6], // sabado, domingo não aparece
 
                 //ignoreTimezone: false,
+                
                 axisFormat: 'H:mm',
                 timeFormat: {
                     '': 'H:mm',
@@ -369,9 +242,15 @@
                 //
                 header: hdr,
                 buttonText: {
-                    prev: '<i class="fa fa-chevron-left">Anterior</i>',
-                    next: '<i class="fa fa-chevron-right">Próximo</i>'
+                    prev: 'Anterior',
+                    next: 'Próximo',
+                    today: 'Hoje',
+                    month: 'Mês',
+                    agendaWeek: 'Semana',
+                    agendaDay: 'Dia'
+                    
                 },
+                themeSystem: 'bootstrap3',
                 allDaySlot: false,
                 displayEventEnd: false,
                 //
@@ -379,7 +258,8 @@
                 slotDuration: '00:30:00',
                 minTime: '07:00:00',
                 maxTime: '23:00:00',
-                defaultView: 'agendaDay',
+                defaultView: 'agendaWeek',
+                contentHeight: 'auto',
 
                 eventOverlap: false,
 
@@ -416,7 +296,7 @@
 
 
                     $.ajax({
-                        url: '@Url.Action("GetSessaoAtual", "Agenda")',
+                        url: 'Url.Action("GetSessaoAtual", "Agenda")',
                         method: 'POST',
                         dataType: 'json',
                         data: { id: calEvent.id_cliente }
@@ -425,7 +305,7 @@
                     });
 
                     $.ajax({
-                        url: '@Url.Action("GetSessaoFaltante", "Agenda")',
+                        url: 'Url.Action("GetSessaoFaltante", "Agenda")',
                         method: 'POST',
                         dataType: 'json',
                         data: { id: calEvent.id_cliente }
@@ -449,10 +329,19 @@
                 windowResize: function (event, ui) {
                     $('#calendar').fullCalendar('render');
                 }
-            });
+            });  
 
-            /* hide default buttons */
-            $('.fc-header-right, .fc-header-center').hide();
+           /*
+            var slatHeight = $("#calendar").find('.fc-slats').height();
+            var height = $('#calendar').find('.fc-time-grid-container').height();
+            if (slatHeight < height) {
+                $('#calendar').find('.fc-time-grid-container').css('max-height', slatHeight + 'px');
+            }
+            hide default buttons
+           */
+
+
+          /*  $('.fc-header-right, .fc-header-center').hide();
 
             $('#calendar-buttons #btn-prev').click(function () {
                 $('.fc-button-prev').click();
@@ -487,9 +376,9 @@
             $('#lh').click(function () {
                 dropdown(this.innerHTML);
                 $('#calendar').fullCalendar('changeView', 'basicDay');
-            });
+            });*/
 
-            $("#vl_servico2").maskMoney({ allowNegative: false, thousands: '.', decimal: ',', affixesStay: false });
+          /*  $("#vl_servico2").maskMoney({ allowNegative: false, thousands: '.', decimal: ',', affixesStay: false }); */
 
             $('#Servicos2').on("change", function (e) {
 

@@ -84,7 +84,7 @@ namespace ShowRoom.App_Helpers.Componentes
             }
             else if (time != null)
             {
-                group_addon = "<span class='input-group-addon'><i class='fa fa-clock-o'></i></span>";
+               // group_addon = "<span class='input-group-addon'><i class='fa fa-clock-o'></i></span>";
                 classe = "form-control "; // input-lg
                 htmlAttributes.Add("maxlength", "5");
             }

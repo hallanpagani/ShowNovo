@@ -1,0 +1,628 @@
+﻿@model ShowRoom.Models.VisualizarAgendaViewModel
+@using ShowRoom.App_Helpers.Componentes
+
+@{
+    ViewBag.Title = "Visualizar agenda";
+
+}
+
+<!-- MAIN CONTENT -->
+<div id="content">
+
+    <div class="well padding-5 no-margin">
+        <form action="/Agenda/AgendaVisualizar" class="smart-form" id="pesquisar" method="POST">
+          
+            <div class="row">
+
+                <section class="col col-sm-12 col-md-3 col-lg-3">
+                    <label class="" for="filtro_grupo">Grupo do serviço</label>
+                    <select id="Grupos" name="filtro_grupo" class="requerido" style="width:100%">
+                        @if (@Model.filtro_grupo != 0)
+                        {
+                            <option value="@Model.filtro_grupo">@Model.filtro_nm_grupo</option>
+                        }
+                    </select>
+                    @Html.HiddenFor(model => model.filtro_nm_grupo)
+                </section>
+
+
+                <section class="col col-sm-12 col-md-3 col-lg-3">
+                    <label class="" for="filtro_colaborador">Colaborador</label>
+                    <select id="Colaboradores" name="filtro_colaborador" class="requerido" style="width:100%">
+                        @if (@Model.filtro_colaborador != 0)
+                        {
+                            <option value="@Model.filtro_colaborador">@Model.filtro_nm_colaborador</option>
+                        }
+                    </select>
+                    @Html.HiddenFor(model => model.filtro_nm_colaborador)
+                </section>
+                <section class="col col-sm-12 col-md-3 col-lg-3">
+                    <label class="" for="filtro_cliente">Cliente</label>
+                    <select id="Clientes" name="filtro_cliente" class="requerido" style="width:100%">
+                        @if (@Model.filtro_cliente != 0)
+                        {
+                            <option value="@Model.filtro_cliente">@Model.filtro_nm_cliente</option>
+                        }
+                    </select>
+                    @Html.HiddenFor(model => model.filtro_nm_cliente)
+                </section>
+
+
+                <section class="col col-sm-12 col-md-2 col-lg-2">
+                    <label class="" for="filtro_servico">Serviço</label>
+                    <select id="Servicos" name="filtro_servico" class="requerido" style="width:100%">
+                        @if (@Model.filtro_servico != 0)
+                        {
+                            <option value="@Model.filtro_servico">@Model.filtro_nm_servico</option>
+                        }
+                    </select>
+                    @Html.HiddenFor(model => model.filtro_nm_servico)
+                </section>
+
+                <section class="col col-sm-12 col-md-1 col-lg-1">
+                    <label class="">&nbsp;</label>
+                    <div>
+                        @{ /* style="margin-top: 16px !important; padding: 6px 12px !important;" */ }
+                        @Html.BotaoFiltrar()
+                    </div>
+                </section>
+
+            </div>
+        </form>
+    </div>
+
+    <div class="row no-padding no-margin">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+        </div>
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-8">
+            <ul id="sparks" class="">
+                <li class="sparks-info">
+                    <h5> Total <span class="txt-color-blue" style="text-align: center;" id="at"></span></h5>
+                </li>
+                <li class="sparks-info">
+                    <h5> Agendado <span class="txt-color-blue" style="text-align: center;" id="agen"></span></h5>
+                </li>
+                <li class="sparks-info">
+                    <h5> Confirmado <span class="txt-color-purple" style="text-align: center;" id="ac"></span></h5>
+                </li>
+                <li class="sparks-info">
+                    <h5> Desmarcou <span class="txt-color-greenDark" style="text-align: center;" id="ad"></span></h5>
+                </li>
+                <li class="sparks-info">
+                    <h5> Faltou <span class="txt-color-greenDark" style="text-align: center;" id="af"></span></h5>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row" >
+
+        <div class="col-sm-12 col-md-12 col-lg-12">
+
+            <!-- new widget -->
+            <div class="jarviswidget jarviswidget-color-blueDark">
+
+                <!-- widget options:
+                usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                data-widget-colorbutton="false"
+                data-widget-editbutton="false"
+                data-widget-togglebutton="false"
+                data-widget-deletebutton="false"
+                data-widget-fullscreenbutton="false"
+                data-widget-custombutton="false"
+                data-widget-collapsed="true"
+                data-widget-sortable="false"
+
+                -->
+                <header>
+                    <span class="widget-icon"> <i class="fa fa-calendar"></i> </span>
+                    <h2> Calendário </h2>
+                    <div class="widget-toolbar">
+                        <!-- add: non-hidden - to disable auto hide -->
+                        <div class="btn-group">
+                            <button class="btn dropdown-toggle btn-xs btn-default" id="tp_calendario" value="Hoje" data-toggle="dropdown">
+                                Hoje&nbsp;<i class="fa fa-caret-down"></i>
+                            </button>
+                            <ul class="dropdown-menu js-status-update pull-right">
+                                <li>
+                                    <a href="javascript:void(0);" id="mt">Mês&nbsp;</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" id="ag">Agenda&nbsp;</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" id="td">Hoje&nbsp;</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" id="lh">Listar Dia&nbsp;</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+
+
+
+                <div class="widget-body no-padding">
+                    <!-- content goes here -->
+                    <div class="widget-body-toolbar">
+
+                        <div id="calendar-buttons">
+
+                            <div class="btn-group">
+                                <a href="javascript:void(0)" class="btn btn-default btn-xs" id="btn-prev"><i class="fa fa-chevron-left"></i>&nbsp;Anterior</a>
+                                <a href="javascript:void(0)" class="btn btn-default btn-xs" id="btn-next">Próximo&nbsp;<i class="fa fa-chevron-right"></i></a>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div id="calendar"></div>
+
+                    <!-- end content -->
+                </div>
+
+            </div>
+            <!-- end widget div -->
+
+
+        </div>
+
+    </div>
+
+    <!-- end row -->
+
+</div>
+
+
+@Html.Partial("Modal/_EditarAgenda")
+
+<!-- END MAIN CONTENT -->
+@section Scripts {
+    <!-- PAGE RELATED PLUGIN(S)
+     <script src="/scripts/plugin/moment/moment.min.js"></script>
+    <script src="/scripts/plugin/fullcalendar/jquery.fullcalendar.min.js"></script> -->
+
+    <script type='text/javascript' src="~/scripts/assets/plugins/fullcalendar/src/_loader.js"></script>
+    <script type='text/javascript' src="~/scripts/assets/plugins/fullcalendar/locale/pt-br.js"></script>
+    
+
+    <script type="text/javascript">
+
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+
+        function dropdown(val) {
+            var y = document.getElementsByClassName('btn btn-default dropdown-toggle');
+            y[0].innerHTML = val + ' <span class="caret"></span>'; // Append
+        }
+
+        $(document).ready(function () {
+
+            "use strict";
+
+            $('#Grupos').on("select2:select", function (e) {
+                console.log($('#Grupos').select2('data')[0].text);
+                $('#filtro_nm_grupo').val($('#Grupos').select2('data')[0].text); // what you would like to happen
+            });
+
+            $('#Clientes').on("select2:select", function (e) {
+                console.log($('#Clientes').select2('data')[0].text);
+                $('#filtro_nm_cliente').val($('#Clientes').select2('data')[0].text); // what you would like to happen
+            });
+
+            $('#Colaboradores').on("select2:select", function (e) {
+                console.log($('#Colaboradores').select2('data')[0].text);
+                $('#filtro_nm_colaborador').val($('#Colaboradores').select2('data')[0].text); // what you would like to happen
+            });
+
+            $('#Servicos').on("select2:select", function (e) {
+                console.log($('#Servicos').select2('data')[0].text);
+                $('#filtro_nm_servico').val($('#Servicos').select2('data')[0].text); // what you would like to happen
+            });
+
+            var Url = '@Url.Action("GetServicosGrupo", "ServicoGrupo")';
+            $("#Grupos").select2({
+                placeholder: "Selecione um agrupamento",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                allowClear: true,
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetServicosSimples", "Servico")';
+            $("#Servicos").select2({
+                placeholder: "Selecione um serviço",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                allowClear: true,
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetClientes", "Cadastros")';
+            $("#Clientes").select2({
+                placeholder: "Selecione um cliente",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                allowClear: true,
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetColaboradores", "Cadastros")';
+            $("#Colaboradores").select2({
+                placeholder: "Selecione um colaborador",
+                minimumInputLength: 0,
+                allowClear: true,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var hdr = {
+                left: 'title',
+                center: 'month,agendaWeek,agendaDay,basicDay',
+                right: 'prev,today,next'
+            };
+
+            /* initialize the calendar
+             -----------------------------------------------------------------*/
+            var Url = '@Url.Action("ListarAgenda", "Agenda")';
+            $('#calendar').fullCalendar({
+                events: //método responsável por listar os eventos
+                {
+                    url: Url,
+                    type: 'POST',
+                    data: {
+                        id_cliente: $("#Clientes").val(),
+                        id_colaborador: $("#Colaboradores").val(),
+                        id_servico: $("#Servicos").val(),
+                        id_grupo: $("#Grupos").val(),
+                        tp_calendario: $("#tp_calendario").val()
+                    },
+                    success: function (Totais) {
+                        if (Totais.length > 0) {
+                            $('#at').html(Totais[0].Totais[0]);
+                            $('#agen').html(Totais[0].Totais[1]);
+                            $('#ac').html(Totais[0].Totais[2]);
+                            $('#ad').html(Totais[0].Totais[3]);
+                            $('#af').html(Totais[0].Totais[4]);
+                        }
+
+                        
+                    }
+                },
+                hiddenDays: [0, 6], // sabado, domingo não aparece
+
+                //ignoreTimezone: false,
+                axisFormat: 'H:mm',
+                timeFormat: {
+                    '': 'H:mm',
+                    agenda: 'H:mm',
+                    basic: 'H:mm',
+                    month: 'H:mm',
+                    day: 'H:mm'
+                },
+                columnFormat: 'ddd D/M',
+                //
+                header: hdr,
+                buttonText: {
+                    prev: '<i class="fa fa-chevron-left">Anterior</i>',
+                    next: '<i class="fa fa-chevron-right">Próximo</i>'
+                },
+                allDaySlot: false,
+                displayEventEnd: false,
+                //
+                allDayText: 'Dia',
+                slotDuration: '00:30:00',
+                minTime: '07:00:00',
+                maxTime: '23:00:00',
+                defaultView: 'agendaDay',
+
+                eventOverlap: false,
+
+                editable: false,
+                droppable: false,
+
+                eventRender: function (event, element, icon) {
+
+                    //  $('.fc-event-time').hide();
+                    if (!event.description == "") {
+                        element.find('.fc-event-title').append("<br/><span class='ultra-light'>" + event.description +
+                            "</span>");
+
+                    }
+                    if (!event.icon == "") {
+                        element.find('.fc-event-title').append("<i class='air air-top-right fa " + event.icon +
+                            " '></i>");
+                    }
+                },
+                eventClick: function (calEvent) {
+                    $("#id-agenda").val(calEvent.id);
+
+                    $("#Colaboradores2").empty().append('<option value=' + calEvent.id_colaborador + '>' + calEvent.nm_colaborador + '</option>');
+                    $("#Servicos2").empty().append('<option value="' + calEvent.id_servico + '">' + calEvent.nm_servico + '</option>');
+                    $("#Clientes2").empty().append('<option value="' + calEvent.id_cliente + '">' + calEvent.nm_cliente + '</option>');
+
+                    $("#sessao").val(calEvent.sessao_atual);
+                    $("#is_secao").val(calEvent.tp_status);
+                    $("#vl_servico2").val(calEvent.vl_servico);
+                    $("#dt_agenda2").val(calEvent.dt_agenda);
+                    $("#hr_agenda2").val(calEvent.hr_agenda);
+
+                    $("#link_cadastro").attr("href", "http://clinica.nextcodeapp.com.br/cadastros/editarcliente/" + calEvent.id_cliente);
+
+
+                    $.ajax({
+                        url: '@Url.Action("GetSessaoAtual", "Agenda")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: { id: calEvent.id_cliente }
+                    }).done(function (results) {
+                        $("#sessao_atual").val(Number(results));
+                    });
+
+                    $.ajax({
+                        url: '@Url.Action("GetSessaoFaltante", "Agenda")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: { id: calEvent.id_cliente }
+                    }).done(function (results) {
+                        $("#sessao_faltante").val(Number(results));
+                    });
+
+                    $('.modal-editar-evento').modal('show');
+                },
+
+                loading: function (isLoading, view) {
+                    if (isLoading) { // isLoading gives boolean value
+                        // alert('events are being rendered'); // Add your script to show loading //show your loader here
+                        $('#loading').show();
+                    } else {
+                        //  alert('all events are rendered'); //hide your loader here
+                        $('#loading').hide();
+                    }
+                },
+
+                windowResize: function (event, ui) {
+                    $('#calendar').fullCalendar('render');
+                }
+            });
+
+            /* hide default buttons */
+            $('.fc-header-right, .fc-header-center').hide();
+
+            $('#calendar-buttons #btn-prev').click(function () {
+                $('.fc-button-prev').click();
+                return false;
+            });
+
+            $('#calendar-buttons #btn-next').click(function () {
+                $('.fc-button-next').click();
+                return false;
+            });
+
+            $('#calendar-buttons #btn-today').click(function () {
+                $('.fc-button-today').click();
+                return false;
+            });
+
+            $('#mt').click(function () {
+                dropdown(this.innerHTML);
+                $('#calendar').fullCalendar('changeView', 'month');
+            });
+
+            $('#ag').click(function () {
+                dropdown(this.innerHTML);
+                $('#calendar').fullCalendar('changeView', 'agendaWeek');
+            });
+
+            $('#td').click(function () {
+                dropdown(this.innerHTML);
+                $('#calendar').fullCalendar('changeView', 'agendaDay');
+            });
+
+            $('#lh').click(function () {
+                dropdown(this.innerHTML);
+                $('#calendar').fullCalendar('changeView', 'basicDay');
+            });
+
+            $("#vl_servico2").maskMoney({ allowNegative: false, thousands: '.', decimal: ',', affixesStay: false });
+
+            $('#Servicos2').on("change", function (e) {
+
+                var data = $(this).select2('data');
+                var res = data[0].text.split("-");
+
+                $('#vl_servico2').val(res[1].trim());
+            });
+
+            var Url = '@Url.Action("GetClientes", "Cadastros")';
+            $("#Clientes2").select2({
+                placeholder: "Selecione um cliente",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetColaboradores", "Cadastros")';
+            $("#Colaboradores2").select2({
+                placeholder: "Selecione um colaborador",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetServicosSimples", "Servico")';
+            $("#Servicos2").select2({
+                placeholder: "Selecione um serviço",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+
+            $(".confirmacao").click(function () {
+                var Url = '@Url.Action("EditarAgenda", "Agenda")';
+                $.ajax({
+                    type: 'POST',
+                    url: Url + "?id=" + $("#id-agenda").val() + "&id_colaborador=" + $("#Colaboradores2").val() + "&id_cliente=" + $("#Clientes2").val() + "&id_servico=" + $("#Servicos2").val() +
+                        "&vl_servico=" + $("#vl_servico2").val() + "&dt_agenda=" + $("#dt_agenda2").val() + "&hr_agenda=" + $("#hr_agenda2").val() + "&tp_status=" + $(this).data("valor"),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (data) {
+
+
+                        if (data.Sucesso) {
+
+                            $("#calendar").fullCalendar('removeEvents');
+
+                            $("#calendar").fullCalendar("refetchEvents"); //Atualiza o calendário, assim o evento cadastrado recebe a id cadastrada no banco
+                            // document.location.reload(true)
+
+                        }
+                        $('.modal-editar-evento').modal('hide');
+                    }
+                });
+            });
+
+
+            $("#apagar_agendamentos").click(function () {
+                var Url = '@Url.Action("DeletarAgendamentosCliente", "Agenda")';
+                $.SmartMessageBox({
+                    title: "Deseja continuar?",
+                    content: "O registro agendados serão excluídos!",
+                    buttons: '[Não, cancelar!][Sim, continuar!]'
+                }, function (ButtonPressed) {
+                    if (ButtonPressed === "Sim, continuar!") {
+                        $.ajax({
+                            type: 'POST',
+                            url: Url + "?idcliente=" + $('#Clientes2').select2('data')[0].id,
+                            dataType: "json",
+                            contentType: "application/json",
+                            success: function (data) {
+                                if (data.Sucesso) {
+                                    $('.modal-editar-evento').modal('hide');
+                                    $("#calendar").fullCalendar('removeEvents');
+                                    $("#calendar").fullCalendar("refetchEvents");
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+        });
+
+    </script>
+}

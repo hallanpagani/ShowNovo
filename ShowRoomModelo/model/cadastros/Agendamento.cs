@@ -1,4 +1,5 @@
 ﻿using ShowRoomModelo.classes;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -22,14 +23,14 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "Nome do Coleção")]
         public string nm_colecao { get; set; }
 
-        [Column("id_showroom")]
+    /*    [Column("id_showroom")]
         [Display(Name = "ShowRoom")]
         public long showroom { get; set; }
 
         [OnlySelect]
         [Column("(select nome from tb_cadastro_showroom c where c.id = a.id_showroom) as nm_showroom")]
         [Display(Name = "Nome do ShowRoom")]
-        public string nm_showroom { get; set; }
+        public string nm_showroom { get; set; }*/
 
         [Column("id_marca")]
         [Display(Name = "Marca")]
@@ -45,28 +46,28 @@ namespace ShowRoomModelo.model.cadastros
         public long cliente { get; set; }
 
         [OnlySelect]
-        [Column("(select nome from tb_cadastro_cidade c where c.id = a.id_cliente) as nm_cliente")]
+        [Column("(select coalesce(razao,fantasia) from tb_cadastro_cidade c where c.id = a.id_cliente) as nm_cliente")]
         [Display(Name = "Nome da Cliente")]
         public string nm_cliente { get; set; }
 
 
-        [Column("id_vendedor")]
+      /*  [Column("id_vendedor")]
         [Display(Name = "Vendedor")]
         public long vendedor { get; set; }
 
         [OnlySelect]
         [Column("(select nome from tb_cadastro_vendedor c where c.id = a.id_vendedor) as nm_vendedor")]
         [Display(Name = "Nome da Vendedor")]
-        public string nm_vendedor { get; set; }
+        public string nm_vendedor { get; set; }*/
 
-        [Column("id_cidade")]
+     /*   [Column("id_cidade")]
         [Display(Name = "Cidade")]
         public long cidade { get; set; }
 
         [OnlySelect]
         [Column("(select nome from tb_cadastro_cidade c where c.id = a.id_cidade) as nm_cidade")]
         [Display(Name = "Nome da Cidade")]
-        public string nm_cidade { get; set; }
+        public string nm_cidade { get; set; } */
 
         [Column("reservasuite")]
         [Display(Name = "Reserva Suíte")]
@@ -132,6 +133,20 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "%Crescimento")]
         public decimal perccrescimento { get; set; }
 
+        [Required]
+        [Column("dt_agenda")]
+        [Display(Name = "Data agendada")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
+        public DateTime dt_agenda { get; set; }
+
+        [Required]
+        [Timestamp]
+        [Column("hr_agenda")]
+        [Display(Name = "Horário")]
+        [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
+        public string hr_agenda { get; set; }
+
         [Column("id_conta")]
         [Display(Name = "Conta")]
         public long id_conta { get; set; }
@@ -139,7 +154,6 @@ namespace ShowRoomModelo.model.cadastros
         [Column("id_cliente")]
         [Display(Name = "Cliente")]
         public long id_usuario { get; set; }
-
 
         public Agendamento()
         {

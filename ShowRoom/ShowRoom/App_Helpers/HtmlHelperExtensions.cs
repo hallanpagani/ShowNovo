@@ -58,6 +58,26 @@ namespace ShowRoom
 
             return hasAction || hasController ? new HtmlString(attribute) : new HtmlString(string.Empty);
         }
+        
+        /// <summary>
+        ///     Compares the requested route with the given <paramref name="value" /> value, if a match is found the
+        ///     <paramref name="attribute" /> value is returned.
+        /// </summary>
+        /// <param name="helper"></param>
+        /// <param name="value">The action value to compare to the requested route action.</param>
+        /// <param name="attribute">The attribute value to return in the current action matches the given action value.</param>
+        /// <returns>A HtmlString containing the given attribute value; otherwise an empty string.</returns>
+        public static IHtmlString RouteControllerAction(this HtmlHelper helper, string value, string attribute)
+        {
+            var currentController =
+                (helper.ViewContext.RequestContext.RouteData.Values["controller"] ?? string.Empty).ToString().UnDash();
+            var currentAction =
+                (helper.ViewContext.RequestContext.RouteData.Values["action"] ?? string.Empty).ToString().UnDash();
+
+            var hasController = value.Equals(currentController+"/"+currentAction, StringComparison.InvariantCultureIgnoreCase);
+
+            return hasController ? new HtmlString(attribute) : new HtmlString(string.Empty);
+        }
 
         /// <summary>
         ///     Renders the specified partial view with the parent's view data and model if the given setting entry is found and

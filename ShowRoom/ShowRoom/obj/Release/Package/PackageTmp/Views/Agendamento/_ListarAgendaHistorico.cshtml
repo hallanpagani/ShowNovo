@@ -1,0 +1,62 @@
+﻿@model List<FlyAdminModelo.model.consultorio.AgendaHistorico>
+
+@{
+    ViewBag.NomeDaJanela = "Listar histórico de finalizadas";
+    ViewBag.Action = "CadastrarAgenda";
+    ViewBag.Controller = "Agenda";
+    ViewBag.Title = "Agenda histórico";
+    ViewBag.IconeTopo = "fa-list";
+}
+
+<table id="datatable_agenda_historico" class="table table-striped table-bordered table-hover" width="100%">
+    <thead>
+        <tr>
+            <th>
+                id
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th>
+                Serviço
+            </th>
+            <th>
+                Início
+            </th>
+            <th>
+                Final
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nm_cliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nm_servico)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dt_historico_ini)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dt_historico_fim)
+                </td>
+                <td class="col-md-1 col-lg-1">
+                    @Html.ActionLink("Visualizar", "VisualizarHistoricoAgendas", "Agenda", new { id = item.id }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+
+

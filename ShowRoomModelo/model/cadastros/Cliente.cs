@@ -22,6 +22,12 @@ namespace ShowRoomModelo.model.cadastros
         [MaxLength(100, ErrorMessage = "Campo 'Razão Social' deve ter no máximo 100 caracteres!")]
         public string razao { get; set; }
 
+        [Column("fantasia")]
+        [Display(Name = "Nome Fantasia")]
+        [Required(ErrorMessage = "Campo fantasia é obrigatório!", AllowEmptyStrings = false)]
+        [MaxLength(100, ErrorMessage = "Campo 'Nome Fantasia' deve ter no máximo 100 caracteres!")]
+        public string fantasia { get; set; }
+
         [Column("cnpj")]
         [Display(Name = "CNPJ")]
         [Required(ErrorMessage = "Campo 'CNPJ do cliente' é obrigatório!", AllowEmptyStrings = false)]
@@ -98,6 +104,9 @@ namespace ShowRoomModelo.model.cadastros
         [Column("www")]
         [Display(Name = "URL")]
         public string www { get; set; }
+
+        [Column("status")]
+        public int status { get; set; }
 
         [Column("id_conta")]
         public long id_conta { get; set; }

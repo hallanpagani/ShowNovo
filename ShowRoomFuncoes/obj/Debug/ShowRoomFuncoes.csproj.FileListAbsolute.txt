@@ -21,3 +21,5 @@ D:\CSharp\ShowRoom\ShowRoomFuncoes\bin\Debug\pt-br\System.Web.WebPages.Deploymen
 D:\CSharp\ShowRoom\ShowRoomFuncoes\bin\Debug\pt-br\System.Web.WebPages.Razor.resources.dll
 D:\CSharp\ShowRoom\ShowRoomFuncoes\obj\Debug\FlyAdminFuncoes.dll
 D:\CSharp\ShowRoom\ShowRoomFuncoes\obj\Debug\FlyAdminFuncoes.pdb
+D:\CSharp\ShowRoom\ShowRoomFuncoes\obj\Debug\ShowRoomFuncoes.csprojResolveAssemblyReference.cache
+D:\CSharp\ShowRoom\ShowRoomFuncoes\obj\Debug\ShowRoomFuncoes.csproj.CoreCompileInputs.cache

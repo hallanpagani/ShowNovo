@@ -81,3 +81,5 @@ D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\pt-br\System.Web.WebPages.Razor.resourc
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\pt-br\System.Web.Optimization.resources.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\obj\Release\ShowRoom.dll
 D:\CSharp\ShowRoom\ShowRoom\ShowRoom\obj\Release\ShowRoom.pdb
+D:\CSharp\ShowRoom\ShowRoom\ShowRoom\bin\ShowRoomModelo.dll.config
+D:\CSharp\ShowRoom\ShowRoom\ShowRoom\obj\Release\ShowRoom.csproj.CoreCompileInputs.cache

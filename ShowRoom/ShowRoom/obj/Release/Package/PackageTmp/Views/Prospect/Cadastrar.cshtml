@@ -1,0 +1,194 @@
+﻿@model ShowRoomModelo.model.cadastros.Prospect
+@using ShowRoom.App_Helpers.Componentes
+
+@{
+    ViewBag.Title = "Cadastro de Prospect";
+    ViewBag.SubTitle = "Cadastro de Prospect";
+    ViewBag.LinkText = "Consultar";
+    ViewBag.ActionName = "Consultar";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-row">
+
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.prospect, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.prospect, new { @maxlength = "8", @class = "form-control", @autofocus = "autofocus" })
+                @Html.ValidationMessageFor(model => model.prospect, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="col-md-3 mb-2">
+                @Html.LabelFor(model => model.cnpj, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.cnpj, htmlAttributes: new { @onkeypress = "mascaraCC(this,CC)", @maxlength = "18", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.cnpj, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="col-md-5 mb-3">
+                @Html.LabelFor(model => model.razao, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.razao, new { @maxlength = "100", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.razao, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-4 mb-3">
+                @Html.LabelFor(model => model.fantasia, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.fantasia, new { @maxlength = "30", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.fantasia, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.email, new { @maxlength = "60", @class = "form-control", @type = "email" })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.fone1, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.fone1, new { @onkeypress = "mascaraFONE(this,FONE)", @maxlength = "15", @class = "form-control", @placeholder = "(XX) XXXX-XXXX" })
+                @Html.ValidationMessageFor(model => model.fone1, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.fone2, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.fone2, new { @onkeypress = "mascaraFONE(this,FONE)", @maxlength = "15", @class = "form-control", @placeholder = "(XX) XXXX-XXXX" })
+                @Html.ValidationMessageFor(model => model.fone2, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.contato, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.contato, new { @maxlength = "60", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.contato, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <hr />
+        <h4 class="subtitulo-form">Endereço</h4>
+
+        <div class="form-row">
+
+            <div class="col-md-4 mb-4">
+                <label class="" for="Cidade">Cidade</label>
+                <select id="Cidade" name="Cidade" class="form-control" style="width:100%">
+                    @if (!Equals(@Model.nm_cidade, "") && (!(@Model.cidade == 0)))
+                    {
+                        <option value="@Model.cidade">@Model.nm_cidade</option>
+                    }
+                </select>
+            </div>
+
+            <div class="col-md-2 mb-2">
+                @Html.LabelFor(model => model.cep, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.cep, new { @maxlength = "9", @class = "form-control", @onkeypress = "mascaraCEP(this,CEP)" })
+                @Html.ValidationMessageFor(model => model.cep, "", new { @class = "text-danger" })
+            </div>
+
+
+
+            <div class="col-md-6 mb-6">
+                @Html.LabelFor(model => model.bairro, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.bairro, new { @maxlength = "30", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.bairro, "", new { @class = "text-danger" })
+            </div>
+
+            <!--  <div class="col col-sm-12 col-md-12 col-lg-12">
+                <h4 class="subtitulo-form">Endereço Completo</h4>
+            </div> -->
+
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-6 mb-6">
+                @Html.LabelFor(model => model.endereco, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.endereco, new { @maxlength = "100", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.endereco, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.numero, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.numero, new { @maxlength = "10", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.numero, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-12 mb-12">
+                @Html.LabelFor(model => model.obs)
+                @Html.TextAreaFor(model => model.obs, new { @rows = 10, @class = "col col-sm-12 col-md-12 col-lg-12" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+
+}
+
+@section Scripts {
+    @{ /* Scripts.Render("~/bundles/jqueryval") */ }
+
+
+
+    <script src="~/scripts/terceiros/data.js" type="text/javascript"></script>
+    <script src="~/scripts/terceiros/cpfcnpj.js" type="text/javascript"></script>
+    <script src="~/scripts/terceiros/telefone.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            var Url = '@Url.Action("GetCidades", "Cidade")';
+            $("#Cidade").select2({
+                placeholder: "Selecione uma cidade",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            $("#cep").change(function () {
+                var cep = $("#cep").val();
+                var url = "http://api.postmon.com.br/v1/cep/" + cep;
+                $.getJSON(url, function (result) {
+                    //Se deu certo
+                    $("#bairro").val(result["bairro"]);
+                    $("#endereco").val(result['logradouro']);
+                    $("#numero").focus();
+                });
+            });
+        });
+
+    </script>
+}
