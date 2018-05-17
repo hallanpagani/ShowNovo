@@ -6,8 +6,8 @@
     Layout = "~/Views/Shared/_LayoutAgenda.cshtml";
 }
 
-@section css{ 
-   <link rel="stylesheet" href="~/Scripts/assets/plugins/fullcalendar/fullcalendar.min.css">
+@section css{
+    <link rel="stylesheet" href="~/Scripts/assets/plugins/fullcalendar/fullcalendar.min.css">
 
 }
 
@@ -16,7 +16,51 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <a class="btn btn btn-dark waves-effect waves-light" href="/cliente/consultar">Filtrar</a>   
+
+                    <form action="/Agenda/AgendaVisualizar" class="smart-form" id="pesquisar" method="POST">
+
+                        <div class="form-row">
+
+                            <div class="col-md-3 mb-3">
+                                <label class="" for="filtro_cliente">Cliente</label>
+                                <select id="Clientes" name="filtro_cliente" class="requerido" style="width:100%">
+                                    @if (@Model.filtro_cliente != 0)
+                                    {
+                                        <option value="@Model.filtro_cliente">@Model.filtro_nm_cliente</option>
+                                    }
+                                </select>
+                                @Html.HiddenFor(model => model.filtro_nm_cliente)
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="" for="filtro_marca">Marcas</label>
+                                <select id="Marcas" name="filtro_marca" class="requerido" style="width:100%">
+                                    @if (@Model.filtro_marca != 0)
+                                    {
+                                        <option value="@Model.filtro_marca">@Model.filtro_nm_marca</option>
+                                    }
+                                </select>
+                                @Html.HiddenFor(model => model.filtro_nm_marca)
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="" for="filtro_colecao">Coleção</label>
+                                <select id="Colecoes" name="filtro_colecao" class="requerido" style="width:100%">
+                                    @if (@Model.filtro_colecao != 0)
+                                    {
+                                        <option value="@Model.filtro_colecao">@Model.filtro_nm_colecao</option>
+                                    }
+                                </select>
+                                @Html.HiddenFor(model => model.filtro_nm_colecao)
+                            </div>
+
+                            <div class="col-md-1 mb-3">
+                                <label class="" for="filtro_colecao">&nbsp;</label>
+                                <a if="filtrar" class="btn btn-dark waves-effect waves-light" href="/agendamento/AgendaVisualizar">Filtrar</a>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -24,7 +68,7 @@
 
     <div class="row">
         <div class="col-md-12">
-            <a class="btn btn btn-dark waves-effect waves-light" href="/cliente/consultar">Consultar</a>
+            <a class="btn btn btn-dark waves-effect waves-light" href="~/Agendamento/Cadastrar">Cadastrar</a>
         </div>
     </div>
     <div class="row mb-4">
@@ -41,20 +85,18 @@
 </main>
 
 <!-- Html.Partial("Modal/_EditarAgenda") -->
-
 <!-- END MAIN CONTENT -->
 @section Scripts {
     <!-- PAGE RELATED PLUGIN(S) -->
-    
     <!--  <script type='text/javascript' src="~/scripts/assets/plugins/fullcalendar/locale/pt-br.js"></script> -->
-    
-    
+
+
     <script type='text/javascript' src="~/scripts/assets/plugins/moment/moment.min.js"></script>
     <script type='text/javascript' src="~/scripts/assets/plugins/fullcalendar/fullcalendar.min.js"></script>
     <script type="text/javascript" src="~/scripts/assets/js/jquery/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>
-<!--     <script type="text/javascript" src="~/Scripts/assets/js/scripts.js"></script>-->
-    
-    
+    <!--     <script type="text/javascript" src="~/Scripts/assets/js/scripts.js"></script>-->
+
+
 
     <script type="text/javascript">
 
@@ -69,9 +111,9 @@
 
             "use strict";
 
-            $('#Grupos').on("select2:select", function (e) {
-                console.log($('#Grupos').select2('data')[0].text);
-                $('#filtro_nm_grupo').val($('#Grupos').select2('data')[0].text); // what you would like to happen
+            $('#Marcas').on("select2:select", function (e) {
+                console.log($('#Marcas').select2('data')[0].text);
+                $('#filtro_nm_marca').val($('#Marcas').select2('data')[0].text); // what you would like to happen
             });
 
             $('#Clientes').on("select2:select", function (e) {
@@ -79,19 +121,14 @@
                 $('#filtro_nm_cliente').val($('#Clientes').select2('data')[0].text); // what you would like to happen
             });
 
-            $('#Colaboradores').on("select2:select", function (e) {
-                console.log($('#Colaboradores').select2('data')[0].text);
-                $('#filtro_nm_colaborador').val($('#Colaboradores').select2('data')[0].text); // what you would like to happen
+            $('#Colecoes').on("select2:select", function (e) {
+                console.log($('#Colecoes').select2('data')[0].text);
+                $('#filtro_nm_colecao').val($('#Colecoes').select2('data')[0].text); // what you would like to happen
             });
 
-            $('#Servicos').on("select2:select", function (e) {
-                console.log($('#Servicos').select2('data')[0].text);
-                $('#filtro_nm_servico').val($('#Servicos').select2('data')[0].text); // what you would like to happen
-            });
-
-            var Url = '@Url.Action("GetServicosGrupo", "ServicoGrupo")';
-            $("#Grupos").select2({
-                placeholder: "Selecione um agrupamento",
+            var Url = '@Url.Action("GetMarcas", "Marcas")';
+            $("#Marcas").select2({
+                placeholder: "Selecione uma marca",
                 minimumInputLength: 0,
                 language: "pt-BR",
                 allowClear: true,
@@ -114,32 +151,7 @@
                 }
             });
 
-            var Url = '@Url.Action("GetServicosSimples", "Servico")';
-            $("#Servicos").select2({
-                placeholder: "Selecione um serviço",
-                minimumInputLength: 0,
-                language: "pt-BR",
-                allowClear: true,
-                ajax: {
-                    dataType: "json",
-                    url: Url,
-                    data: function (params) {
-                        return {
-                            term: params.term // search term
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: $.map(data, function (obj) {
-                                return { id: obj.id, text: obj.text };
-                            })
-                        };
-                    },
-                    cache: true
-                }
-            });
-
-            var Url = '@Url.Action("GetClientes", "Cadastros")';
+            var Url = '@Url.Action("GetCliente", "Cliente")';
             $("#Clientes").select2({
                 placeholder: "Selecione um cliente",
                 minimumInputLength: 0,
@@ -164,9 +176,9 @@
                 }
             });
 
-            var Url = '@Url.Action("GetColaboradores", "Cadastros")';
-            $("#Colaboradores").select2({
-                placeholder: "Selecione um colaborador",
+            var Url = '@Url.Action("GetColecao", "Colecao")';
+            $("#Colecoes").select2({
+                placeholder: "Selecione uma coleção",
                 minimumInputLength: 0,
                 allowClear: true,
                 language: "pt-BR",
@@ -195,22 +207,22 @@
                 right: 'month,agendaWeek,agendaDay'
             };
 
-            var Url = '@Url.Action("ListarAgenda", "Agenda")';
+            var Url = '@Url.Action("ListarAgenda", "Agendamento")';
             $('#calendar').fullCalendar({
                 monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
                 monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
                 dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
                 dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-                         
 
                 events: //método responsável por listar os eventos
                 {
                     url: Url,
                     type: 'POST',
                     data: {
+                        id_marca: $("#Marcas").val(),
+                        id_colecao: $("#Colecoes").val(),
                         id_cliente: $("#Clientes").val(),
-                        id_colaborador: $("#Colaboradores").val(),
-                        id_servico: $("#Servicos").val(),
+                        id_cidade: $("#Cidades").val(),
                         id_grupo: $("#Grupos").val(),
                         tp_calendario: $("#tp_calendario").val()
                     },
@@ -222,24 +234,16 @@
                             $('#ad').html(Totais[0].Totais[3]);
                             $('#af').html(Totais[0].Totais[4]);
                         }
-
-                        
                     }
-                }, 
+                },
               //  hiddenDays: [0, 6], // sabado, domingo não aparece
 
                 //ignoreTimezone: false,
-                
-                axisFormat: 'H:mm',
-                timeFormat: {
-                    '': 'H:mm',
-                    agenda: 'H:mm',
-                    basic: 'H:mm',
-                    month: 'H:mm',
-                    day: 'H:mm'
-                },
+                locale: 'pt-BR',
+                axisFormat: 'H(:mm)',
+                timeFormat: 'H(:mm)',
                 columnFormat: 'ddd D/M',
-                //
+                slotLabelFormat: "HH:mm",
                 header: hdr,
                 buttonText: {
                     prev: 'Anterior',
@@ -248,7 +252,7 @@
                     month: 'Mês',
                     agendaWeek: 'Semana',
                     agendaDay: 'Dia'
-                    
+
                 },
                 themeSystem: 'bootstrap3',
                 allDaySlot: false,
@@ -260,6 +264,8 @@
                 maxTime: '23:00:00',
                 defaultView: 'agendaWeek',
                 contentHeight: 'auto',
+                eventBorderColor: '#000000',
+                eventTextColor: '#fff',
 
                 eventOverlap: false,
 
@@ -270,14 +276,19 @@
 
                     //  $('.fc-event-time').hide();
                     if (!event.description == "") {
-                        element.find('.fc-event-title').append("<br/><span class='ultra-light'>" + event.description +
+                        element.find('.fc-title').append("<br/><span class='ultra-light'>" + event.description +
                             "</span>");
 
                     }
                     if (!event.icon == "") {
-                        element.find('.fc-event-title').append("<i class='air air-top-right fa " + event.icon +
+                        element.find('.fc-title').append("<i class='air air-top-right fa " + event.icon +
                             " '></i>");
                     }
+
+                    $(element).css("font-weight", "bold");
+                    $(element).css("font-size", "1em");
+                    
+
                 },
                 eventClick: function (calEvent) {
                     $("#id-agenda").val(calEvent.id);
@@ -329,7 +340,7 @@
                 windowResize: function (event, ui) {
                     $('#calendar').fullCalendar('render');
                 }
-            });  
+            });
 
            /*
             var slatHeight = $("#calendar").find('.fc-slats').height();

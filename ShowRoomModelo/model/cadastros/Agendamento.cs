@@ -41,12 +41,17 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "Nome da Marca")]
         public string nm_marca { get; set; }
 
+        [OnlySelect]
+        [Column("(select cor_padrao from tb_cadastro_marca c where c.id = a.id_marca) as cor_marca")]
+        [Display(Name = "Cor da Marca")]
+        public string cor_marca { get; set; }
+
         [Column("id_cliente")]
         [Display(Name = "Cliente")]
         public long cliente { get; set; }
 
         [OnlySelect]
-        [Column("(select coalesce(razao,fantasia) from tb_cadastro_cidade c where c.id = a.id_cliente) as nm_cliente")]
+        [Column("(select coalesce(razao,fantasia) from tb_cadastro_cliente c where c.id = a.id_cliente) as nm_cliente")]
         [Display(Name = "Nome da Cliente")]
         public string nm_cliente { get; set; }
 
@@ -68,6 +73,7 @@ namespace ShowRoomModelo.model.cadastros
         [Column("(select nome from tb_cadastro_cidade c where c.id = a.id_cidade) as nm_cidade")]
         [Display(Name = "Nome da Cidade")]
         public string nm_cidade { get; set; } */
+
 
         [Column("reservasuite")]
         [Display(Name = "Reserva Suíte")]
@@ -95,11 +101,11 @@ namespace ShowRoomModelo.model.cadastros
 
         [Column("potencialpdv")]
         [Display(Name = "Pontencial PDV")]
-        public decimal potencialpdv { get; set; }
+        public int potencialpdv { get; set; }
 
         [Column("populacao")]
         [Display(Name = "População")]
-        public decimal populacao { get; set; }
+        public int populacao { get; set; }
 
         [Column("historicocolecao1")]
         [Display(Name = "Histórico Coleção 1")]
@@ -147,12 +153,16 @@ namespace ShowRoomModelo.model.cadastros
         [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
         public string hr_agenda { get; set; }
 
+        [Column("tp_status")]
+        [Display(Name = "Status")]
+        public int tp_status { get; set; }
+
         [Column("id_conta")]
         [Display(Name = "Conta")]
         public long id_conta { get; set; }
 
-        [Column("id_cliente")]
-        [Display(Name = "Cliente")]
+        [Column("id_usuario")]
+        [Display(Name = "Usuario")]
         public long id_usuario { get; set; }
 
         public Agendamento()

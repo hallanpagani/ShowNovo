@@ -1,6 +1,7 @@
 ﻿using Conciliacao.Controllers.Generico;
 using ShowRoom.App_Helpers.Componentes;
 using ShowRoomModelo.model.cadastros;
+using ShowRoomModelo.model.generico;
 using ShowRoomPersistencia.banco;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,7 @@ namespace ShowRoom.Controllers
             {
                 return View(model);
             }
-            model.grupomarca = model.grupomarca.ToUpper();
+          //  model.grupomarca = model.grupomarca.ToUpper();
             model.nome = model.nome.ToUpper();
             model.id_usuario = Convert.ToInt64(UsuarioLogado.IdUsuario);
             model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
@@ -78,6 +79,14 @@ namespace ShowRoom.Controllers
                 DAL.Excluir(model);
             }
             return RedirectToAction("Consultar");
+        }
+
+        [HttpGet]
+        [OutputCache(Duration = 30)]
+        public JsonResult GetGrupoMarcas(string term)
+        {
+            List<Lista> list = DAL.ListarObjetos<MarcaGrupo>((term ?? "").Equals("") ? "" : string.Format("nome like '%{0}%'", term), "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
+            return Json(list, JsonRequestBehavior.AllowGet);
         }
 
     }

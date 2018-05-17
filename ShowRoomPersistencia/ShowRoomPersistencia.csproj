@@ -76,6 +76,7 @@
     <Compile Include="classes\Leitor.cs" />
     <Compile Include="classes\Montador.cs" />
     <Compile Include="classes\Validador.cs" />
+    <Compile Include="model\AgendamentoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -88,9 +89,7 @@
       <Name>ShowRoomModelo</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

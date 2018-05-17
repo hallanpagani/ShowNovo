@@ -25,9 +25,20 @@ namespace ShowRoomModelo.model.cadastros
         [MaxLength(100, ErrorMessage = "Campo 'Nome da marca' deve ter no máximo 100 caracteres!")]
         public string nome { get; set; }
 
+        [Required(ErrorMessage = "A Cor Padrão é obrigatória!", AllowEmptyStrings = false)]
         [Column("cor_padrao")]
         [Display(Name = "Cor Padrão")]
         public string cor_padrao { get; set; }
+
+        [Required(ErrorMessage = "O grupo da marca é obrigatório!", AllowEmptyStrings = false)]
+        [Column("id_grupomarca")]
+        [Display(Name = "Grupo da Marca")]
+        public long grupomarca { get; set; }
+
+        [OnlySelect]
+        [Column("(select nome from tb_cadastro_grupomarca p where p.id = a.id_grupomarca) as nm_grupomarca")]
+        [Display(Name = "Nome do grupo da marca")]
+        public string nm_grupomarca { get; set; }
 
         [Column("id_conta")]
         public long id_conta { get; set; }

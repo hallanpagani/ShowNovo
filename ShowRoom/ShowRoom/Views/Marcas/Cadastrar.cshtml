@@ -31,9 +31,23 @@
                 @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
             </div>
         </div>
+
         <div class="form-group">
-            <div class="col-md-4">
-            <label>Cor Padrão (Identificador da Marca na Agenda)</label>               
+            <section class="col-md-4">
+                <label class="" for="GrupoMarca">Grupo da Marca</label>
+                <select id="GrupoMarca" name="GrupoMarca" class="requerido" style="width:100%">
+                    @if (!Equals(Model.nm_grupomarca, "") && (!(Model.grupomarca == 0)))
+                    {
+                        <option value="@Model.grupomarca">@Model.nm_grupomarca</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.grupomarca, "", new { @class = "text-danger" })
+            </section>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-5 mt-4">
+            <label>Cor Padrão (Identificador da Marca na Agenda "Escolha cores escuras" )</label>               
                 <div id="cor_padrao" class="input-group colorpicker-component colorpicker-element">
                     @Html.EditorFor(model => model.cor_padrao, new { htmlAttributes = new { @class = "form-control", @maxlength = "8", id = "cor_padrao" } })
                     <div class="col-md-2">
@@ -61,8 +75,33 @@
 
         $(document).ready(function () {
             $("#cor_padrao").colorpicker();
-        });
 
+
+            var Url = '@Url.Action("GetGrupoMarcas", "MarcasGrupo")';
+            $("#GrupoMarca").select2({
+                placeholder: "Selecione um grupo para a marca",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+        });
     </script>
    @{ /* Scripts.Render("~/bundles/jqueryval") */ }
 }
