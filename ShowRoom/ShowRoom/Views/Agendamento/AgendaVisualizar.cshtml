@@ -84,7 +84,8 @@
     </div>
 </main>
 
-<!-- Html.Partial("Modal/_EditarAgenda") -->
+@Html.Partial("Modal/_EditarAgenda")
+
 <!-- END MAIN CONTENT -->
 @section Scripts {
     <!-- PAGE RELATED PLUGIN(S) -->
@@ -293,13 +294,10 @@
                 eventClick: function (calEvent) {
                     $("#id-agenda").val(calEvent.id);
 
-                    $("#Colaboradores2").empty().append('<option value=' + calEvent.id_colaborador + '>' + calEvent.nm_colaborador + '</option>');
-                    $("#Servicos2").empty().append('<option value="' + calEvent.id_servico + '">' + calEvent.nm_servico + '</option>');
-                    $("#Clientes2").empty().append('<option value="' + calEvent.id_cliente + '">' + calEvent.nm_cliente + '</option>');
 
-                    $("#sessao").val(calEvent.sessao_atual);
-                    $("#is_secao").val(calEvent.tp_status);
-                    $("#vl_servico2").val(calEvent.vl_servico);
+                    $("#Marcas").empty().append('<option value=' + calEvent.id_marca + '>' + calEvent.nm_marca + '</option>');
+                    $("#Colecoes").empty().append('<option value=' + calEvent.id_colecao + '>' + calEvent.nm_colecao + '</option>');
+                    $("#Clientes").empty().append('<option value="' + calEvent.id_cliente + '">' + calEvent.nm_cliente + '</option>');
                     $("#dt_agenda2").val(calEvent.dt_agenda);
                     $("#hr_agenda2").val(calEvent.hr_agenda);
 

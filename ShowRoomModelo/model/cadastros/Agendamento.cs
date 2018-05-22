@@ -74,18 +74,17 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "Nome da Cidade")]
         public string nm_cidade { get; set; } */
 
-
         [Column("reservasuite")]
-        [Display(Name = "Reserva Suíte")]
-        public int reservasuite { get; set; }
-
+        [Display(Name = "Reserva Suíte?")]
+        public bool reservasuite { get; set; }
+        
         [Column("clientenovo")]
         [Display(Name = "Cliente novo?")]
-        public int clientenovo { get; set; }
+        public bool clientenovo { get; set; }
 
         [Column("atendeshowroom")]
         [Display(Name = "Atende Showroom?")]
-        public int atendeshowroom { get; set; }
+        public bool atendeshowroom { get; set; }
 
         [Column("statuspedido")]
         [Display(Name = "Pedido")]

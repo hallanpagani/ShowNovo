@@ -14,9 +14,22 @@
         i[disabled], i:disabled {
             background-color: lightgray !important;
         }
+
+        div.content.hideContent {
+            overflow: hidden;
+            height: 0px;
+        }
+
+        div.content.showContent {
+            height: auto;
+        }
+
+        span.select2-hidden-accessible {
+            position: absolute;
+            left: -9999px;
+        }
     </style>
     <link rel="stylesheet" href="~/Scripts/assets/plugins/clockpicker/clockpicker.css">
-
 }
 
 @using (Html.BeginForm("Cadastrar", "Agendamento", FormMethod.Post, new { @class = "form-horizontal smart-form", @id = "agendamento" }))
@@ -57,7 +70,7 @@
         <div class="col-md-6 mb-3">
             <label class="" for="colecao">Coleção</label>
             <select id="colecao" name="colecao" class="requerido" style="width:100%">
-                @if ((Model.marca != 0) && (Model.nm_colecao != null))
+                @if ((Model.colecao != 0) && (Model.nm_colecao != null))
                 {
                     <option value="@Model.colecao">@Model.nm_colecao</option>
                 }
@@ -81,7 +94,34 @@
 
     </div>
 
+    <div class="row" style="margin-left: 0px; margin-bottom: 15px;">
+        <div id="mostrarmais">
+            <a href="#"><mark><ins><strong>Mais opções</strong></ins></mark></a>
+        </div>
+    </div>
 
+    <div class="content hideContent">
+        <hr />
+        <div class="form-row">
+
+            <section class="col-md-2 mb-3">
+                @Html.LabelFor(model => model.reservasuite)
+                @Html.CheckBoxFor(model => model.reservasuite)
+            </section>
+  
+
+            <section class="col-md-2 mb-3">
+                @Html.LabelFor(model => model.clientenovo)
+                @Html.CheckBoxFor(model => model.clientenovo)
+            </section>
+
+
+            <section class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.atendeshowroom)
+                @Html.CheckBoxFor(model => model.atendeshowroom)
+            </section>
+        </div>
+    </div>
 
     <footer>
         <div class="form-group">
@@ -101,11 +141,10 @@
     <script src="~/Scripts/terceiros/maskmoney.min.js" type="text/javascript"></script>
     <script src="~/Scripts/assets/plugins/clockpicker/clockpicker.min.js" type="text/javascript"></script>
     
-   <!-- <script src="/path/to/jquery.js"></script> jQuery is required -->
+    <!--<script src="/path/to/jquery.js"></script> jQuery is required-->
     <link href="~/Scripts/assets/plugins/datepicker/datepicker.min.css" rel="stylesheet">
     <script src="~/Scripts/assets/plugins/datepicker/datepicker.min.js"></script>
     <script src="~/Scripts/assets/plugins/datepicker/datepicker.pt-BR.js"></script>
-
 
     <script type="text/javascript">
 
@@ -114,13 +153,10 @@
 
             $(document).ready(function () {
 
-               
-
                 $("#vl_servico").maskMoney({ allowNegative: false, thousands: '', decimal: ',', affixesStay: false });
                 $("#vl_servico").click(function () {
                     $(this).select();
                 });
-
                 
                 $("#hr_agenda").clockpicker({ autoclose: true });
 
@@ -202,6 +238,25 @@
                         cache: true
                     }
                 });
+
+                $("#mostrarmais a").on("click", function () {
+                    var $this = $(this);
+                    var $content = $(".content");
+                    var linkText = $this.text().toUpperCase();
+
+                    if (linkText === "MAIS OPÇÕES") {
+                        linkText = "Menos opções";
+                        $content.addClass('showContent').removeClass('hideContent');
+                    } else {
+                        linkText = "Mais opções";
+                        $content.addClass('hideContent').removeClass('showContent');
+                    };
+
+                    var htm = '<mark><ins><strong>' + linkText + '</strong></ins></mark>';
+
+                    $this.html(htm);
+                });
+
 
         });
 
