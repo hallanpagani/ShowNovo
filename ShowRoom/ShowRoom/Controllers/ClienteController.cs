@@ -85,7 +85,7 @@ namespace ShowRoom.Controllers
         [OutputCache(Duration = 30)]
         public JsonResult GetCliente(string term)
         {
-            List<Lista> list = DAL.ListarObjetos<Cliente>(string.Format("id_conta={0}", UsuarioLogado.IdConta), "id").Select(i => new Lista { id = i.id, text = i.razao.ToUpper() }).ToList();
+            List<Lista> list = DAL.ListarObjetos<Cliente>(string.Format( ((term ?? "").Equals("") ? "{0}" : "((razao like '%{0}%') or (fantasia like '%{0}%'))  and") + " id_conta={1}", (term ?? "").Equals("") ? "" : term, UsuarioLogado.IdConta), "id").Select(i => new Lista { id = i.id, text = i.razao.ToUpper() }).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

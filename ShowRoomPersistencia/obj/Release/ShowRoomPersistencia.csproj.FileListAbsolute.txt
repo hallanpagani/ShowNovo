@@ -26,5 +26,3 @@ D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Release\pt-br\System.Web.WebPages.Ra
 D:\CSharp\ShowRoom\ShowRoomPersistencia\obj\Release\ShowRoomPersistencia.csprojResolveAssemblyReference.cache
 D:\CSharp\ShowRoom\ShowRoomPersistencia\obj\Release\ShowRoomPersistencia.dll
 D:\CSharp\ShowRoom\ShowRoomPersistencia\obj\Release\ShowRoomPersistencia.pdb
-D:\CSharp\ShowRoom\ShowRoomPersistencia\bin\Release\ShowRoomModelo.dll.config
-D:\CSharp\ShowRoom\ShowRoomPersistencia\obj\Release\ShowRoomPersistencia.csproj.CoreCompileInputs.cache

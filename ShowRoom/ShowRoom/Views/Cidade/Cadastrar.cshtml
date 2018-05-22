@@ -16,14 +16,7 @@
 
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.cidade, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-4">
-                @Html.EditorFor(model => model.cidade, new { htmlAttributes = new { @class = "form-control", @autofocus = "autofocus" } })
-                @Html.ValidationMessageFor(model => model.cidade, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
+       
         <div class="form-group">
             @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -34,23 +27,23 @@
 
         <div class="form-group">
             <section class="col col-sm-12 col-md-6 col-lg-6">
-                <label class="" for="Regiao">Região</label>
-                <select id="Regiao" name="Regiao" class="requerido" style="width:100%">
-                    @if (!Equals(Model.nm_regiao, "") && (!(Model.id_regiao == 0)))
+                <label class="" for="mesorregiao">Mesorregião</label>
+                <select id="mesorregiao" name="mesorregiao" class="requerido" style="width:100%">
+                    @if (!Equals(Model.nm_mesorregiao, "") && (!(Model.id_mesorregiao == 0)))
                     {
-                        <option value="@Model.id_regiao">@Model.nm_regiao</option>
+                        <option value="@Model.id_mesorregiao">@Model.nm_mesorregiao</option>
                     }
                 </select>
             </section>
         </div>
 
-        <div class="form-group">
+        <!--div class="form-group">
             <section class="col col-sm-12 col-md-6 col-lg-6">
                 <label class="" for="SubRegiao">SubRegião</label>
                 <select id="SubRegiao" name="SubRegiao" class="requerido" style="width:100%">
-                    @if (!Equals(Model.nm_subregiao, "") && (!(Model.id_subregiao == 0)))
+                    if (!Equals(Model.nm_subregiao, "") && (!(Model.id_subregiao == 0)))
                     {
-                        <option value="@Model.id_subregiao">@Model.nm_subregiao</option>
+                        <option value="Model.id_subregiao">Model.nm_subregiao</option>
                     }
                 </select>
             </section>
@@ -60,13 +53,13 @@
             <section class="col col-sm-12 col-md-6 col-lg-6">
                 <label class="" for="MicroRegiao">MicroRegião</label>
                 <select id="MicroRegiao" name="MicroRegiao" class="requerido" style="width:100%">
-                    @if (!Equals(Model.nm_microregiao, "") && (!(Model.id_microregiao == 0)))
+                    if (!Equals(Model.nm_microregiao, "") && (!(Model.id_microregiao == 0)))
                     {
-                        <option value="@Model.id_microregiao">@Model.nm_microregiao</option>
+                        <option value="Model.id_microregiao">Model.nm_microregiao</option>
                     }
                 </select>
             </section>
-        </div>
+        </div -->
 
         <div class="form-group">
             <section class="col col-sm-12 col-md-6 col-lg-6">
@@ -189,6 +182,30 @@
             var Url = '@Url.Action("GetEstado", "Estado")';
             $("#id_uf").select2({
                 placeholder: "Selecione um Estado",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetMesorregiao", "Mesorregiao")';
+            $("#mesorregiao").select2({
+                placeholder: "Selecione uma Mesorregião",
                 minimumInputLength: 0,
                 language: "pt-BR",
                 ajax: {

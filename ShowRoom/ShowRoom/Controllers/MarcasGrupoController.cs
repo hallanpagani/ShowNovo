@@ -42,18 +42,18 @@ namespace ShowRoom.Controllers
                 var existe = DAL.GetObjeto<MarcaGrupo>(string.Format("id_conta={0} and nome='{1}'", UsuarioLogado.IdConta, model.nome)) ?? new MarcaGrupo();
                 if (existe.id > 0 && model.id == 0)
                 {
-                    this.AddNotification("MarcaGrupo já existe!", "Alerta");
+                    this.AddNotification("Este grupo de marcas já existe!", "Alerta");
                     return View();
                 }
                 long id = DAL.Gravar(model);
 
                 if (model.id > 0 && id == 0)
                 {
-                    this.AddNotification("MarcaGrupo alterada!", "Sucesso");
+                    this.AddNotification("Grupo de marcas alterada!", "Sucesso");
                 }
                 else
                 {
-                    this.AddNotification("MarcaGrupo cadastrada!", "Sucesso");
+                    this.AddNotification("Grupo de marcas cadastrada!", "Sucesso");
                 }
             }
             catch (Exception e)

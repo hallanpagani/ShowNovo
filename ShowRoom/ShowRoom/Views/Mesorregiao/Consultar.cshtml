@@ -1,7 +1,7 @@
-﻿@model IEnumerable<ShowRoomModelo.model.cadastros.RegiaoSub>
+﻿@model IEnumerable<ShowRoomModelo.model.cadastros.Mesorregiao>
 
 @{
-    ViewBag.Title = "Consultar SubRegiões";
+    ViewBag.Title = "Consultar Mesorregião";
     ViewBag.LinkText = "Cadastrar";
     ViewBag.ActionName = "Cadastrar";
 }
@@ -11,14 +11,15 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.nm_regiao)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.subregiao)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.nome)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nm_estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nm_regiao)
+                </th>
+               
                 <th></th>
             </tr>
         </thead>
@@ -27,13 +28,13 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.nm_regiao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.subregiao)
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nm_estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nm_regiao)
                     </td>
                     <td>
                         @Html.ActionLink("Editar", "Cadastrar", new { id = item.id }, new { @class = "btn btn-primary btn-sm waves-effect waves-light" })

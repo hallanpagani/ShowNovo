@@ -83,10 +83,7 @@ namespace ShowRoom.Controllers
         [OutputCache(Duration = 30)]
         public JsonResult GetColecao(string term)
         {
-            List<Lista> list = DAL.ListarObjetos<Colecao>((term ?? "").Equals("") ? 
-                            string.Format("id_conta={0}", UsuarioLogado.IdConta) : 
-                            string.Format("id_conta={0} and nome like '%{1}%' ", UsuarioLogado.IdConta,term)
-                            , "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
+            List<Lista> list = DAL.ListarObjetos<Colecao>(string.Format(((term ?? "").Equals("") ? "{0}" : "(nome like '%{0}%') and") + " id_conta={1}", (term ?? "").Equals("") ? "" : term, UsuarioLogado.IdConta), "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
 
             return Json(list, JsonRequestBehavior.AllowGet);
         }

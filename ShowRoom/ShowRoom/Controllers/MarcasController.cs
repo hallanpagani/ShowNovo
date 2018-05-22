@@ -87,7 +87,7 @@ namespace ShowRoom.Controllers
         [OutputCache(Duration = 30)]
         public JsonResult GetMarcas(string term)
         {
-            List<Lista> list = DAL.ListarObjetos<Marca>((term ?? "").Equals("") ? "" : string.Format("nome like '%{0}%'", term), "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
+            List<Lista> list = DAL.ListarObjetos<Marca>(string.Format(((term ?? "").Equals("") ? "{0}" : "(nome like '%{0}%') and") + " id_conta={1}", (term ?? "").Equals("") ? "" : term, UsuarioLogado.IdConta), "id").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
     }

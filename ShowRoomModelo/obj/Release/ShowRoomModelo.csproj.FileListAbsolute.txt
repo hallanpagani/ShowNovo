@@ -55,4 +55,3 @@ D:\CSharp\ShowRoom\ShowRoomModelo\bin\Microsoft.CodeDom.Providers.DotNetCompiler
 D:\CSharp\ShowRoom\ShowRoomModelo\obj\Release\ShowRoomModelo.dll
 D:\CSharp\ShowRoom\ShowRoomModelo\obj\Release\ShowRoomModelo.pdb
 D:\CSharp\ShowRoom\ShowRoomModelo\obj\Release\ShowRoomModelo.csprojResolveAssemblyReference.cache
-D:\CSharp\ShowRoom\ShowRoomModelo\obj\Release\ShowRoomModelo.csproj.CoreCompileInputs.cache

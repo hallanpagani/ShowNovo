@@ -18,6 +18,15 @@ namespace ShowRoomModelo.model.cadastros
         public long id { get; set; }
 
         [Required]
+        [Column("id_mesorregiao")]
+        public long id_mesorregiao { get; set; }
+
+        [OnlySelect]
+        [Column("(select concat(p.nome,' - ',p.uf) from tb_cadastro_mesorregiao p where p.id = a.id_mesorregiao) as nm_mesorregiao")]
+        [Display(Name = "Nome da Mesorregião")]
+        public string nm_mesorregiao { get; set; }
+
+      /*  [Required]
         [Column("id_regiao")]
         public long id_regiao { get; set; }
 
@@ -42,7 +51,7 @@ namespace ShowRoomModelo.model.cadastros
         [OnlySelect]
         [Column("(select nome from tb_cadastro_microregiao p where p.id = a.id_microregiao) as nm_microregiao")]
         [Display(Name = "Nome da micro região, por exemplo, região Sul do Brasil, sub região Sul de Santa Catarina, MICROREGIÃO AMREC")]
-        public string nm_microregiao { get; set; }
+        public string nm_microregiao { get; set; } */
 
         [Required]
         [Column("id_uf")]
@@ -53,15 +62,15 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "Nome do Estado")]
         public string nm_estado { get; set; }
 
-        [Column("cidade")]
+       /* [Column("cidade")]
         [Display(Name = "Cidade")]
         [Required(ErrorMessage = "Cidade é obrigatório!", AllowEmptyStrings = false)]
         [MaxLength(6, ErrorMessage = "Campo 'Cidade' deve ter no máximo 6 caracteres!")]
-        public int cidade { get; set; }
+        public int cidade { get; set; }*/
 
         [Column("nome")]
         [Display(Name = "Nome da Cidade")]
-        [Required(ErrorMessage = "O nome da região é obrigatório!", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "O nome da cidade é obrigatório!", AllowEmptyStrings = false)]
         [MaxLength(30, ErrorMessage = "Campo 'Nome da Cidade' deve ter no máximo 100 caracteres!")]
         public string nome { get; set; }
 
