@@ -516,6 +516,9 @@ namespace ShowRoomPersistencia.banco
                 //conexao.Open();
                 using (Leitor leitor = comando.Select())
                 {
+                    var typeName = "";
+                    object valor = null;
+
                     try
                     {
                         while (!leitor.Eof)
@@ -527,12 +530,28 @@ namespace ShowRoomPersistencia.banco
                             foreach (PropertyInfo property in Auxiliar.PropertySimple(item))
                             {
                                 // valor busta pelo nome do campo
-                                object valor = leitor.GetObject(Auxiliar.GetColumnName(property));
+                                valor = leitor.GetObject(Auxiliar.GetColumnName(property));
 
                                 if ((valor != null) && (!(valor is DBNull)))
                                 {
-                                    property.SetValue(item,
-                                        valor.GetType().Name.Equals("TimeSpan") ? valor.ToString() : valor.GetType().Name.Equals("SByte") ? (((sbyte)valor == 1) ? true : false) : valor.GetType().Name.Equals("Boolean") ? (((Boolean)valor == true) ? 1 : 0) : valor, null);
+                                    typeName = valor.GetType().Name;
+
+                                    if (typeName.Equals("TimeSpan"))
+                                    {
+                                        property.SetValue(item, valor.ToString());
+                                    }
+                                    else if (typeName.Equals("SByte"))
+                                    {
+                                        property.SetValue(item, (sbyte)valor == 1 ? true : false);
+                                    }
+                                    else if (typeName.Equals("Boolean"))
+                                    {
+                                        property.SetValue(item, (Boolean)valor);
+                                    }
+                                    else
+                                    {
+                                        property.SetValue(item, valor);
+                                    }
                                 }
                             }
                             list.Add(item);
@@ -543,7 +562,7 @@ namespace ShowRoomPersistencia.banco
                     }
                     catch (Exception ex)
                     {
-                       //throw ex;
+                        Console.WriteLine("Exception source: {0}", ex.Source);
                     }
                 }
             }
