@@ -16,6 +16,8 @@ namespace ShowRoomModelo.model.cadastros
 
         [Column("id_colecao")]
         [Display(Name = "Coleção")]
+        [Required(ErrorMessage = "Campo 'Coleção' é obrigatório!", AllowEmptyStrings = false)]
+        [Range(1, long.MaxValue, ErrorMessage = "Campo 'Coleção' deve ser preenchido!")]
         public long colecao { get; set; }
 
         [OnlySelect]
@@ -34,6 +36,8 @@ namespace ShowRoomModelo.model.cadastros
 
         [Column("id_marca")]
         [Display(Name = "Marca")]
+        [Required(ErrorMessage = "Campo 'Marca!", AllowEmptyStrings = false)]
+        [Range(1, long.MaxValue, ErrorMessage = "Campo 'Marca' deve ser preenchido!")]
         public long marca { get; set; }
 
         [OnlySelect]
@@ -48,6 +52,8 @@ namespace ShowRoomModelo.model.cadastros
 
         [Column("id_cliente")]
         [Display(Name = "Cliente")]
+        [Required(ErrorMessage = "Campo 'Cliente' é obrigatório!", AllowEmptyStrings = false)]
+        [Range(1, long.MaxValue, ErrorMessage = "Campo 'Cliente' deve ser preenchido!")]
         public long cliente { get; set; }
 
         [OnlySelect]
@@ -126,8 +132,10 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "Histórico Coleção 4")]
         public decimal historicocolecao4 { get; set; }
 
+        [DataType(DataType.Currency)]
         [Column("metacolecaoatual")]
-        [Display(Name = "Meta Coleção Atual")]
+        [Display(Name = "Meta para a Coleção")]
+        [Range(0.00, 999999999.99, ErrorMessage = "O campo Meta para a Coleção deve ser preenchido corretamente!")]
         public decimal metacolecaoatual { get; set; }
 
         [Column("realizado")]
@@ -142,18 +150,19 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "%Crescimento")]
         public decimal perccrescimento { get; set; }
 
-        [Required]
         [Column("dt_agenda")]
         [Display(Name = "Data agendada")]
+        [Required(ErrorMessage = "Campo 'Data agendamento' é obrigatório!", AllowEmptyStrings = false)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
-        public DateTime dt_agenda { get; set; }
+        public DateTime? dt_agenda { get; set; }
 
-        [Required]
+
         [Timestamp]
         [Column("hr_agenda")]
         [Display(Name = "Horário")]
         [DisplayFormat(DataFormatString = "{0:hh\\:mm}", ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = "Campo 'Hora agendamento' é obrigatório!", AllowEmptyStrings = false)]
         public string hr_agenda { get; set; }
 
         [Column("tp_status")]
@@ -170,7 +179,7 @@ namespace ShowRoomModelo.model.cadastros
 
         public Agendamento()
         {
-
+            metacolecaoatual = 0;
         }
 
     }

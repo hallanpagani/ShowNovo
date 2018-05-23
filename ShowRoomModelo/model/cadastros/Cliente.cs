@@ -40,7 +40,6 @@ namespace ShowRoomModelo.model.cadastros
         [Column("contato")]
         [Display(Name = "Contato")]
         public string contato { get; set; }
-
        
         [Column("fone1")]
         [Display(Name = "Fone 1")]

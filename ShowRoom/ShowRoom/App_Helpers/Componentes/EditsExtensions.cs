@@ -120,10 +120,10 @@ namespace ShowRoom.App_Helpers.Componentes
             {
                 /// refatorar 
                 StringBuilder str = new StringBuilder();
-                str.Append("<div class='input-group'>");
+               // str.Append("<div class='input-group'>");
                 str.Append(html.TextBoxFor(expression, htmlAttributes));
-                str.Append(group_addon);
-                str.Append("</div>");
+              //  str.Append(group_addon);
+              //  str.Append("</div>");
 
                 return new MvcHtmlString(str.ToString());
 

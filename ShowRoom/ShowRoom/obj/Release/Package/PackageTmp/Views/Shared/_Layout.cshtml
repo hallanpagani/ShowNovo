@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "_LayoutInicio.cshtml";
+}
+
+@section css {
+    @RenderSection("css", required: false)
+
+    <link rel="stylesheet" href="~/content/assets/plugins/datatables/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/content/assets/plugins/datatables/css/responsive.bootstrap4.min.css">
+
+}
+
+<div class="container-fluid">
+    <div class="row">
+
+        @Html.Partial("_Menu")
+
+        <div class="right-column">
+
+            @Html.Partial("_MenuTopo")
+
+            @Html.Partial("_Notificacoes")
+            <main class="main-content p-5" role="main">
+                @if (!((string)ViewBag.LinkText ?? "").Equals(""))
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            @Html.ActionLink((string)@ViewBag.LinkText, (string)@ViewBag.ActionName, null, new { @class = (string)@ViewBag.Class ?? "btn btn btn-dark" })
+                        </div>
+                    </div>
+                }
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <div class="card">
+                            @if ((@ViewBag.SubTitle ?? "") != "")
+                            {
+                                <div class="card-header">@ViewBag.SubTitle</div>
+                            }
+                            <div class="card-body">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-12">
+                        <footer></footer>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("scripts", required: false)
+
+  <!--  <script type="text/javascript" src="~/scripts/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="~/scripts/assets/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="~/scripts/assets/plugins/datatables/js/dataTables.responsive.min.js"></script> -->
+}

@@ -48,7 +48,7 @@ namespace ShowRoom.Controllers
                 if (existe.id > 0 && model.id == 0)
                 {
                     this.AddNotification("Agendamento já existe!", "Alerta");
-                    return View();
+                    return View(model);
                 }
                 long id = DAL.Gravar(model);
 
@@ -65,7 +65,7 @@ namespace ShowRoom.Controllers
             {
                 this.AddNotification("Erro:" + e.Message, "Erro");
             }
-            return View(model);
+            return View();
         }
 
         [HttpPost]
@@ -129,8 +129,8 @@ namespace ShowRoom.Controllers
                               clientenovo = e.clientenovo ? "SIM" : "NÃO",
                               //  e.sessao_atual,
                               title = e.nm_cliente, //e.hr_agenda.Substring(0, 5).Trim() + " " +
-                              start = new DateTime(e.dt_agenda.Year, e.dt_agenda.Month, e.dt_agenda.Day, TimeSpan.Parse(e.hr_agenda).Hours, TimeSpan.Parse(e.hr_agenda).Minutes, TimeSpan.Parse(e.hr_agenda).Seconds).ToString("s"),
-                              end = new DateTime(e.dt_agenda.Year, e.dt_agenda.Month, e.dt_agenda.Day, TimeSpan.Parse(e.hr_agenda).Hours, TimeSpan.Parse(e.hr_agenda).Minutes, TimeSpan.Parse(e.hr_agenda).Seconds).AddHours(0.5).ToString("s"),
+                              start = new DateTime((e.dt_agenda?? DateTime.MinValue).Year, (e.dt_agenda ?? DateTime.MinValue).Month, (e.dt_agenda ?? DateTime.MinValue).Day, TimeSpan.Parse(e.hr_agenda).Hours, TimeSpan.Parse(e.hr_agenda).Minutes, TimeSpan.Parse(e.hr_agenda).Seconds).ToString("s"),
+                              end = new DateTime((e.dt_agenda ?? DateTime.MinValue).Year, (e.dt_agenda ?? DateTime.MinValue).Month, (e.dt_agenda ?? DateTime.MinValue).Day, TimeSpan.Parse(e.hr_agenda).Hours, TimeSpan.Parse(e.hr_agenda).Minutes, TimeSpan.Parse(e.hr_agenda).Seconds).AddHours(0.5).ToString("s"),
                               color = e.cor_marca,
                               Totais = obj
                           };

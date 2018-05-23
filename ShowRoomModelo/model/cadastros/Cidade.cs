@@ -19,6 +19,7 @@ namespace ShowRoomModelo.model.cadastros
 
         [Required]
         [Column("id_mesorregiao")]
+        [Range(1, long.MaxValue, ErrorMessage = "Campo 'Mesorregião' deve ser preenchido!")]
         public long id_mesorregiao { get; set; }
 
         [OnlySelect]
@@ -55,6 +56,7 @@ namespace ShowRoomModelo.model.cadastros
 
         [Required]
         [Column("id_uf")]
+        [Range(1, long.MaxValue, ErrorMessage = "Campo 'Estado' deve ser preenchido!")]
         public long id_uf { get; set; }
 
         [OnlySelect]
@@ -76,17 +78,17 @@ namespace ShowRoomModelo.model.cadastros
 
         [Column("ipc")]
         [Display(Name = "Índice de Preço ao Consumidor")]
-        [MaxLength(30, ErrorMessage = "Campo 'IPC - Índice de preço ao consumidor' deve ter no máximo 100 caracteres!")]
+        [Range(0, 99999999999, ErrorMessage = "Campo 'IPC - Índice de preço ao consumidor' deve ter no máximo 11 caracteres!")]
         public decimal ipc { get; set; }
 
         [Column("consumomoda")]
-        [Display(Name = "Consumo")]
-        [MaxLength(15, ErrorMessage = "Campo 'Consumo' deve ter no máximo 15 caracteres!")]
+        [Display(Name = "Consumo moda")]
+        [Range(0, 99999999999, ErrorMessage = "Campo 'Consumo' deve ter no máximo 11 caracteres!")]
         public decimal consumomoda { get; set; }
 
         [Column("potencialpdv")]
         [Display(Name = "Potencial do PDV")]
-        [MaxLength(15, ErrorMessage = "Campo 'Potencial PDV' deve ter no máximo 15 caracteres!")]
+        [Range(0, 999999,ErrorMessage = "Campo 'Potencial PDV' deve ter no máximo 6 caracteres!")]
         public int potencialpdv { get; set; }
 
         public Cidade()

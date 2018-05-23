@@ -1,0 +1,542 @@
+﻿@model ShowRoom.Models.VisualizarAgendaViewModel
+@using ShowRoom.App_Helpers.Componentes
+
+@{
+    ViewBag.Title = "Visualizar agenda";
+    Layout = "~/Views/Shared/_LayoutAgenda.cshtml";
+}
+
+@section css{
+    <link rel="stylesheet" href="~/Scripts/assets/plugins/fullcalendar/fullcalendar.min.css">
+
+}
+
+<main class="main-content p-5" role="main">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <form action="/Agenda/AgendaVisualizar" class="smart-form" id="pesquisar" method="POST">
+
+                        <div class="form-row">
+
+                            <div class="col-md-3 mb-3">
+                                <label class="" for="filtro_cliente">Cliente</label>
+                                <select id="Clientes" name="filtro_cliente" class="requerido" style="width:100%">
+                                    @if (@Model.filtro_cliente != 0)
+                                    {
+                                        <option value="@Model.filtro_cliente">@Model.filtro_nm_cliente</option>
+                                    }
+                                </select>
+                                @Html.HiddenFor(model => model.filtro_nm_cliente)
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="" for="filtro_marca">Marcas</label>
+                                <select id="Marcas" name="filtro_marca" class="requerido" style="width:100%">
+                                    @if (@Model.filtro_marca != 0)
+                                    {
+                                        <option value="@Model.filtro_marca">@Model.filtro_nm_marca</option>
+                                    }
+                                </select>
+                                @Html.HiddenFor(model => model.filtro_nm_marca)
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="" for="filtro_colecao">Coleção</label>
+                                <select id="Colecoes" name="filtro_colecao" class="requerido" style="width:100%">
+                                    @if (@Model.filtro_colecao != 0)
+                                    {
+                                        <option value="@Model.filtro_colecao">@Model.filtro_nm_colecao</option>
+                                    }
+                                </select>
+                                @Html.HiddenFor(model => model.filtro_nm_colecao)
+                            </div>
+
+                            <div class="col-md-1 mb-3">
+                                <label class="" for="filtro_colecao">&nbsp;</label>
+                                <a if="filtrar" class="btn btn-dark waves-effect waves-light" href="/agendamento/AgendaVisualizar">Filtrar</a>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn btn-dark waves-effect waves-light" href="~/Agendamento/Cadastrar">Cadastrar</a>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-lg-12">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@Html.Partial("Modal/_EditarAgenda")
+
+<!-- END MAIN CONTENT -->
+@section Scripts {
+    <!-- PAGE RELATED PLUGIN(S) -->
+    <!--  <script type='text/javascript' src="~/scripts/assets/plugins/fullcalendar/locale/pt-br.js"></script> -->
+
+
+    <script type='text/javascript' src="~/scripts/assets/plugins/moment/moment.min.js"></script>
+    <script type='text/javascript' src="~/scripts/assets/plugins/fullcalendar/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/scripts/assets/js/jquery/jquery-ui-1.11.0.custom/jquery-ui.min.js"></script>
+    <!--     <script type="text/javascript" src="~/Scripts/assets/js/scripts.js"></script>-->
+
+
+
+    <script type="text/javascript">
+
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+
+        function dropdown(val) {
+            var y = document.getElementsByClassName('btn btn-default dropdown-toggle');
+            y[0].innerHTML = val + ' <span class="caret"></span>'; // Append
+        }
+
+        $(document).ready(function () {
+
+            "use strict";
+
+            $('#Marcas').on("select2:select", function (e) {
+                console.log($('#Marcas').select2('data')[0].text);
+                $('#filtro_nm_marca').val($('#Marcas').select2('data')[0].text); // what you would like to happen
+            });
+
+            $('#Clientes').on("select2:select", function (e) {
+                console.log($('#Clientes').select2('data')[0].text);
+                $('#filtro_nm_cliente').val($('#Clientes').select2('data')[0].text); // what you would like to happen
+            });
+
+            $('#Colecoes').on("select2:select", function (e) {
+                console.log($('#Colecoes').select2('data')[0].text);
+                $('#filtro_nm_colecao').val($('#Colecoes').select2('data')[0].text); // what you would like to happen
+            });
+
+            var Url = '@Url.Action("GetMarcas", "Marcas")';
+            $("#Marcas").select2({
+                placeholder: "Selecione uma marca",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                allowClear: true,
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetCliente", "Cliente")';
+            $("#Clientes").select2({
+                placeholder: "Selecione um cliente",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                allowClear: true,
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetColecao", "Colecao")';
+            $("#Colecoes").select2({
+                placeholder: "Selecione uma coleção",
+                minimumInputLength: 0,
+                allowClear: true,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var hdr = {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            };
+
+            var Url = '@Url.Action("ListarAgenda", "Agendamento")';
+            $('#calendar').fullCalendar({
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+
+                events: //método responsável por listar os eventos
+                {
+                    url: Url,
+                    type: 'POST',
+                    data: {
+                        id_marca: $("#Marcas").val(),
+                        id_colecao: $("#Colecoes").val(),
+                        id_cliente: $("#Clientes").val(),
+                        id_cidade: $("#Cidades").val(),
+                        id_grupo: $("#Grupos").val(),
+                        tp_calendario: $("#tp_calendario").val()
+                    },
+                    success: function (Totais) {
+                        if (Totais.length > 0) {
+                            $('#at').html(Totais[0].Totais[0]);
+                            $('#agen').html(Totais[0].Totais[1]);
+                            $('#ac').html(Totais[0].Totais[2]);
+                            $('#ad').html(Totais[0].Totais[3]);
+                            $('#af').html(Totais[0].Totais[4]);
+                        }
+                    }
+                },
+
+
+              //  hiddenDays: [0, 6], // sabado, domingo não aparece
+
+                //ignoreTimezone: false,
+                locale: 'pt-BR',
+                axisFormat: 'H(:mm)',
+                timeFormat: 'H(:mm)',
+                columnFormat: 'ddd D/M',
+                slotLabelFormat: "HH:mm",
+                header: hdr,
+                buttonText: {
+                    prev: 'Anterior',
+                    next: 'Próximo',
+                    today: 'Hoje',
+                    month: 'Mês',
+                    agendaWeek: 'Semana',
+                    agendaDay: 'Dia'
+
+                },
+                themeSystem: 'bootstrap3',
+                allDaySlot: false,
+                displayEventEnd: false,
+                //
+                allDayText: 'Dia',
+                slotDuration: '00:30:00',
+                minTime: '07:00:00',
+                maxTime: '23:00:00',
+                defaultView: 'agendaWeek',
+                contentHeight: 'auto',
+                eventBorderColor: '#000000',
+                eventTextColor: '#fff',
+
+                eventOverlap: false,
+
+                editable: false,
+                droppable: false,
+
+                eventRender: function (event, element, icon) {
+
+                    //  $('.fc-event-time').hide();
+                    if (!event.description == "") {
+                        element.find('.fc-title').append("<br/><span class='ultra-light'>" + event.description +
+                            "</span>");
+
+                    }
+                    if (!event.icon == "") {
+                        element.find('.fc-title').append("<i class='air air-top-right fa " + event.icon +
+                            " '></i>");
+                    }
+
+                    $(element).css("font-weight", "bold");
+                    $(element).css("font-size", "1em");
+
+                    $(element).popover({
+                        title: event.title,
+                        content: "<b>STATUS:</b> " + event.status_cliente +"<br/><b>NOME:</b> " + event.title + "<br/><b>MARCA: </b>" + event.nm_marca + "<br/><b>COLEÇÃO: </b>" + event.nm_colecao + "<br/><hr>" +
+                        "<b>RESERVA SUÍTE?:</b> " + event.reservasuite + "<br/><b>CLIENTE NOVO?: </b>" + event.clientenovo + "<br/><b>ATEND.SHOWROOM? </b>" + event.atendeshowroom
+
+
+
+                        ,
+                        trigger: 'hover',
+                        placement: 'top',
+                        container: 'body',
+                        html: true
+                    });
+
+
+                },
+                eventClick: function (calEvent) {
+                    $("#id-agenda").val(calEvent.id);
+
+
+                    $("#Marcas2").empty().append('<option value=' + calEvent.marca + '>' + calEvent.nm_marca + '</option>');
+                    $("#Colecoes2").empty().append('<option value=' + calEvent.colecao + '>' + calEvent.nm_colecao + '</option>');
+                    $("#Clientes2").empty().append('<option value="' + calEvent.cliente + '">' + calEvent.nm_cliente + '</option>');
+                    $("#dt_agenda2").val(calEvent.dt_agenda);
+                    $("#hr_agenda2").val(calEvent.hr_agenda);
+
+                    $("#reservasuite")[0].checked = calEvent.reservasuite;
+                    $("#clientenovo")[0].checked = calEvent.clientenovo;
+                    $("#atendeshowroom")[0].checked = calEvent.atendeshowroom;
+
+
+                    $("#link_cadastro").attr("href", "http://showroom.nextcodeapp.com.br/cadastros/editarcliente/" + calEvent.cliente);
+
+
+                   /* $.ajax({
+                        url: 'Url.Action("GetSessaoAtual", "Agenda")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: { id: calEvent.id_cliente }
+                    }).done(function (results) {
+                        $("#sessao_atual").val(Number(results));
+                    });
+
+                    $.ajax({
+                        url: 'Url.Action("GetSessaoFaltante", "Agenda")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: { id: calEvent.id_cliente }
+                    }).done(function (results) {
+                        $("#sessao_faltante").val(Number(results));
+                    }); */
+
+                    $('.modal-editar-evento').modal('show');
+                },
+
+                loading: function (isLoading, view) {
+                    if (isLoading) { // isLoading gives boolean value
+                        // alert('events are being rendered'); // Add your script to show loading //show your loader here
+                        $('#loading').show();
+                    } else {
+                        //  alert('all events are rendered'); //hide your loader here
+                        $('#loading').hide();
+                    }
+                },
+
+                windowResize: function (event, ui) {
+                    $('#calendar').fullCalendar('render');
+                }
+            });
+
+           /*
+            var slatHeight = $("#calendar").find('.fc-slats').height();
+            var height = $('#calendar').find('.fc-time-grid-container').height();
+            if (slatHeight < height) {
+                $('#calendar').find('.fc-time-grid-container').css('max-height', slatHeight + 'px');
+            }
+            hide default buttons
+           */
+
+
+          /*  $('.fc-header-right, .fc-header-center').hide();
+
+            $('#calendar-buttons #btn-prev').click(function () {
+                $('.fc-button-prev').click();
+                return false;
+            });
+
+            $('#calendar-buttons #btn-next').click(function () {
+                $('.fc-button-next').click();
+                return false;
+            });
+
+            $('#calendar-buttons #btn-today').click(function () {
+                $('.fc-button-today').click();
+                return false;
+            });
+
+            $('#mt').click(function () {
+                dropdown(this.innerHTML);
+                $('#calendar').fullCalendar('changeView', 'month');
+            });
+
+            $('#ag').click(function () {
+                dropdown(this.innerHTML);
+                $('#calendar').fullCalendar('changeView', 'agendaWeek');
+            });
+
+            $('#td').click(function () {
+                dropdown(this.innerHTML);
+                $('#calendar').fullCalendar('changeView', 'agendaDay');
+            });
+
+            $('#lh').click(function () {
+                dropdown(this.innerHTML);
+                $('#calendar').fullCalendar('changeView', 'basicDay');
+            });*/
+
+          /*  $("#vl_servico2").maskMoney({ allowNegative: false, thousands: '.', decimal: ',', affixesStay: false }); */
+
+            $('#Servicos2').on("change", function (e) {
+
+                var data = $(this).select2('data');
+                var res = data[0].text.split("-");
+
+                $('#vl_servico2').val(res[1].trim());
+            });
+
+            var Url = '@Url.Action("GetMarcas", "Marcas")';
+            $("#Marcas2").select2({
+                placeholder: "Selecione uma marca",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetCliente", "Cliente")';
+            $("#Clientes2").select2({
+                placeholder: "Selecione um cliente",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetColecao", "Colecao")';
+            $("#Colecoes2").select2({
+                placeholder: "Selecione uma coleção",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+
+            $(".confirmacao").click(function () {
+                var Url = '@Url.Action("EditarAgenda", "Agendamento")';
+                $.ajax({
+                    type: 'POST',
+                    url: Url + "?id=" + $("#id-agenda").val() + "&id_marca=" + $("#Marcas2").val() + "&id_cliente=" + $("#Clientes2").val() + "&id_colecao=" + $("#Colecoes2").val() +
+                        "&dt_agenda=" + $("#dt_agenda2").val() + "&hr_agenda=" + $("#hr_agenda2").val() + "&tp_status=" + $(this).data("valor"),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (data) {
+
+                        if (data.Sucesso) {
+                            $("#calendar").fullCalendar('removeEvents');
+                            $("#calendar").fullCalendar("refetchEvents"); //Atualiza o calendário, assim o evento cadastrado recebe a id cadastrada no banco
+                        }
+                        $('.modal-editar-evento').modal('hide');
+                    }
+                });
+            });
+
+
+            $("#apagar_agendamentos").click(function () {
+                var Url = '@Url.Action("DeletarAgendamentosCliente", "Agenda")';
+                $.SmartMessageBox({
+                    title: "Deseja continuar?",
+                    content: "O registro agendados serão excluídos!",
+                    buttons: '[Não, cancelar!][Sim, continuar!]'
+                }, function (ButtonPressed) {
+                    if (ButtonPressed === "Sim, continuar!") {
+                        $.ajax({
+                            type: 'POST',
+                            url: Url + "?idcliente=" + $('#Clientes2').select2('data')[0].id,
+                            dataType: "json",
+                            contentType: "application/json",
+                            success: function (data) {
+                                if (data.Sucesso) {
+                                    $('.modal-editar-evento').modal('hide');
+                                    $("#calendar").fullCalendar('removeEvents');
+                                    $("#calendar").fullCalendar("refetchEvents");
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+
+        });
+
+    </script>
+}
