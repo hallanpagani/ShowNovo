@@ -55,6 +55,10 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "Nome da Cliente")]
         public string nm_cliente { get; set; }
 
+        [OnlySelect]
+        [Column("(select case when status = 0 then 'ATIVO' when status = 1 then 'INATIVO' else 'PROSPECT' end  from tb_cadastro_cliente c where c.id = a.id_cliente) as status_cliente")]
+        [Display(Name = "Status")]
+        public string status_cliente { get; set; }
 
       /*  [Column("id_vendedor")]
         [Display(Name = "Vendedor")]

@@ -123,7 +123,11 @@ namespace ShowRoom.Controllers
                               e.colecao,
                               e.marca,
                               e.tp_status,
-                            //  e.sessao_atual,
+                              e.status_cliente,
+                              atendeshowroom = e.atendeshowroom ? "SIM" : "NÃO",
+                              reservasuite = e.reservasuite? "SIM" : "NÃO",
+                              clientenovo = e.clientenovo ? "SIM" : "NÃO",
+                              //  e.sessao_atual,
                               title = e.nm_cliente, //e.hr_agenda.Substring(0, 5).Trim() + " " +
                               start = new DateTime(e.dt_agenda.Year, e.dt_agenda.Month, e.dt_agenda.Day, TimeSpan.Parse(e.hr_agenda).Hours, TimeSpan.Parse(e.hr_agenda).Minutes, TimeSpan.Parse(e.hr_agenda).Seconds).ToString("s"),
                               end = new DateTime(e.dt_agenda.Year, e.dt_agenda.Month, e.dt_agenda.Day, TimeSpan.Parse(e.hr_agenda).Hours, TimeSpan.Parse(e.hr_agenda).Minutes, TimeSpan.Parse(e.hr_agenda).Seconds).AddHours(0.5).ToString("s"),
@@ -132,6 +136,36 @@ namespace ShowRoom.Controllers
                           };
 
             return Json(eventos.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult EditarAgenda(string id, string id_marca, string id_cliente, string id_colecao, string dt_agenda, string hr_agenda, string tp_status)
+        {
+
+            // if (Convert.ToInt32(tp_status) == 999) /// excluir
+            // {
+            //    var x = _restClient.DelAgendaPorId(Convert.ToInt32(id));
+            //    this.AddNotification(x.Mensagem, NotificationType.Sucesso);
+            //   return Json(new { Sucesso = true }, JsonRequestBehavior.AllowGet);
+            // } 
+
+            var obj = new Agendamento
+            {
+                id = Convert.ToInt32(id),
+                cliente = Convert.ToInt32(id_cliente),
+                marca = Convert.ToInt32(id_marca),
+                colecao = Convert.ToInt32(id_colecao),
+                dt_agenda = Convert.ToDateTime(dt_agenda),
+                hr_agenda = hr_agenda,
+                tp_status = Convert.ToInt32(tp_status)
+            };
+
+            var Respostas = DAL.Gravar(obj);
+           /* if (!Respostas.Sucesso)
+            {
+                this.AddNotification(@"Não foi possível editar a agenda, favor entrar em contato com o suporte técnico!" + Environment.NewLine + Respostas.Mensagem, NotificationType.Erro);
+                return Json(new { Sucesso = false }, JsonRequestBehavior.AllowGet);
+            } */
+            return Json(new { Sucesso = true }, JsonRequestBehavior.AllowGet);
         }
 
     }

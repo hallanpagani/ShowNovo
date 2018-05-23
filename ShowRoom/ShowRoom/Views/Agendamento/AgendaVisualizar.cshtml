@@ -237,6 +237,8 @@
                         }
                     }
                 },
+
+
               //  hiddenDays: [0, 6], // sabado, domingo não aparece
 
                 //ignoreTimezone: false,
@@ -288,23 +290,42 @@
 
                     $(element).css("font-weight", "bold");
                     $(element).css("font-size", "1em");
-                    
+
+                    $(element).popover({
+                        title: event.title,
+                        content: "<b>STATUS:</b> " + event.status_cliente +"<br/><b>NOME:</b> " + event.title + "<br/><b>MARCA: </b>" + event.nm_marca + "<br/><b>COLEÇÃO: </b>" + event.nm_colecao + "<br/><hr>" +
+                        "<b>RESERVA SUÍTE?:</b> " + event.reservasuite + "<br/><b>CLIENTE NOVO?: </b>" + event.clientenovo + "<br/><b>ATEND.SHOWROOM? </b>" + event.atendeshowroom
+
+
+
+                        ,
+                        trigger: 'hover',
+                        placement: 'top',
+                        container: 'body',
+                        html: true
+                    });
+
 
                 },
                 eventClick: function (calEvent) {
                     $("#id-agenda").val(calEvent.id);
 
 
-                    $("#Marcas").empty().append('<option value=' + calEvent.id_marca + '>' + calEvent.nm_marca + '</option>');
-                    $("#Colecoes").empty().append('<option value=' + calEvent.id_colecao + '>' + calEvent.nm_colecao + '</option>');
-                    $("#Clientes").empty().append('<option value="' + calEvent.id_cliente + '">' + calEvent.nm_cliente + '</option>');
+                    $("#Marcas2").empty().append('<option value=' + calEvent.marca + '>' + calEvent.nm_marca + '</option>');
+                    $("#Colecoes2").empty().append('<option value=' + calEvent.colecao + '>' + calEvent.nm_colecao + '</option>');
+                    $("#Clientes2").empty().append('<option value="' + calEvent.cliente + '">' + calEvent.nm_cliente + '</option>');
                     $("#dt_agenda2").val(calEvent.dt_agenda);
                     $("#hr_agenda2").val(calEvent.hr_agenda);
 
-                    $("#link_cadastro").attr("href", "http://clinica.nextcodeapp.com.br/cadastros/editarcliente/" + calEvent.id_cliente);
+                    $("#reservasuite")[0].checked = calEvent.reservasuite;
+                    $("#clientenovo")[0].checked = calEvent.clientenovo;
+                    $("#atendeshowroom")[0].checked = calEvent.atendeshowroom;
 
 
-                    $.ajax({
+                    $("#link_cadastro").attr("href", "http://showroom.nextcodeapp.com.br/cadastros/editarcliente/" + calEvent.cliente);
+
+
+                   /* $.ajax({
                         url: 'Url.Action("GetSessaoAtual", "Agenda")',
                         method: 'POST',
                         dataType: 'json',
@@ -320,7 +341,7 @@
                         data: { id: calEvent.id_cliente }
                     }).done(function (results) {
                         $("#sessao_faltante").val(Number(results));
-                    });
+                    }); */
 
                     $('.modal-editar-evento').modal('show');
                 },
@@ -397,7 +418,31 @@
                 $('#vl_servico2').val(res[1].trim());
             });
 
-            var Url = '@Url.Action("GetClientes", "Cadastros")';
+            var Url = '@Url.Action("GetMarcas", "Marcas")';
+            $("#Marcas2").select2({
+                placeholder: "Selecione uma marca",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetCliente", "Cliente")';
             $("#Clientes2").select2({
                 placeholder: "Selecione um cliente",
                 minimumInputLength: 0,
@@ -421,33 +466,9 @@
                 }
             });
 
-            var Url = '@Url.Action("GetColaboradores", "Cadastros")';
-            $("#Colaboradores2").select2({
-                placeholder: "Selecione um colaborador",
-                minimumInputLength: 0,
-                language: "pt-BR",
-                ajax: {
-                    dataType: "json",
-                    url: Url,
-                    data: function (params) {
-                        return {
-                            term: params.term // search term
-                        };
-                    },
-                    processResults: function (data) {
-                        return {
-                            results: $.map(data, function (obj) {
-                                return { id: obj.id, text: obj.text };
-                            })
-                        };
-                    },
-                    cache: true
-                }
-            });
-
-            var Url = '@Url.Action("GetServicosSimples", "Servico")';
-            $("#Servicos2").select2({
-                placeholder: "Selecione um serviço",
+            var Url = '@Url.Action("GetColecao", "Colecao")';
+            $("#Colecoes2").select2({
+                placeholder: "Selecione uma coleção",
                 minimumInputLength: 0,
                 language: "pt-BR",
                 ajax: {
@@ -471,23 +492,18 @@
 
 
             $(".confirmacao").click(function () {
-                var Url = '@Url.Action("EditarAgenda", "Agenda")';
+                var Url = '@Url.Action("EditarAgenda", "Agendamento")';
                 $.ajax({
                     type: 'POST',
-                    url: Url + "?id=" + $("#id-agenda").val() + "&id_colaborador=" + $("#Colaboradores2").val() + "&id_cliente=" + $("#Clientes2").val() + "&id_servico=" + $("#Servicos2").val() +
-                        "&vl_servico=" + $("#vl_servico2").val() + "&dt_agenda=" + $("#dt_agenda2").val() + "&hr_agenda=" + $("#hr_agenda2").val() + "&tp_status=" + $(this).data("valor"),
+                    url: Url + "?id=" + $("#id-agenda").val() + "&id_marca=" + $("#Marcas2").val() + "&id_cliente=" + $("#Clientes2").val() + "&id_colecao=" + $("#Colecoes2").val() +
+                        "&dt_agenda=" + $("#dt_agenda2").val() + "&hr_agenda=" + $("#hr_agenda2").val() + "&tp_status=" + $(this).data("valor"),
                     dataType: "json",
                     contentType: "application/json",
                     success: function (data) {
 
-
                         if (data.Sucesso) {
-
                             $("#calendar").fullCalendar('removeEvents');
-
                             $("#calendar").fullCalendar("refetchEvents"); //Atualiza o calendário, assim o evento cadastrado recebe a id cadastrada no banco
-                            // document.location.reload(true)
-
                         }
                         $('.modal-editar-evento').modal('hide');
                     }
