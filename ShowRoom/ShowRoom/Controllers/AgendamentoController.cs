@@ -65,7 +65,9 @@ namespace ShowRoom.Controllers
             {
                 this.AddNotification("Erro:" + e.Message, "Erro");
             }
-            return View();
+
+            var obj = new Agendamento();
+            return View(obj);
         }
 
         [HttpPost]
