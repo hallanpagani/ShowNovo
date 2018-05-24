@@ -23,7 +23,7 @@ namespace ShowRoom.App_Helpers.Componentes
 
         public static IHtmlString BotaoFiltrar(this HtmlHelper html, string texto = "Filtrar")
         {
-            return new HtmlString("<button type=\"submit\" class=\"btn btn-primary\" onclick=\"Filtrando(this);\" ><i class=\"fa fa fa-search\"></i>  " + texto + "</button>");
+            return new HtmlString("<button type=\"submit\" class=\"btn btn-dark waves-effect waves-light\" onclick=\"Filtrando(this);\" >" + texto + "</button>");
         }
 
         public static IHtmlString BotaoVerde(this HtmlHelper html, string texto = "Adicionar novo", string rota = "#")

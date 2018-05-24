@@ -111,19 +111,19 @@ namespace ShowRoomPersistencia.banco
 
             if (valorInicial.GetType() == typeof(string))
                 retorno.Append(GetFiltroString());
-
+            else
             if (valorInicial.GetType() == typeof(int))
                 retorno.Append(GetFiltroInt());
-
+            else
             if (valorInicial.GetType() == typeof(DateTime))
                 retorno.Append(GetFiltroDate());
-
+            else
             if (valorInicial.GetType() == typeof(long))
                 retorno.Append(GetFiltroLong());
-
+            else
             if (valorInicial.GetType() == typeof(decimal))
                 retorno.Append(GetFiltroDecimal().Replace(CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator, CultureInfo.CurrentUICulture.NumberFormat.NumberGroupSeparator));
-
+            else
             if (valorInicial.GetType() == typeof(double))
                 retorno.Append(GetFiltroDouble().Replace(CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator, CultureInfo.CurrentUICulture.NumberFormat.NumberGroupSeparator));
 

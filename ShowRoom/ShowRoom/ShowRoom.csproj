@@ -1361,6 +1361,7 @@
     <Content Include="Views\Shared\_LayoutAgenda.cshtml" />
     <Content Include="Views\Mesorregiao\Cadastrar.cshtml" />
     <Content Include="Views\Mesorregiao\Consultar.cshtml" />
+    <Content Include="Views\Shared\_LayoutAgendaSemMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

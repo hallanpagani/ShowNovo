@@ -48,6 +48,7 @@
                     <option value="@Model.cliente">@Model.nm_cliente</option>
                 }
             </select>
+            @Html.HiddenFor(model => model.nm_cliente)
             @Html.ValidationMessageFor(model => model.cliente, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -62,6 +63,7 @@
                     <option value="@Model.marca">@Model.nm_marca</option>
                 }
             </select>
+            @Html.HiddenFor(model => model.nm_marca)
             @Html.ValidationMessageFor(model => model.marca, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -75,6 +77,7 @@
                     <option value="@Model.colecao">@Model.nm_colecao</option>
                 }
             </select>
+            @Html.HiddenFor(model => model.nm_colecao)
             @Html.ValidationMessageFor(model => model.colecao, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -97,8 +100,8 @@
 
         <div class="col-md-3 mb-3">
             <label for="hr_agenda">No horário</label>
-            <input length="10" name="hr_agenda" class="form-control requerido" id="hr_agenda" placeholder="HH:MM" maxlength="5" style="text-transform:uppercase;text-align: center;" type="text" value="">
-            @Html.ValidationMessageFor(model => model.hr_agenda, "", new { @class = "text-danger" })
+            @Html.TextBox("hr_agenda", "", new { @maxlength = "5", @data_dateformat = "dd/mm/yy", @placeholder = "HH:MM", @autocomplete = "off", @class = "form-control requerido",  @style = "text-transform:uppercase;text-align: center;",  @type = "text" })
+            @Html.ValidationMessageFor(model => model.hr_agenda, "", new { @class = "text-danger"  })
         </div>
 
     </div>
@@ -162,6 +165,20 @@
 
             $(document).ready(function () {
 
+                $('#colecao').on("select2:select", function (e) {
+                    console.log($('#colecao').select2('data')[0].text);
+                    $('#nm_colecao').val($('#colecao').select2('data')[0].text); // what you would like to happen
+                });
+
+                $('#cliente').on("select2:select", function (e) {
+                    console.log($('#cliente').select2('data')[0].text);
+                    $('#nm_cliente').val($('#cliente').select2('data')[0].text); // what you would like to happen
+                });
+
+                $('#marca').on("select2:select", function (e) {
+                    console.log($('#marca').select2('data')[0].text);
+                    $('#nm_marca').val($('#marca').select2('data')[0].text); // what you would like to happen
+                });
                 
                 $("#metacolecaoatual").click(function () {
                     $(this).select();

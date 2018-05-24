@@ -28,14 +28,38 @@ namespace ShowRoom.Controllers
         }
 
         // GET: Agenda
+        public ActionResult AgendaVisualizarExpandido(VisualizarAgendaViewModel obj)
+        {
+            var model = obj ?? new VisualizarAgendaViewModel();
+            obj.expandido = true;
+            return View("AgendaVisualizar", model);
+        }
+
         public ActionResult AgendaVisualizar(VisualizarAgendaViewModel obj)
         {
+            obj.expandido = false;
             return View(obj);
         }
 
         [HttpPost]
         public ActionResult Cadastrar(Agendamento model)
         {
+            TimeSpan time;
+
+           /* TimeSpan add22h = new TimeSpan(22, 0, 0);
+            TimeSpan add7h = new TimeSpan(7, 0, 0); */
+
+            if (!TimeSpan.TryParse(model.hr_agenda, out time))
+            {
+                ModelState.AddModelError("hr_agenda", "Horário inválido, preencha corretamente!");
+                return View(model);
+
+            } /* else if ((time < add7h) || (time > add22h))
+            {
+                ModelState.AddModelError("hr_agenda", "Horário inválido, deve estar entre as 7h e 22h!");
+                return View(model);
+            } */
+
             if (!ModelState.IsValid)
             {
                 return View(model);

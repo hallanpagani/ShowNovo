@@ -15,6 +15,7 @@ namespace ShowRoom.Models
         public string filtro_nm_cliente { get; set; }
         public int filtro_servico { get; set; }
         public string filtro_nm_servico { get; set; }
+        public bool expandido { get; set; }
 
         public VisualizarAgendaViewModel()
         {
