@@ -3,7 +3,15 @@
 
 @{
     ViewBag.Title = "Visualizar agenda";
-    Layout = "~/Views/Shared/_LayoutAgenda.cshtml";
+
+    if (Model.expandido) {
+        Layout = "~/Views/Shared/_LayoutAgendaSemMenu.cshtml";
+    }
+    else{
+        Layout = "~/Views/Shared/_LayoutAgenda.cshtml";
+    }
+
+
 }
 
 @section css{
@@ -17,7 +25,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <form action="/Agenda/AgendaVisualizar" class="smart-form" id="pesquisar" method="POST">
+                    <form action="@if (Model.expandido) { @Html.Raw("/Agendamento/AgendaVisualizarExpandido");  } else{ @Html.Raw("/Agendamento/AgendaVisualizar"); }" class="smart-form" id="pesquisar" method="POST">
 
                         <div class="form-row">
 
@@ -56,7 +64,9 @@
 
                             <div class="col-md-1 mb-3">
                                 <label class="" for="filtro_colecao">&nbsp;</label>
-                                <a if="filtrar" class="btn btn-dark waves-effect waves-light" href="/agendamento/AgendaVisualizar">Filtrar</a>
+                                @Html.BotaoFiltrar()
+                                
+                               <!-- <a if="filtrar" class="btn btn-dark waves-effect waves-light" href="/agendamento/AgendaVisualizar">Filtrar</a>--> 
                             </div>
 
                         </div>
@@ -203,7 +213,7 @@
             });
 
             var hdr = {
-                left: 'prev,next today',
+                left: 'prev,next today expandir',
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             };
@@ -248,13 +258,22 @@
                 columnFormat: 'ddd D/M',
                 slotLabelFormat: "HH:mm",
                 header: hdr,
+                customButtons: {
+                    expandir: {
+                        text: 'Expandir agenda',
+                        click: function () {
+                            window.open('@Url.Action("AgendaVisualizarExpandido", "Agendamento", new { expandido = true } )', '_blank');
+                        }
+                    }
+                },
                 buttonText: {
                     prev: 'Anterior',
                     next: 'Próximo',
                     today: 'Hoje',
                     month: 'Mês',
                     agendaWeek: 'Semana',
-                    agendaDay: 'Dia'
+                    agendaDay: 'Dia',
+                    expandir: 'Expandir agenda'
 
                 },
                 themeSystem: 'bootstrap3',
@@ -263,8 +282,8 @@
                 //
                 allDayText: 'Dia',
                 slotDuration: '00:30:00',
-                minTime: '07:00:00',
-                maxTime: '23:00:00',
+                minTime: '00:00:00',
+                maxTime: '24:00:00',
                 defaultView: 'agendaWeek',
                 contentHeight: 'auto',
                 eventBorderColor: '#000000',
@@ -393,10 +412,7 @@
                 $('#calendar').fullCalendar('changeView', 'month');
             });
 
-            $('#ag').click(function () {
-                dropdown(this.innerHTML);
-                $('#calendar').fullCalendar('changeView', 'agendaWeek');
-            });
+
 
             $('#td').click(function () {
                 dropdown(this.innerHTML);
@@ -410,13 +426,13 @@
 
           /*  $("#vl_servico2").maskMoney({ allowNegative: false, thousands: '.', decimal: ',', affixesStay: false }); */
 
-            $('#Servicos2').on("change", function (e) {
+          /*  $('#Servicos2').on("change", function (e) {
 
                 var data = $(this).select2('data');
                 var res = data[0].text.split("-");
 
                 $('#vl_servico2').val(res[1].trim());
-            });
+            });*/
 
             var Url = '@Url.Action("GetMarcas", "Marcas")';
             $("#Marcas2").select2({

@@ -31,6 +31,28 @@
     @Scripts.Render("~/bundles/scripts")
     @RenderSection("scripts", required: false)
     @Scripts.Render("~/bundles/scriptsfim")
+
+    <script>
+        function Gravando(this1) {
+
+            this1.disabled = true;
+            this1.innerHTML = '<i class=""></i> Gravando…';
+            this1.form.submit();
+
+        }
+
+        function Filtrando(this1) {
+
+            this1.disabled = true;
+            this1.innerHTML = '<i class=""></i> Filtrando…';
+            this1.form.submit();
+
+        }
+    </script>
+
 </body>
+
+
+
 </html>
 
