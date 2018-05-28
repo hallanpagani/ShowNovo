@@ -17,12 +17,19 @@ namespace ShowRoom.Controllers
         [HttpGet]
         public ActionResult Cadastrar(int id = 0)
         {
-            var model = new Cidade();
-            if (id > 0)
+            if (Settings.hasPermission(Settings.MENU_CADASTRO_CIDADE, UsuarioLogado.Perfil))
             {
-                model = DAL.GetObjetoById<Cidade>(id);
+                var model = new Cidade();
+                if (id > 0)
+                {
+                    model = DAL.GetObjetoById<Cidade>(id);
+                }
+                return View(model);
             }
-            return View(model);
+            else
+            {
+                return View("~/views/Shared/error.cshtml");
+            }
         }
 
         [HttpPost]
@@ -81,7 +88,7 @@ namespace ShowRoom.Controllers
         [OutputCache(Duration = 30)]
         public JsonResult GetCidades(string term)
         {
-            List<Lista> list = DAL.ListarObjetos<Cidade>((term ?? "").Equals("") ? "" : string.Format("nome like '%{0}%'",term ) , "nome").Select(i => new Lista { id = i.id, text = i.nome.ToUpper() }).ToList();
+            List<Lista> list = DAL.ListarObjetos<Cidade>((term ?? "").Equals("") ? "" : string.Format("nome like '%{0}%'",term ) , "nome").Select(i => new Lista { id = i.id, text = i.nome }).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

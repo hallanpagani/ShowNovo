@@ -18,7 +18,7 @@
 
     <ul class="nav nav-pills flex-column">
         <li>
-            <h6 class="nav-header">Configurações</h6>
+            <h6 class="nav-header">Menu Principal</h6>
         </li>
         <li class="nav-item  @Html.RouteIf("agendamento", "open") ">
             <a class="nav-link nav-parent" href="#">
@@ -88,6 +88,26 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @Html.RouteIf("pais", "active")" href="~/pais/consultar">País</a>
+                    </li>
+                </ul>
+            </ul>
+        </li>
+
+        <li class="nav-item @Html.RouteIf("configuracões", "open") @Html.RouteIf("contaacesso", "active") @Html.RouteIf("perfil", "active") @Html.RouteIf("usuario", "active")">
+            <a class="nav-link nav-parent" href="#">
+                <i class="batch-icon batch-icon-settings-alt"></i>
+                Configurações
+            </a>
+            <ul class="nav nav-pills flex-column" style="@Html.RouteIf("contaacesso", "display: block") @Html.RouteIf("perfil", "display: block") @Html.RouteIf("usuario", "display: block")">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link @Html.RouteIf("contaacesso", "active")" href="~/contaacesso/cadastrar">Conta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @Html.RouteIf("perfil", "active")" href="~/perfil/cadastrar">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @Html.RouteIf("usuario", "active")" href="~/usuario/cadastrar">Usuários</a>
                     </li>
                 </ul>
             </ul>

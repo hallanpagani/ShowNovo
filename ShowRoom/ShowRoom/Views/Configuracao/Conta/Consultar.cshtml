@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ShowRoomModelo.model.adm.Conta>
+
+@{
+    ViewBag.Title = "Consultar de Contas";
+    ViewBag.LinkText = "Cadastrar";
+    ViewBag.ActionName = "Cadastrar";
+}
+
+<div class="table-responsive">
+    <table id="datatable-1" class="table table-datatable  table-hover">
+        <thead>
+            <tr>
+                <th>
+                    Data de Inclusão
+                </th>
+                <th>
+                    Nome da Conta
+                </th>                
+                <th>
+                    Ativado
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DhInc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NmConta)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.is_ativo)
+                    </td>
+                    <td>
+                        @if (item.is_ativo.Equals("Não"))
+                        {                            
+                            @Html.ActionLink("Ativar", "Ativar", new { id = item.Id }, new { @class = "btn btn-info btn-sm btn-sm waves-effect waves-light" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Desativar", "Desativar", new { id = item.Id }, new { @class = "btn btn-danger btn-sm btn-sm waves-effect waves-light" })
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

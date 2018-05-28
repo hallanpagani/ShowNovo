@@ -19,12 +19,20 @@ namespace ShowRoom.Controllers
         [HttpGet]
         public ActionResult Cadastrar(int id = 0)
         {
-            var model = new Agendamento();
-            if (id > 0)
+
+            if (Settings.hasPermission(Settings.MENU_AGENDA_CADASTRAR, UsuarioLogado.Perfil))
             {
-                model = DAL.GetObjetoById<Agendamento>(id);
+                var model = new Agendamento();
+                if (id > 0)
+                {
+                    model = DAL.GetObjetoById<Agendamento>(id);
+                }
+                return View(model);
             }
-            return View(model);
+            else
+            {
+                return View("~/views/Shared/error.cshtml");
+            }
         }
 
         // GET: Agenda

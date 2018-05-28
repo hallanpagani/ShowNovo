@@ -65,32 +65,92 @@ namespace ShowRoom.Controllers.Acesso
             // Ensure we have a valid viewModel to work with
             if (!ModelState.IsValid)
                 return View("~/views/acesso/login.cshtml", viewModel);
+            
+            // Faz a busca pelo usuário na base.
+            Usuario usuario = DAL.GetObjeto<Usuario>(string.Format("ds_login='{0}' and ds_senha='{1}'", viewModel.Email,viewModel.Password));
 
-            Usuario usuario = DAL.GetObjeto<Usuario>(string.Format("ds_login='{0}' and ds_senha='{1}'", viewModel.Email,viewModel.Password)); // _restClient.GetByEmailSenha(viewModel.Email,viewModel.Password);
-            // Prepare the identity with the provided information
-            if ((usuario == null) || ((usuario.Email==null)))
-            {// No existing user was found that matched the given criteria
-                ModelState.AddModelError("", @"Usuário ou senha inválidos.");
+            // Se encontrou o usuário ...
+            if (usuario != null)
+            {
+                // Busca a conta deste usuário.
+                Conta conta = DAL.GetObjeto<Conta>(string.Format("id={0}", usuario.IdConta));
+
+                // Se encontrou uma conta para o usuário ...
+                if (conta != null)
+                {
+                    // Se conta ativada com sucesso ...
+                    if (conta.is_ativo.Equals("Sim"))
+                    {
+                        // Prepare the identity with the provided information
+                        if (usuario.Email != null)
+                        {
+                            // Se usuário ativo ...
+                            if (usuario.is_ativo == 1)
+                            {
+                                // Carrega o perfil do usuário.
+                                Perfil usuarioPerfil = DAL.GetObjeto<Perfil>(string.Format("cd_perfil={0}", usuario.IdPerfil));
+
+                                // Se perfil encontrado ...
+                                if (usuarioPerfil != null)
+                                {
+                                    var user = new UsuarioApp
+                                    {
+                                        UserName = usuario.NomeDoUsuario,
+                                        Email = usuario.Email,
+                                        Id = usuario.Id.ToString(CultureInfo.InvariantCulture),
+                                        IdConta = usuario.IdConta,
+                                        Perfil = usuarioPerfil.tp_perfil
+                                    };
+
+                                    // Verify if a user exists with the provided identity information
+                                    //var user = await _manager.FindByEmailAsync(viewModel.Email);
+
+                                    // Then create an identity for it and sign it in
+                                    await SignInAsync(user, viewModel.RememberMe);
+
+                                    // If the user came from a specific page, redirect back to it
+                                    return RedirectToLocal(viewModel.ReturnUrl);
+                                }
+                                // Se perfil não encontrado.
+                                else
+                                {
+                                    ModelState.AddModelError("", @"Perfil do usuário não encontrado. Procure o suporte !");
+                                    return View("~/views/acesso/login.cshtml", viewModel);
+                                }
+                            }
+                            // Se usuário não ativo ...
+                            else
+                            {
+                                ModelState.AddModelError("", @"Usuário desativado. Procure o suporte para ativação !");
+                                return View("~/views/acesso/login.cshtml", viewModel);
+                            }
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", @"E-mail não encontrado.");
+                            return View("~/views/acesso/login.cshtml", viewModel);
+                        }
+                    }
+                    // Se conta desativada ...
+                    else
+                    {
+                        ModelState.AddModelError("", @"Conta desativada. Procure o suporte para ativação !");
+                        return View("~/views/acesso/login.cshtml", viewModel);
+                    }
+                }
+
+                // Se não encontro uma conta para o usuário ...
+                else
+                {
+                    ModelState.AddModelError("", @"Conta de acesso inexistente !");
+                    return View("~/views/acesso/login.cshtml", viewModel);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", @"Usuário ou senha inválidos !");
                 return View("~/views/acesso/login.cshtml", viewModel);
             }
-
-            var user = new UsuarioApp
-            {
-                UserName = usuario.NomeDoUsuario,
-                Email = usuario.Email,
-                Id = usuario.Id.ToString(CultureInfo.InvariantCulture),
-                IdConta = usuario.IdConta,
-                Perfil = "Administrador"
-            };
-
-            // Verify if a user exists with the provided identity information
-            //var user = await _manager.FindByEmailAsync(viewModel.Email);
-
-            // Then create an identity for it and sign it in
-            await SignInAsync(user, viewModel.RememberMe);
-            // If the user came from a specific page, redirect back to it
-            
-            return RedirectToLocal(viewModel.ReturnUrl);
         }
 
         // GET: /account/error

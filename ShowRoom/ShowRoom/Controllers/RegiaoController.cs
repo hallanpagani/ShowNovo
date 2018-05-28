@@ -17,12 +17,19 @@ namespace ShowRoom.Controllers
         [HttpGet]
         public ActionResult Cadastrar(int id = 0)
         {
-            var model = new Regiao();
-            if (id > 0)
+            if (Settings.hasPermission(Settings.MENU_CADASTRO_REGIAO, UsuarioLogado.Perfil))
             {
-                model = DAL.GetObjetoById<Regiao>(id);
+                var model = new Regiao();
+                if (id > 0)
+                {
+                    model = DAL.GetObjetoById<Regiao>(id);
+                }
+                return View(model);
             }
-            return View(model);
+            else
+            {
+                return View("~/views/Shared/error.cshtml");
+            }
         }
 
         [HttpPost]

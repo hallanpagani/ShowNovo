@@ -5,6 +5,9 @@ using System.Configuration;
 using System.Web.Configuration;
 using System.Web.WebPages;
 using Microsoft.Ajax.Utilities;
+using ShowRoomModelo.model.adm;
+using ShowRoomPersistencia.banco;
+using System.Collections.Generic;
 
 #endregion
 
@@ -44,7 +47,7 @@ namespace ShowRoom
         ///     Retrieves the entry value for the following composed key: "config:CurrentTheme" as a string.
         /// </summary>
         public static readonly string CurrentTheme = GetValue<string>("CurrentTheme");
-
+        
         /// <summary>
         ///     Gets the entry for the given key and prefix and retrieves its value as the specified type.
         ///     <para>If no prefix is specified the default prefix value ("config") will be used.</para>
@@ -83,5 +86,44 @@ namespace ShowRoom
             // Change the entry value to the specified type
             return (T) Convert.ChangeType(value, typeof (T));
         }
+
+        // Constante para guardar a representação dos menus.
+        public static string MENU_AGENDA_CADASTRAR = "agenda";        
+        public static string MENU_CADASTRO_CLIENTES = "clientes";
+        public static string MENU_CADASTRO_VENDEDORES = "vendedores";
+        public static string MENU_CADASTRO_SHOWROOM = "showroom";
+        public static string MENU_CADASTRO_MARCAS = "marcas";
+        public static string MENU_CADASTRO_GRUPO_MARCAS = "grupoMarcas";
+        public static string MENU_CADASTRO_MESOREGIAO = "mesorregião";        
+        public static string MENU_CADASTRO_ESTADO = "estado";
+        public static string MENU_CADASTRO_CIDADE = "cidade";
+        public static string MENU_CADASTRO_COLECAO = "colecao";
+        public static string MENU_CADASTRO_GERACAO_SEMANAS = "geracao";
+        public static string MENU_CADASTRO_PAIS = "pais";
+        public static string MENU_CONFIGURACAO_CONTA = "conta";
+        public static string MENU_CONFIGURACAO_PERFIL = "perfil";
+        public static string MENU_CONFIGURACAO_USUARIO = "usuario";
+
+        public static string MENU_CADASTRO_MICROREGIAO = "microregião"; // descontinuado
+        public static string MENU_CADASTRO_PROSPECT = "prospect"; // descontinuado
+        public static string MENU_CADASTRO_REGIAO = "região"; // descontinuado
+
+        // Verifica se tem permissão para acessar o menu.
+        public static bool hasPermission(string menu, string perfil)
+        {
+            bool has = false;
+            Perfil userPerfil = DAL.GetObjeto<Perfil>(string.Format("tp_perfil = '{0}'",perfil));
+            string[] menusPermitidos = userPerfil.nm_menu.Split(';');
+            foreach (string menuPermitido in menusPermitidos)
+            {
+                if (menu.Equals(menuPermitido, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    has = true;
+                    break;
+                }
+            }
+            return has;
+        }
+
     }
 }

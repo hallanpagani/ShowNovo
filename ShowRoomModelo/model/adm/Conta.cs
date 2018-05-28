@@ -12,14 +12,20 @@ namespace ShowRoomModelo.model.adm
         [AutoInc]
         [Column("id")]
         public long Id { get; set; }
-
+        
         [Required]
         [Column("dh_inc")]
         public DateTime DhInc { get; set; }
 
+        [Required(ErrorMessage = "Campo nome da conta é obrigatório!", AllowEmptyStrings = false)]
+        [Display(Name = "Nome da conta")]        
+        [MaxLength(100, ErrorMessage = "Campo 'nome da conta' deve ter no máximo 100 caracteres!")]
+        [Column("nm_conta")]
+        public string NmConta { get; set; }
+        
         [Required]
-        [Column("ds_login")]
-        public string DsLogin { get; set; }
+        [Column("is_ativo")]
+        public string is_ativo { get; set; }
 
         public Conta()
         {

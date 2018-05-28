@@ -16,12 +16,19 @@ namespace ShowRoom.Controllers
         [HttpGet]
         public ActionResult Cadastrar(int id = 0)
         {
-            var model = new ShowRoomModelo.model.cadastros.ShowRoom();
-            if (id > 0)
+            if (Settings.hasPermission(Settings.MENU_CADASTRO_SHOWROOM, UsuarioLogado.Perfil))
             {
-                model = DAL.GetObjetoById<ShowRoomModelo.model.cadastros.ShowRoom>(id);
+                var model = new ShowRoomModelo.model.cadastros.ShowRoom();
+                if (id > 0)
+                {
+                    model = DAL.GetObjetoById<ShowRoomModelo.model.cadastros.ShowRoom>(id);
+                }
+                return View(model);
             }
-            return View(model);
+            else
+            {
+                return View("~/views/Shared/error.cshtml");
+            }
         }
 
         [HttpPost]

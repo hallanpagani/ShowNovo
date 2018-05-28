@@ -17,12 +17,19 @@ namespace ShowRoom.Controllers
         [HttpGet]
         public ActionResult Cadastrar(int id = 0)
         {
-            var model = new Colecao();
-            if (id > 0)
+            if (Settings.hasPermission(Settings.MENU_CADASTRO_COLECAO, UsuarioLogado.Perfil))
             {
-                model = DAL.GetObjetoById<Colecao>(id);
+                var model = new Colecao();
+                if (id > 0)
+                {
+                    model = DAL.GetObjetoById<Colecao>(id);
+                }
+                return View(model);
             }
-            return View(model);
+            else
+            {
+                return View("~/views/Shared/error.cshtml");
+            }
         }
 
         [HttpPost]
