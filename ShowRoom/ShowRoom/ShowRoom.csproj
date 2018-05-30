@@ -194,7 +194,10 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Acesso\SistemaController.cs" />
     <Compile Include="Controllers\AgendamentoController.cs" />
+    <Compile Include="Controllers\ContaAcessoController.cs" />
     <Compile Include="Controllers\MesorregiaoController.cs" />
+    <Compile Include="Controllers\PerfilController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\VendedorController.cs" />
     <Compile Include="Controllers\SemanaColecaoController.cs" />
     <Compile Include="Controllers\Generico\AppController.cs" />
@@ -1362,6 +1365,12 @@
     <Content Include="Views\Mesorregiao\Cadastrar.cshtml" />
     <Content Include="Views\Mesorregiao\Consultar.cshtml" />
     <Content Include="Views\Shared\_LayoutAgendaSemMenu.cshtml" />
+    <Content Include="Views\Configuracao\Conta\Cadastrar.cshtml" />
+    <Content Include="Views\Configuracao\Conta\Consultar.cshtml" />
+    <Content Include="Views\Configuracao\Perfil\Cadastrar.cshtml" />
+    <Content Include="Views\Configuracao\Perfil\Consultar.cshtml" />
+    <Content Include="Views\Configuracao\Usuario\Cadastrar.cshtml" />
+    <Content Include="Views\Configuracao\Usuario\Consultar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

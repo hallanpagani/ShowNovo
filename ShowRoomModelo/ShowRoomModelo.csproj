@@ -85,6 +85,7 @@
     <Compile Include="model\adm\Cidade.cs" />
     <Compile Include="model\adm\Conta.cs" />
     <Compile Include="model\adm\Loja.cs" />
+    <Compile Include="model\adm\Perfil.cs" />
     <Compile Include="model\adm\Usuario.cs" />
     <Compile Include="model\cadastros\Agendamento.cs" />
     <Compile Include="model\cadastros\Mesorregiao.cs" />

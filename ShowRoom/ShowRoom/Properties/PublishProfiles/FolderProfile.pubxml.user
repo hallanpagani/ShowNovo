@@ -274,25 +274,25 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="bin/ShowRoom.dll">
-      <publishTime>05/24/2018 15:39:08</publishTime>
+      <publishTime>05/30/2018 08:03:30</publishTime>
     </File>
     <File Include="bin/ShowRoom.pdb">
-      <publishTime>05/24/2018 15:39:08</publishTime>
+      <publishTime>05/30/2018 08:03:30</publishTime>
     </File>
     <File Include="bin/ShowRoomModelo.dll">
-      <publishTime>05/24/2018 15:39:03</publishTime>
+      <publishTime>05/30/2018 08:03:25</publishTime>
     </File>
     <File Include="bin/ShowRoomModelo.dll.config">
       <publishTime>04/17/2018 15:28:55</publishTime>
     </File>
     <File Include="bin/ShowRoomModelo.pdb">
-      <publishTime>05/24/2018 15:39:03</publishTime>
+      <publishTime>05/30/2018 08:03:25</publishTime>
     </File>
     <File Include="bin/ShowRoomPersistencia.dll">
-      <publishTime>05/24/2018 15:39:03</publishTime>
+      <publishTime>05/30/2018 08:03:26</publishTime>
     </File>
     <File Include="bin/ShowRoomPersistencia.pdb">
-      <publishTime>05/24/2018 15:39:03</publishTime>
+      <publishTime>05/30/2018 08:03:26</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
       <publishTime>07/19/2017 10:01:30</publishTime>
@@ -1759,7 +1759,7 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>04/05/2018 14:45:26</publishTime>
     </File>
     <File Include="Content/assets/plugins/fullcalendar/fullcalendar.min.css">
-      <publishTime>04/05/2018 14:45:26</publishTime>
+      <publishTime>05/30/2018 09:08:46</publishTime>
     </File>
     <File Include="Content/assets/plugins/fullcalendar/fullcalendar.min.js">
       <publishTime>04/05/2018 14:45:26</publishTime>
@@ -3790,7 +3790,7 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>05/24/2018 15:32:52</publishTime>
     </File>
     <File Include="Views/Agendamento/Cadastrar.cshtml">
-      <publishTime>05/24/2018 11:52:47</publishTime>
+      <publishTime>05/24/2018 16:50:41</publishTime>
     </File>
     <File Include="Views/Agendamento/ListarAgendaPaciente.cshtml">
       <publishTime>05/24/2018 14:28:48</publishTime>
@@ -3811,10 +3811,10 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>05/23/2018 17:39:26</publishTime>
     </File>
     <File Include="Views/Cidade/Consultar.cshtml">
-      <publishTime>05/24/2018 17:14:30</publishTime>
+      <publishTime>05/24/2018 17:16:07</publishTime>
     </File>
     <File Include="Views/Cliente/Cadastrar.cshtml">
-      <publishTime>05/11/2018 17:26:53</publishTime>
+      <publishTime>05/28/2018 17:49:15</publishTime>
     </File>
     <File Include="Views/Cliente/Consultar.cshtml">
       <publishTime>05/02/2018 17:15:35</publishTime>
@@ -3824,6 +3824,24 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
     </File>
     <File Include="Views/Colecao/Consultar.cshtml">
       <publishTime>04/30/2018 13:42:15</publishTime>
+    </File>
+    <File Include="Views/Configuracao/Conta/Cadastrar.cshtml">
+      <publishTime>05/28/2018 17:49:15</publishTime>
+    </File>
+    <File Include="Views/Configuracao/Conta/Consultar.cshtml">
+      <publishTime>05/28/2018 17:49:15</publishTime>
+    </File>
+    <File Include="Views/Configuracao/Perfil/Cadastrar.cshtml">
+      <publishTime>05/28/2018 17:49:15</publishTime>
+    </File>
+    <File Include="Views/Configuracao/Perfil/Consultar.cshtml">
+      <publishTime>05/28/2018 17:49:15</publishTime>
+    </File>
+    <File Include="Views/Configuracao/Usuario/Cadastrar.cshtml">
+      <publishTime>05/28/2018 17:49:15</publishTime>
+    </File>
+    <File Include="Views/Configuracao/Usuario/Consultar.cshtml">
+      <publishTime>05/28/2018 17:49:15</publishTime>
     </File>
     <File Include="Views/Estado/Cadastrar.cshtml">
       <publishTime>05/02/2018 17:15:35</publishTime>
@@ -3889,10 +3907,10 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>05/02/2018 17:15:35</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
-      <publishTime>04/05/2018 14:35:10</publishTime>
+      <publishTime>05/28/2018 17:49:15</publishTime>
     </File>
     <File Include="Views/Shared/Modal/_EditarAgenda.cshtml">
-      <publishTime>05/23/2018 13:10:08</publishTime>
+      <publishTime>05/24/2018 16:54:38</publishTime>
     </File>
     <File Include="Views/Shared/Modal/_Mensagem.cshtml">
       <publishTime>05/04/2018 13:39:53</publishTime>
@@ -3913,7 +3931,7 @@ ao editar este arquivo MSBuild. Para saber mais sobre isso, visite https://go.mi
       <publishTime>04/06/2018 15:46:53</publishTime>
     </File>
     <File Include="Views/Shared/_Menu.cshtml">
-      <publishTime>05/24/2018 17:25:14</publishTime>
+      <publishTime>05/28/2018 17:49:15</publishTime>
     </File>
     <File Include="Views/Shared/_MenuTopo.cshtml">
       <publishTime>04/20/2018 17:15:23</publishTime>
