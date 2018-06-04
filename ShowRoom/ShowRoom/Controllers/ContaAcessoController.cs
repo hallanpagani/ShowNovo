@@ -11,6 +11,24 @@ namespace BaseWeb.Controllers.Acesso.ContaAcesso
 {
     public class ContaAcessoController : AppController
     {
+        public virtual ActionResult DadosConta()
+        {
+            if (Settings.hasPermission(Settings.MENU_CONFIGURACAO_CONTA, UsuarioLogado.Perfil))
+            {
+                var model = new Conta();
+                var lista = DAL.GetObjetoById<Conta>(Convert.ToInt64(UsuarioLogado.IdConta));
+                lista.usuarios = DAL.ListarObjetos<Usuario>(string.Format("id_conta = {0}", lista.Id));
+                lista.perfil = DAL.ListarObjetos<Perfil>(string.Format("id_conta = {0}", lista.Id));
+
+                return View("~/views/configuracao/conta/dados.cshtml", lista);
+            }
+            else
+            {
+                return View("~/views/Shared/error.cshtml");
+            }
+        }
+
+
         public virtual ActionResult Consultar()
         {
             var model = new Conta();
@@ -151,6 +169,116 @@ namespace BaseWeb.Controllers.Acesso.ContaAcesso
         private void AddErrors(Exception exc)
         {
             ModelState.AddModelError("", exc);
+        }
+
+        /**================================================================================
+         * 
+         * MIGUE DO USUARIO
+         * 
+         * ===============================================================================*/
+
+        public virtual ActionResult UsuarioAtivar(int id = 0)
+        {
+            var model = new Usuario();
+            if (id > 0)
+            {
+                model = DAL.GetObjetoById<Usuario>(id);
+                model.is_ativo = 1;
+
+                try
+                {
+                    DAL.Gravar(model);
+                    this.AddNotification("Usuário ativado !", "Sucesso");
+                }
+                catch (Exception ex)
+                {
+                    AddErrors(ex);
+                }
+            }
+
+            var lista = DAL.ListarObjetos<Usuario>();
+            return DadosConta();
+        }
+
+        public virtual ActionResult UsuarioDesativar(int id = 0)
+        {
+            var model = new Usuario();
+            if (id > 0)
+            {
+                model = DAL.GetObjetoById<Usuario>(id);
+                model.is_ativo = 0;
+
+                try
+                {
+                    DAL.Gravar(model);
+                    this.AddNotification("Usuário desativado !", "Sucesso");
+                }
+                catch (Exception ex)
+                {
+                    AddErrors(ex);
+                }
+            }
+
+            var lista = DAL.ListarObjetos<Usuario>();
+            return DadosConta();
+        }
+
+        public virtual ActionResult UsuarioEditar(int id = 0)
+        {
+            if (Settings.hasPermission(Settings.MENU_CONFIGURACAO_USUARIO, UsuarioLogado.Perfil))
+            {
+                var model = new Usuario();
+                if (id > 0)
+                {
+                    model = DAL.GetObjetoById<Usuario>(id);
+                }
+                return View("~/views/configuracao/usuario/Cadastrar.cshtml", model);
+            }
+            else
+            {
+                return View("~/views/Shared/error.cshtml");
+            }
+        }
+
+        /**================================================================================
+        * 
+        * MIGUE DO PERFIL
+        * 
+        * ===============================================================================*/
+
+        public virtual ActionResult PerfilEditar(int id = 0)
+        {
+            if (Settings.hasPermission(Settings.MENU_CONFIGURACAO_PERFIL, UsuarioLogado.Perfil))
+            {
+                var model = new Perfil();
+                if (id > 0)
+                {
+                    model = DAL.GetObjetoById<Perfil>(id);
+                    Perfil novoPerfil = model.setPermissoes(model.nm_menu, true);
+                    novoPerfil.Id = id;
+                    novoPerfil.DhInc = model.DhInc;
+                    novoPerfil.tp_perfil = model.tp_perfil;
+                    novoPerfil.nm_menu = model.nm_menu;
+                    novoPerfil.id_conta = model.id_conta;
+                    return View("~/views/configuracao/perfil/Cadastrar.cshtml", novoPerfil);
+                }
+                return View("~/views/configuracao/perfil/Cadastrar.cshtml", model);
+            }
+            else
+            {
+                return View("~/views/Shared/error.cshtml");
+            }
+        }
+
+        public ActionResult PerfilExcluir(int id = 0)
+        {
+            var model = new Perfil();
+            if (id > 0)
+            {
+                model = DAL.GetObjeto<Perfil>(string.Format("id={0}", id));
+                DAL.Excluir(model);
+            }            
+            return DadosConta(); 
         }
     }
 }

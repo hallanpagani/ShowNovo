@@ -90,6 +90,9 @@ namespace BaseWeb.Controllers.Acesso.ContaAcesso
                         this.AddNotification("Perfil já cadastrada !", "Erro");
                         return View("~/views/configuracao/perfil/Cadastrar.cshtml", viewModel);
                     }
+
+                    int maxPerfil = DAL.GetMaxColumn("tb_sistema_perfil", "cd_perfil", UsuarioLogado.IdConta);
+                    viewModel.cd_perfil = maxPerfil + 1;
                 }
 
                 try
@@ -126,7 +129,7 @@ namespace BaseWeb.Controllers.Acesso.ContaAcesso
         [OutputCache(Duration = 30)]
         public JsonResult GetPerfil(string term)
         {
-            List<Lista> list = DAL.ListarObjetos<Perfil>((term ?? "").Equals("") ? "" : string.Format("tp_perfil like '%{0}%'", term), "tp_perfil").Select(i => new Lista { id = i.Id, text = i.tp_perfil.ToUpper() }).ToList();
+            List<Lista> list = DAL.ListarObjetos<Perfil>((term ?? "").Equals("") ? string.Format("id_conta = {0}", UsuarioLogado.IdConta) : string.Format("tp_perfil like '%{0}%' and id_conta = {1}", term, UsuarioLogado.IdConta), "tp_perfil").Select(i => new Lista { id = i.Id, text = i.tp_perfil.ToUpper() }).ToList();
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 

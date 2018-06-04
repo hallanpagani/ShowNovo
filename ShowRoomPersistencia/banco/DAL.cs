@@ -354,6 +354,28 @@ namespace ShowRoomPersistencia.banco
             return item;
         }
 
+        public static int GetMaxColumn(string tabela, string coluna, string id_conta)
+        {
+            // monta o select e filtra pelo campo chave
+            string sql = "select max("+coluna+") as cd_perfil from "+tabela+" where id_conta = "+id_conta;
+            int value = 0;
+
+            using (MySqlConnection conexao = new MySqlConnection(GetStringConexao()))
+            using (Comando comando = new Comando(conexao, sql))
+            using (Leitor leitor = comando.Select())
+            {
+                // não tem nenhum? volta nulo
+                if (leitor.RecordCount == 0)
+                    return value;
+
+                // valor busta pelo nome do campo
+                object valor = leitor.GetObject(coluna);
+                value = Convert.ToInt32(valor);
+            }
+
+            return value;
+        }
+
         /// <summary>
         /// Efetua um select na base e retorna um objeto T com base em um filtro (retorna apenas 1 registro)
         /// </summary>

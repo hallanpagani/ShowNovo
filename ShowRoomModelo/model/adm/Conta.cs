@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using ShowRoomModelo.classes;
+using System.Collections.Generic;
 
 namespace ShowRoomModelo.model.adm
 {
@@ -26,6 +27,9 @@ namespace ShowRoomModelo.model.adm
         [Required]
         [Column("is_ativo")]
         public string is_ativo { get; set; }
+
+        public List<Usuario> usuarios { get; set; }
+        public List<Perfil> perfil { get; set; }
 
         public Conta()
         {

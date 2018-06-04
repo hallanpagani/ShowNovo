@@ -100,7 +100,7 @@ namespace ShowRoomModelo.model.adm
         }
 
         /**
-         *  Seta as permissões para edição.
+         *  Seta as permissões para edição
          */
         public Perfil setPermissoes(string opcoes, bool value)
         {
