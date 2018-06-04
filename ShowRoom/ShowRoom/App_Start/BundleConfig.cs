@@ -45,11 +45,18 @@ namespace ShowRoom
                         "~/Content/assets/css/quillpro/quillpro.css"));
 
 
-           /* #if DEBUG
-                        BundleTable.EnableOptimizations = false;
-            #else
-                        BundleTable.EnableOptimizations = true;
-            #endif */
+            bundles.Add(new ScriptBundle("~/scripts/datatables").Include(
+                "~/scripts/assets/plugins/datatables/jquery.dataTables.min.js",
+                "~/scripts/assets/plugins/datatables/dataTables.bootstrap4.min.js",
+                "~/scripts/assets/plugins/datatables/dataTables.responsive.min.js"
+                ));
+
+
+            /* #if DEBUG
+                         BundleTable.EnableOptimizations = false;
+             #else
+                         BundleTable.EnableOptimizations = true;
+             #endif */
         }
     }
 }

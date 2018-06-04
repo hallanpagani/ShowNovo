@@ -217,6 +217,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ListaAgendaViewModel.cs" />
     <Compile Include="Models\VisualizarAgendaViewModel.cs" />
     <Compile Include="Models\UsuarioApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1116,12 +1117,25 @@
     <Content Include="Scripts\assets\plugins\clockpicker\clockpicker.min.js" />
     <Content Include="Scripts\assets\plugins\custom-scrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="Scripts\assets\plugins\custom-scrollbar\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Scripts\assets\plugins\datatable-responsive\datatables.responsive.min.js" />
     <Content Include="Scripts\assets\plugins\datatables\css\responsive.bootstrap4.min.css" />
     <Content Include="Scripts\assets\plugins\datatables\css\responsive.dataTables.min.css" />
     <Content Include="Scripts\assets\plugins\datatables\js\dataTables.bootstrap4.min.js" />
     <Content Include="Scripts\assets\plugins\datatables\js\dataTables.responsive.min.js" />
     <Content Include="Scripts\assets\plugins\datatables\js\jquery.dataTables.min.js" />
     <Content Include="Scripts\assets\plugins\datatables\js\responsive.bootstrap4.min.js" />
+    <Content Include="Scripts\assets\plugins\datatables_novo\buttons.flash.min.js" />
+    <Content Include="Scripts\assets\plugins\datatables_novo\buttons.html5.min.js" />
+    <Content Include="Scripts\assets\plugins\datatables_novo\buttons.print.min.js" />
+    <Content Include="Scripts\assets\plugins\datatables_novo\dataTables.bootstrap.min.js" />
+    <Content Include="Scripts\assets\plugins\datatables_novo\dataTables.buttons.js" />
+    <Content Include="Scripts\assets\plugins\datatables_novo\dataTables.buttons.min.js" />
+    <Content Include="Scripts\assets\plugins\datatables_novo\dataTables.colReorder.min.js" />
+    <Content Include="Scripts\assets\plugins\datatables_novo\dataTables.colVis.min.js" />
+    <Content Include="Scripts\assets\plugins\datatables_novo\dataTables.tableTools.min.js" />
+    <Content Include="Scripts\assets\plugins\datatables_novo\jquery.dataTables.min.js" />
+    <Content Include="Scripts\assets\plugins\datatables_novo\swf\copy_csv_xls.swf" />
+    <Content Include="Scripts\assets\plugins\datatables_novo\swf\copy_csv_xls_pdf.swf" />
     <Content Include="Scripts\assets\plugins\datepicker\datepicker.min.css" />
     <Content Include="Scripts\assets\plugins\datepicker\datepicker.min.js" />
     <Content Include="Scripts\assets\plugins\datepicker\datepicker.pt-BR.js" />
@@ -1355,7 +1369,7 @@
     <Content Include="Views\Agendamento\Cadastrar.cshtml" />
     <Content Include="Views\Agendamento\AgendaVisualizar.cshtml" />
     <Content Include="Views\Agendamento\ListarAgendaPaciente.cshtml" />
-    <Content Include="Views\Agendamento\ListarAgendaPacienteGeral.cshtml" />
+    <Content Include="Views\Agendamento\ListarAgendaGeral.cshtml" />
     <Content Include="Views\Agendamento\VisualizarHistoricoAgendas.cshtml" />
     <Content Include="Views\Agendamento\_ListarAgendaHistorico.cshtml" />
     <Content Include="Views\Agendamento\_ListarAvaliacoesPaciente.cshtml" />

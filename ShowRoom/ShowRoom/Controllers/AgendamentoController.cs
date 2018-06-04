@@ -122,7 +122,6 @@ namespace ShowRoom.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-
         public ActionResult ListarAgenda(string start, string end, int? id_marca, int? id_colecao, int? id_cliente, int? id_cidade, int? id_grupo, string tp_calendario)
         {
             //código para trazer os eventos do mês
@@ -201,6 +200,72 @@ namespace ShowRoom.Controllers
             } */
             return Json(new { Sucesso = true }, JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpGet]
+        public ActionResult ListarAgendaGeral()
+        {
+            ListaAgendaViewModel model = new ListaAgendaViewModel();
+
+            //código para trazer os eventos do mês
+            DateTime dataInicial = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            DateTime dataFinal = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
+            model.DataInicio = dataInicial.ToString("dd/mm/yyyy");
+            model.DataFinal = dataFinal.ToString("dd/mm/yyyy");
+
+            List<Agendamento> eventosDb = AgendamentoDAL.GetAgendaEventos(Convert.ToInt64(UsuarioLogado.IdConta), dataInicial.Ticks, dataFinal.Ticks, 0, 0, 0, 0, 0).Where(item => !(item.tp_status == 999)).ToList();
+            model.ListarAgenda = eventosDb;
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult ListarAgendaGeral(ListaAgendaViewModel obj)
+        {
+
+            string dtInicio = obj.DataInicio;
+            string dtFinal = obj.DataFinal;
+            DateTime dataInicial;
+            DateTime dataFinal;
+
+            if (string.IsNullOrEmpty(dtInicio))
+            {
+                dataInicial = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+
+            }
+            else
+            {
+                dataInicial = Convert.ToDateTime(dtInicio);
+            }
+
+            if (string.IsNullOrEmpty(dtFinal))
+            {
+                dataFinal = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
+            }
+            else
+            {
+                dataFinal = Convert.ToDateTime(dtFinal);
+            }
+
+            ListaAgendaViewModel model = new ListaAgendaViewModel();
+            model.filtro_colecao = obj.filtro_colecao;
+            model.filtro_nm_colecao = obj.filtro_nm_colecao;
+            model.filtro_marca = obj.filtro_marca;
+            model.filtro_nm_marca = obj.filtro_nm_marca;
+            model.filtro_cliente = obj.filtro_cliente;
+            model.filtro_nm_cliente = obj.filtro_nm_cliente;
+
+            model.DataInicio = obj.DataInicio;
+            model.DataFinal = obj.DataFinal;
+
+            List<Agendamento> eventosDb = AgendamentoDAL.GetAgendaEventos(Convert.ToInt64(UsuarioLogado.IdConta), dataInicial.Ticks, dataFinal.Ticks, model.filtro_marca, model.filtro_colecao, model.filtro_cliente, 0, 0).
+                 Where(item => !(item.tp_status == 999)).ToList();
+
+            model.ListarAgenda = eventosDb;
+
+            return View("ListarAgendaGeral", model);
+        }
+
 
     }
 }

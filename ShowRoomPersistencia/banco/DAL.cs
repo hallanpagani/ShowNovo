@@ -562,7 +562,7 @@ namespace ShowRoomPersistencia.banco
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Exception source: {0}", ex.Source);
+                      //  Console.WriteLine("Exception source: {0}", ex.Source);
                     }
                 }
             }

@@ -83,7 +83,7 @@ namespace ShowRoomPersistencia.classes
         /// <param name="field">nome do campo"</param>
         public object GetObject(string field)
         {
-            return Data.Rows[CurrentRecord - 1][field];
+           return Data.Rows[CurrentRecord - 1][field];
         }
 
         /// <summary>

@@ -31,10 +31,10 @@ namespace ShowRoomPersistencia.model
             {
                 f.Add(() => u.colecao, idcolecao, FiltroExpressao.Igual);
             }
-            if ((idgrupo ?? 0) != 0)
+          /*  if ((idgrupo ?? 0) != 0)
             {
                 filtro = string.Format(" and id_servico in (select s.id from cadastro_servico s where s.id_grupo={0})", idgrupo);
-            }
+            }*/
 
             return DAL.ListarObjetos<Agendamento>(f.ToString() + filtro, "id desc");
         }
