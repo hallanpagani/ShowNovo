@@ -5387,7 +5387,7 @@ input[type=date].valid, input[type=date]:focus.valid, input[type=datetime-local]
 
 /* Datatables */
 .dataTables_filter label {
-    width: 100%;
+  /*  width: 100%;*/
 }
 
 /* Notifications - Toastr */
@@ -6739,6 +6739,10 @@ div.dataTables_scrollHead table.table-bordered {
     border-bottom: 1px solid #ccc;
     background: #fafafa
 }
+
+    .dt-toolbar .form-control {
+        margin: 0px 0px 2px 0px !important;
+    }
 
 .dt-toolbar-footer {
     background: #fafafa;

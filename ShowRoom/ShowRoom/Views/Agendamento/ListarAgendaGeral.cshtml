@@ -151,26 +151,25 @@
                                 </script>
 
                                 <div class="form-row">
-                                    <section class="col-md-3">
+                                    <div class="col-lg-4">
                                         @Html.TextBoxPadraoFor(model => model.DataInicio, new { @filtrar = "", @onclick = "this.focus();this.select()" })
-                                    </section>
-
-                                    <div class="input-group col-md-4">
-                                        @Html.TextBoxPadraoFor(model => model.DataFinal, new { @filtrar = "", @onclick = "this.focus();this.select()" })
-                                        <div class="input-group-append">
-                                            <button type="button" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="sr-only"></span>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#" onclick="SetOntem();">Ontem</a>
-                                                <a class="dropdown-item" href="#" onclick="SetHoje();">Hoje</a>
-                                                <a class="dropdown-item" href="#" onclick="SetAmanha();">Amanhã</a>
-                                                <div role="separator" class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#" onclick="SetMesPassado();">Mês passado</a>
-                                                <a class="dropdown-item" href="#" onclick="SetMesAtual();">Mês atual</a>
-                                                <a class="dropdown-item" href="#" onclick="SetProximoMes();">Próximo mês</a>
-                                                <div role="separator" class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#" onclick="Limpar();">Limpar</a>
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <div class="input-group">
+                                            @Html.TextBoxPadraoFor(model => model.DataFinal, new { @filtrar = "", @onclick = "this.focus();this.select()" })
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary dropdown-toggle waves-effect waves-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#" onclick="SetOntem();">Ontem</a>
+                                                    <a class="dropdown-item" href="#" onclick="SetHoje();">Hoje</a>
+                                                    <a class="dropdown-item" href="#" onclick="SetAmanha();">Amanhã</a>
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#" onclick="SetMesPassado();">Mês passado</a>
+                                                    <a class="dropdown-item" href="#" onclick="SetMesAtual();">Mês atual</a>
+                                                    <a class="dropdown-item" href="#" onclick="SetProximoMes();">Próximo mês</a>
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#" onclick="Limpar();">Limpar</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -199,67 +198,67 @@
     <div class="row mb-4">
         <div class="col-md-12">
             <div class="card">
-          
-                       
-                            <table id="datatable-geral" class="table table-datatable table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Cliente
-                                        </th>
-                                        <th>
-                                            Status
-                                        </th>
-                                        <th>
-                                            Dt.Agenda
-                                        </th>
-                                        <th>
-                                            Coleção
-                                        </th>
-                                        <th>
-                                            Marca
-                                        </th>
-                                        <th>
-                                            Meta.Coleção
-                                        </th>
-                                        <th>
-                                            Realizado
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.ListarAgenda)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.nm_cliente)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.status_cliente)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.dt_agenda)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.nm_colecao)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.nm_marca)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.metacolecaoatual)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.realizado)
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-               
-    
+
+
+                <table id="datatable-geral" class="table table-datatable table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Cliente
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Dt.Agenda
+                            </th>
+                            <th>
+                                Coleção
+                            </th>
+                            <th>
+                                Marca
+                            </th>
+                            <th>
+                                Meta.Coleção
+                            </th>
+                            <th>
+                                Realizado
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ListarAgenda)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nm_cliente)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.status_cliente)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.dt_agenda)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nm_colecao)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nm_marca)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.metacolecaoatual)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.realizado)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
     </div>
 </main>
 
@@ -321,10 +320,10 @@
                     }
                 },
 
-                "sDom": "<'dt-toolbar'<'form-row'<'col-md-6'f><'col-md-6'Tl >r>>" +
+                "sDom": "<'dt-toolbar'<'form-row'<'col-md-9'f><'col-md-3'Tl >r>>" +
                 "t" +
                 "<'dt-toolbar-footer'<'form-row'<'col-md-6'i><'col-md-6'p>>>",
-               
+
                 "oTableTools": {
                     "aButtons": [
 
@@ -450,11 +449,11 @@
     </script>
 
 
-<script type='text/javascript' src="~/scripts/assets/plugins/datatables_novo/jquery.dataTables.min.js"></script>
-<script type='text/javascript' src="~/scripts/assets/plugins/datatables_novo/dataTables.bootstrap.min.js"></script>
-<script type='text/javascript' src="~/scripts/assets/plugins/datatable-responsive/datatables.responsive.min.js"></script>
+    <script type='text/javascript' src="~/scripts/assets/plugins/datatables_novo/jquery.dataTables.min.js"></script>
+    <script type='text/javascript' src="~/scripts/assets/plugins/datatables_novo/dataTables.bootstrap.min.js"></script>
+    <script type='text/javascript' src="~/scripts/assets/plugins/datatable-responsive/datatables.responsive.min.js"></script>
 
-<!--    <script type='text/javascript' src="~/scripts/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
-    <script type='text/javascript' src="~/scripts/assets/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-    <script type='text/javascript' src="~/scripts/assets/plugins/datatables/js/dataTables.responsive.min.js"></script> -->
+    <!--    <script type='text/javascript' src="~/scripts/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
+        <script type='text/javascript' src="~/scripts/assets/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+        <script type='text/javascript' src="~/scripts/assets/plugins/datatables/js/dataTables.responsive.min.js"></script> -->
 }

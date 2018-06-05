@@ -210,8 +210,8 @@ namespace ShowRoom.Controllers
             //código para trazer os eventos do mês
             DateTime dataInicial = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             DateTime dataFinal = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
-            model.DataInicio = dataInicial.ToString("dd/mm/yyyy");
-            model.DataFinal = dataFinal.ToString("dd/mm/yyyy");
+            model.DataInicio = dataInicial.ToString("dd/MM/yyyy");
+            model.DataFinal = dataFinal.ToString("dd/MM/yyyy");
 
             List<Agendamento> eventosDb = AgendamentoDAL.GetAgendaEventos(Convert.ToInt64(UsuarioLogado.IdConta), dataInicial.Ticks, dataFinal.Ticks, 0, 0, 0, 0, 0).Where(item => !(item.tp_status == 999)).ToList();
             model.ListarAgenda = eventosDb;

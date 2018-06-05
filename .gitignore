@@ -13,3 +13,4 @@
 ShowRoom/.vs/ShowRoom/v15/.suo
 ShowRoom/.vs/ShowRoom/v15/Server/sqlite3/storage.ide-shm
 ShowRoom/.vs/ShowRoom/v15/Server/sqlite3/storage.ide-wal
+*.dll
