@@ -23,40 +23,6 @@
                     <form action="/Agendamento/listaragendageral" class="smart-form" id="pesquisar" method="post">
                         <div class="form-row">
                             <div class="col-md-3 mb-3">
-                                <label class="" for="filtro_cliente">Cliente</label>
-                                <select id="Clientes" name="filtro_cliente" class="requerido" style="width:100%">
-                                    @if (@Model.filtro_cliente != 0)
-                                    {
-                                        <option value="@Model.filtro_cliente">@Model.filtro_nm_cliente</option>
-                                    }
-                                </select>
-                                @Html.HiddenFor(model => model.filtro_nm_cliente)
-                            </div>
-
-                            <div class="col-md-3 mb-3">
-                                <label class="" for="filtro_marca">Marcas</label>
-                                <select id="Marcas" name="filtro_marca" class="requerido" style="width:100%">
-                                    @if (@Model.filtro_marca != 0)
-                                    {
-                                        <option value="@Model.filtro_marca">@Model.filtro_nm_marca</option>
-                                    }
-                                </select>
-                                @Html.HiddenFor(model => model.filtro_nm_marca)
-                            </div>
-
-                            <div class="col-md-3 mb-3">
-                                <label class="" for="filtro_colecao">Coleção</label>
-                                <select id="Colecoes" name="filtro_colecao" class="requerido" style="width:100%">
-                                    @if (@Model.filtro_colecao != 0)
-                                    {
-                                        <option value="@Model.filtro_colecao">@Model.filtro_nm_colecao</option>
-                                    }
-                                </select>
-                                @Html.HiddenFor(model => model.filtro_nm_colecao)
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="col-md-4 mb-3">
 
                                 <label class="" for="filtro_data">Período de</label>
                                 <script>
@@ -151,10 +117,10 @@
                                 </script>
 
                                 <div class="form-row">
-                                    <div class="col-lg-4">
+                                    <div class="col-md-5">
                                         @Html.TextBoxPadraoFor(model => model.DataInicio, new { @filtrar = "", @onclick = "this.focus();this.select()" })
                                     </div>
-                                    <div class="col-lg-5">
+                                    <div class="col-md-7">
                                         <div class="input-group">
                                             @Html.TextBoxPadraoFor(model => model.DataFinal, new { @filtrar = "", @onclick = "this.focus();this.select()" })
                                             <div class="input-group-append">
@@ -176,8 +142,43 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-3 mb-3">
+                                <label class="" for="filtro_cliente">Cliente</label>
+                                <select id="Clientes" name="filtro_cliente" class="requerido" style="width:100%">
+                                    @if (@Model.filtro_cliente != 0)
+                                    {
+                                        <option value="@Model.filtro_cliente">@Model.filtro_nm_cliente</option>
+                                    }
+                                </select>
+                                @Html.HiddenFor(model => model.filtro_nm_cliente)
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="" for="filtro_marca">Marcas</label>
+                                <select id="Marcas" name="filtro_marca" class="requerido" style="width:100%">
+                                    @if (@Model.filtro_marca != 0)
+                                    {
+                                        <option value="@Model.filtro_marca">@Model.filtro_nm_marca</option>
+                                    }
+                                </select>
+                                @Html.HiddenFor(model => model.filtro_nm_marca)
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="" for="filtro_colecao">Coleção</label>
+                                <select id="Colecoes" name="filtro_colecao" class="requerido" style="width:100%">
+                                    @if (@Model.filtro_colecao != 0)
+                                    {
+                                        <option value="@Model.filtro_colecao">@Model.filtro_nm_colecao</option>
+                                    }
+                                </select>
+                                @Html.HiddenFor(model => model.filtro_nm_colecao)
+                            </div>
+                        </div>
+                        <div class="form-row">
+                           
+
                             <div class="col-md-1 mb-3">
-                                <label class="" for="">&nbsp;</label>
                                 @Html.BotaoFiltrar()
                             </div>
 
