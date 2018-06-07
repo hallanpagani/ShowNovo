@@ -214,6 +214,9 @@
                                 Dt.Agenda
                             </th>
                             <th>
+                                Horário
+                            </th>
+                            <th>
                                 Coleção
                             </th>
                             <th>
@@ -224,6 +227,12 @@
                             </th>
                             <th>
                                 Realizado
+                            </th>
+                            <th>
+                                %Atingido
+                            </th>
+                            <th>
+                                Ação
                             </th>
                         </tr>
                     </thead>
@@ -241,6 +250,9 @@
                                     @Html.DisplayFor(modelItem => item.dt_agenda)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.hr_agenda)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.nm_colecao)
                                 </td>
                                 <td>
@@ -251,6 +263,12 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.realizado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.percmetaatingida)
+                                </td>
+                                <td>
+                                    
                                 </td>
                             </tr>
                         }
