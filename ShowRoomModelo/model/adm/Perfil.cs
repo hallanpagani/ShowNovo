@@ -77,6 +77,9 @@ namespace ShowRoomModelo.model.adm
         [Display(Name = "Usuário")]
         public bool usuario { get; set; }
 
+        [Display(Name = "Plano de vendas")]
+        public bool planodevendas { get; set; }
+
         public Dictionary<string, bool> getPermissoes()
         {
             Dictionary<string, bool> acessoList = new Dictionary<string, bool>();
@@ -95,6 +98,7 @@ namespace ShowRoomModelo.model.adm
             acessoList.Add("conta", conta);
             acessoList.Add("perfil", perfil);
             acessoList.Add("usuario", usuario);
+            acessoList.Add("planodevendas", planodevendas);
 
             return acessoList;
         }

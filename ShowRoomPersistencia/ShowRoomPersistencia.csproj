@@ -76,6 +76,7 @@
     <Compile Include="classes\Leitor.cs" />
     <Compile Include="classes\Montador.cs" />
     <Compile Include="classes\Validador.cs" />
+    <Compile Include="model\PlanoDeVendasDAL.cs" />
     <Compile Include="model\AgendamentoDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

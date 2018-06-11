@@ -91,7 +91,7 @@
     <Compile Include="model\cadastros\Mesorregiao.cs" />
     <Compile Include="model\cadastros\Vendedor.cs" />
     <Compile Include="model\cadastros\ColecaoSemana.cs" />
-    <Compile Include="model\cadastros\PlanoDeContas.cs" />
+    <Compile Include="model\cadastros\PlanoDeVendas.cs" />
     <Compile Include="model\cadastros\RegiaoSub.cs" />
     <Compile Include="model\cadastros\ShowRoom.cs" />
     <Compile Include="model\cadastros\Prospect.cs" />

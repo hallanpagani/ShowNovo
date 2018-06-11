@@ -1,0 +1,460 @@
+﻿@model ShowRoom.Models.ListaPlanoDeVendasViewModel
+@using ShowRoom.App_Helpers.Componentes
+
+@{
+    ViewBag.NomeDaJanela = "Listar plano de vendas";
+    ViewBag.Action = "CadastrarAgenda";
+    ViewBag.Controller = "Agenda";
+    ViewBag.Title = "Plano de vendas cadastrados";
+    Layout = "~/Views/Shared/_LayoutSemCard.cshtml";
+
+}
+
+@section css{
+    <link rel="stylesheet" href="~/content/assets/plugins/datatables/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="~/content/assets/plugins/datatables/css/responsive.bootstrap4.min.css">
+}
+
+<main class="main-content p-5" role="main">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/Agendamento/listaragendageral" class="smart-form" id="pesquisar" method="post">
+                        <div class="form-row">
+                            <div class="col-md-3 mb-3">
+
+                                <label class="" for="filtro_data">Período de</label>
+                                <script>
+                                    function Limpar() {
+                                        document.getElementById('datainicio').value = "";
+                                        document.getElementById('datafinal').value = "";
+                                    }
+
+                                    function SetDtInicial(dia, mes, ano) {
+                                        document.getElementById('datainicio').value = preencheZerosInt(dia, 2) + "/" + preencheZerosInt(mes, 2) + "/" + preencheZerosInt(ano, 4);
+                                    }
+
+                                    function SetDtFinal(dia, mes, ano) {
+                                        document.getElementById('datafinal').value = preencheZerosInt(dia, 2) + "/" + preencheZerosInt(mes, 2) + "/" + preencheZerosInt(ano, 4);
+                                    }
+
+                                    function SetHoje() {
+                                        var data = new Date();
+
+                                        SetDtInicial(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                        SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                    }
+
+                                    function SetOntem() {
+                                        var data = new Date();
+
+                                        data.setDate(data.getDate() - 1);
+
+                                        SetDtInicial(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                        SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                    }
+
+                                    function SetAmanha() {
+                                        var data = new Date();
+
+                                        data.setDate(data.getDate() + 1);
+
+                                        SetDtInicial(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                        SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                    }
+
+                                    function SetMesPassado() {
+                                        //Inicial
+                                        var data = new Date();
+                                        data.setMonth(data.getMonth() - 1);
+                                        SetDtInicial(1, data.getMonth() + 1, data.getFullYear());
+                                        //Final
+                                        data = new Date(data.getFullYear(), data.getMonth() + 1, 0);
+                                        SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                    }
+
+                                    function SetMesAtual() {
+                                        //Inicial
+                                        var data = new Date();
+                                        SetDtInicial(1, data.getMonth() + 1, data.getFullYear());
+                                        //Final
+                                        data = new Date(data.getFullYear(), data.getMonth() + 1, 0);
+                                        SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                    }
+
+                                    function SetProximoMes() {
+                                        //Inicial
+                                        var data = new Date();
+                                        data.setMonth(data.getMonth() + 1);
+                                        SetDtInicial(1, data.getMonth() + 1, data.getFullYear());
+                                        //Final
+                                        data = new Date(data.getFullYear(), data.getMonth() + 1, 0);
+                                        SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                    }
+
+                                    function preencheZeros(valor, tamanho) {
+                                        var result = valor;
+
+                                        if (result != '') {
+                                            var contador = result.length;
+
+                                            if (result.length < tamanho) {
+                                                do {
+                                                    result = "0" + result;
+                                                    contador += 1;
+                                                } while (contador < tamanho)
+                                            }
+                                        }
+
+                                        return result;
+                                    }
+
+                                    function preencheZerosInt(valor, tamanho) {
+                                        return preencheZeros(valor.toString(), tamanho);
+                                    }
+
+                                </script>
+
+                                <div class="form-row">
+                                    <div class="col-md-5">
+                                        @Html.TextBoxPadraoFor(model => model.DataInicio, new { @filtrar = "", @onclick = "this.focus();this.select()" })
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="input-group">
+                                            @Html.TextBoxPadraoFor(model => model.DataFinal, new { @filtrar = "", @onclick = "this.focus();this.select()" })
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary dropdown-toggle waves-effect waves-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#" onclick="SetOntem();">Ontem</a>
+                                                    <a class="dropdown-item" href="#" onclick="SetHoje();">Hoje</a>
+                                                    <a class="dropdown-item" href="#" onclick="SetAmanha();">Amanhã</a>
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#" onclick="SetMesPassado();">Mês passado</a>
+                                                    <a class="dropdown-item" href="#" onclick="SetMesAtual();">Mês atual</a>
+                                                    <a class="dropdown-item" href="#" onclick="SetProximoMes();">Próximo mês</a>
+                                                    <div role="separator" class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#" onclick="Limpar();">Limpar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="" for="filtro_cliente">Cliente</label>
+                                <select id="Clientes" name="filtro_cliente" class="requerido" style="width:100%">
+                                    @if (@Model.filtro_cliente != 0)
+                                    {
+                                        <option value="@Model.filtro_cliente">@Model.filtro_nm_cliente</option>
+                                    }
+                                </select>
+                                @Html.HiddenFor(model => model.filtro_nm_cliente)
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="" for="filtro_marca">Marcas</label>
+                                <select id="Marcas" name="filtro_marca" class="requerido" style="width:100%">
+                                    @if (@Model.filtro_marca != 0)
+                                    {
+                                        <option value="@Model.filtro_marca">@Model.filtro_nm_marca</option>
+                                    }
+                                </select>
+                                @Html.HiddenFor(model => model.filtro_nm_marca)
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label class="" for="filtro_colecao">Coleção</label>
+                                <select id="Colecoes" name="filtro_colecao" class="requerido" style="width:100%">
+                                    @if (@Model.filtro_colecao != 0)
+                                    {
+                                        <option value="@Model.filtro_colecao">@Model.filtro_nm_colecao</option>
+                                    }
+                                </select>
+                                @Html.HiddenFor(model => model.filtro_nm_colecao)
+                            </div>
+                        </div>
+                        <div class="form-row">
+                           
+
+                            <div class="col-md-1 mb-3">
+                                @Html.BotaoFiltrar()
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn btn-dark waves-effect waves-light" href="~/PlanoDeVendas/Cadastrar">Cadastrar</a>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+
+
+                <table id="datatable-geral" class="table table-datatable">
+                    <thead>
+                        <tr>
+                            <th>
+                                Cliente
+                            </th>
+                            <th>
+                                Cidade
+                            </th>
+                            <th>
+                                Coleção
+                            </th>
+                            <th>
+                                Marca
+                            </th>
+                            <th>
+                                R$Coleção.anterior
+                            </th>
+                            <th>
+                                R$Coleção.atual
+                            </th>
+                            <th>
+                                Ação
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ListarPlanoDeVendas)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nm_cliente)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nm_cidade)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nm_colecao)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nm_marca)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.valorcolecaoanterior)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.valorcolecaoatual)
+                                </td>
+                                <td>
+                                   @Html.ActionLink("Editar", "Cadastrar", "PlanoDeVendas", new { id = item.id }, new { @class = "btn btn-primary btn-sm btn-sm waves-effect waves-light" }) 
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+</main>
+
+
+<!-- END MAIN CONTENT -->
+@section scripts {
+    <!-- PAGE RELATED PLUGIN(S) -->
+
+    <script type="text/javascript" src="~/scripts/terceiros/data.js"></script>
+
+
+    <script type="text/javascript">
+
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+
+        function dropdown(val) {
+            var y = document.getElementsByClassName('btn btn-default dropdown-toggle');
+            y[0].innerHTML = val + ' <span class="caret"></span>'; // Append
+        }
+
+        $(document).ready(function () {
+
+
+            /* BASIC ;*/
+            var responsiveHelper_datatable_tabletools = undefined;
+
+            var breakpointDefinition = {
+                tablet: 1024,
+                phone: 480
+            };
+
+            /* TABLETOOLS */
+            var table = $('#datatable-geral').DataTable({
+
+                // Tabletools options:
+                //   https://datatables.net/extensions/tabletools/button_options
+                stateSave: true,
+               // select: { style: 'multi' },
+                language: {
+                    "sEmptyTable": "Nenhum registro encontrado",
+                    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sInfoThousands": ".",
+                    "sLengthMenu": "Mostrando _MENU_",
+                    "sLoadingRecords": "Carregando...",
+                    "sProcessing": "Processando...",
+                    "sZeroRecords": "Nenhum registro encontrado",
+                    "oPaginate": {
+                        "sNext": "Próximo",
+                        "sPrevious": "Anterior",
+                        "sFirst": "Primeiro",
+                        "sLast": "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }
+                },
+
+                "sDom": "<'dt-toolbar'<'form-row'<'col-md-9'f><'col-md-3'Tl >r>>" +
+                "t" +
+                "<'dt-toolbar-footer'<'form-row'<'col-md-6'i><'col-md-6'p>>>",
+
+                "oTableTools": {
+                    "aButtons": [
+
+                        "xls",
+                        {
+                            "sExtends": "pdf",
+                            "sTitle": "Nextcode",
+                            "sPdfMessage": "",
+                            "sPdfSize": "letter"
+                        },
+                        {
+                            "sExtends": "print",
+                            "sButtonText": "Impr.",
+                            "sMessage": "Gerado por Nextcode <i>(Esc para fechar)</i>"
+                        }
+                    ],
+                    "sSwfPath": "/Scripts/plugin/datatables/swf/copy_csv_xls_pdf.swf"
+                },
+                "deferRender": true,
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"]],
+                "pageLength": 50,
+                "autoWidth": false
+            });
+
+
+
+            "use strict";
+
+            $('#Marcas').on("select2:select", function (e) {
+                console.log($('#Marcas').select2('data')[0].text);
+                $('#filtro_nm_marca').val($('#Marcas').select2('data')[0].text); // what you would like to happen
+            });
+
+            $('#Clientes').on("select2:select", function (e) {
+                console.log($('#Clientes').select2('data')[0].text);
+                $('#filtro_nm_cliente').val($('#Clientes').select2('data')[0].text); // what you would like to happen
+            });
+
+            $('#Colecoes').on("select2:select", function (e) {
+                console.log($('#Colecoes').select2('data')[0].text);
+                $('#filtro_nm_colecao').val($('#Colecoes').select2('data')[0].text); // what you would like to happen
+            });
+
+            var Url = '@Url.Action("GetMarcas", "Marcas")';
+            $("#Marcas").select2({
+                placeholder: "Selecione uma marca",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                allowClear: true,
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetCliente", "Cliente")';
+            $("#Clientes").select2({
+                placeholder: "Selecione um cliente",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                allowClear: true,
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetColecao", "Colecao")';
+            $("#Colecoes").select2({
+                placeholder: "Selecione uma coleção",
+                minimumInputLength: 0,
+                allowClear: true,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+        });
+
+
+
+    </script>
+
+
+    <script type='text/javascript' src="~/scripts/assets/plugins/datatables_novo/jquery.dataTables.min.js"></script>
+    <script type='text/javascript' src="~/scripts/assets/plugins/datatables_novo/dataTables.bootstrap.min.js"></script>
+    <script type='text/javascript' src="~/scripts/assets/plugins/datatable-responsive/datatables.responsive.min.js"></script>
+
+    <!--    <script type='text/javascript' src="~/scripts/assets/plugins/datatables/js/jquery.dataTables.min.js"></script>
+        <script type='text/javascript' src="~/scripts/assets/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+        <script type='text/javascript' src="~/scripts/assets/plugins/datatables/js/dataTables.responsive.min.js"></script> -->
+}
