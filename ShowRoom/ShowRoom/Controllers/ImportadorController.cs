@@ -13,10 +13,31 @@ namespace ShowRoom.Controllers
 {
     public class ImportadorController : AppController
     {
+        private const int INDICE_CNPJ = 0;
+        private const int INDICE_IE = 1;
+        private const int INDICE_STATUS = 2;
+        private const int INDICE_RAZAO_SOCIAL = 3;
+        private const int INDICE_NOME_FANTASIA = 4;
+        private const int INDICE_DATA_FUNDACAO = 5;
+        private const int INDICE_EMAIL1 = 6;
+        private const int INDICE_EMAIL2 = 7;
+        private const int INDICE_FONE1 = 8;
+        private const int INDICE_FONE2 = 9;
+        private const int INDICE_CONTATO = 10;
+        private const int INDICE_ENDERECO_CIDADE = 11;
+        private const int INDICE_ENDERECO_CEP = 12;
+        private const int INDICE_ENDERECO_BAIRRO = 13;
+        private const int INDICE_ENDERECO_COMPLETO = 14;
+        private const int INDICE_ENDERECO_CORREDOR = 15;
+        private const int INDICE_ENDERECO_NUMERO = 16;
+        private const int INDICE_FACEBOOK = 17;
+        private const int INDICE_INSTAGRAM = 18;
+        private const int INDICE_URL = 19;
+
         // GET: Importador
         public ActionResult Abrir()
         {
-            return View();
+            return View("~/views/importador/abrir.cshtml");
         }
 
         [HttpPost]
@@ -36,28 +57,42 @@ namespace ShowRoom.Controllers
                         {
                             var linha = csvreader.ReadLine();
                             var estrutura = linha.Split(';');
-                            cliente.razao = estrutura[0];
-                            cliente.fantasia = estrutura[1];
-                            cliente.cnpj = estrutura[2];
-                            cliente.ie = estrutura[3];
-                            cliente.contato = estrutura[4];
-                            cliente.fone1 = estrutura[5];
-                            cliente.fone2 = estrutura[6];
-                            cliente.cep = estrutura[7];
-                            cliente.bairro = estrutura[8];
-                            cliente.numero = estrutura[9];
-                            cliente.endereco = estrutura[10];
-                            cliente.corredor = estrutura[11];
-                            cliente.cidade = Convert.ToInt64(estrutura[12]);
-                            cliente.email = estrutura[13];
-                            cliente.email2 = estrutura[14];
-                            cliente.fundacao = Convert.ToDateTime(estrutura[15]);
-                            cliente.facebook = estrutura[16];
-                            cliente.instagram = estrutura[17];
-                            cliente.www = estrutura[18];
-                            cliente.status = Convert.ToInt32(estrutura[19]);
-                            DAL.Gravar(cliente);
+                            cliente.cnpj = estrutura[INDICE_CNPJ];
+                            cliente.ie = estrutura[INDICE_IE];
+                            cliente.status = Convert.ToInt32(INDICE_STATUS);
+                            cliente.razao = estrutura[INDICE_RAZAO_SOCIAL].ToUpper();
+                            cliente.fantasia = estrutura[INDICE_NOME_FANTASIA].ToUpper();
+                            cliente.contato = estrutura[INDICE_CONTATO].ToUpper();
+                            cliente.fone1 = estrutura[INDICE_FONE1];
+                            cliente.fone2 = estrutura[INDICE_FONE2];
+                            cliente.cep = estrutura[INDICE_ENDERECO_CEP];
+                            cliente.bairro = estrutura[INDICE_ENDERECO_BAIRRO].ToUpper();
+                            cliente.numero = estrutura[INDICE_ENDERECO_NUMERO];
+                            cliente.endereco = estrutura[INDICE_ENDERECO_COMPLETO].ToUpper();
+                            cliente.corredor = estrutura[INDICE_ENDERECO_CORREDOR];
+                            cliente.nm_cidade = estrutura[INDICE_ENDERECO_CIDADE].ToUpper();
+                            cliente.email = estrutura[INDICE_EMAIL1];
+                            cliente.email2 = estrutura[INDICE_EMAIL2];
+                            cliente.fundacao = Convert.ToDateTime(estrutura[INDICE_DATA_FUNDACAO]);
+                            cliente.facebook = estrutura[INDICE_FACEBOOK].ToUpper();
+                            cliente.instagram = estrutura[INDICE_INSTAGRAM].ToUpper();
+                            cliente.www = estrutura[INDICE_URL].ToUpper();
+
+                            cliente.id_usuario = Convert.ToInt64(UsuarioLogado.IdUsuario);
+                            cliente.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
+
+                            var existe = DAL.GetObjeto<Cliente>(string.Format("id_conta={0} and razao='{1}'", UsuarioLogado.IdConta, cliente.razao)) ?? new Cliente();
+                            if ((existe.id > 0 && cliente.id == 0))
+                            {
+                                // Ignora.
+                            }
+                            else
+                            {
+                                DAL.Gravar(cliente);
+                            }
                         }
+
+                        this.AddNotification("Importação realizada com sucesso !.", "Sucesso");
                     }
                     else
                     {
@@ -72,7 +107,6 @@ namespace ShowRoom.Controllers
                     return Abrir();
                 }
             }
-            this.AddNotification("Importação realizada com sucesso !.", "Sucesso");
             return Abrir();
         }
     }
