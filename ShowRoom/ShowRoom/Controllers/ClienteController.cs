@@ -51,6 +51,36 @@ namespace ShowRoom.Controllers
                     this.AddNotification("Cliente já existe!", "Alerta");
                     return View();
                 }
+                if (model.status == 0)
+                {
+                    if (string.IsNullOrEmpty(model.cnpj))
+                    {
+                        ModelState.AddModelError("cnpj", "Informe o cnpj do cliente.");
+                        return View(model);
+                    }
+
+                    if (string.IsNullOrEmpty(model.razao))
+                    {
+                        ModelState.AddModelError("razao", "Informe a razão social do cliente.");
+                        return View(model);
+                    }
+
+                    if (string.IsNullOrEmpty(model.fantasia))
+                    {
+                        ModelState.AddModelError("fantasia", "Informe o nome fantasia do cliente.");
+                        return View(model);
+                    }
+                } else if (model.status == 2)
+                {
+                    if (string.IsNullOrEmpty(model.fantasia) || string.IsNullOrEmpty(model.razao))
+                    {
+                        ModelState.AddModelError("fantasia", "Informe pelo menos o nome fantasia do cliente.");
+                        return View(model);
+                    }
+                }
+
+
+
                 long id = DAL.Gravar(model);
 
                 if (model.id > 0 && id == 0)

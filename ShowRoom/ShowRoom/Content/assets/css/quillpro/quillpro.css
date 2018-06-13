@@ -877,7 +877,7 @@ a.badge-light {
 
 .btn-success,
 .btn-success.dropdown-toggle {
-    background-color: #0ad251 !important;
+    background-color: #237741 !important;
 }
 
     .btn-success:focus,
@@ -885,7 +885,7 @@ a.badge-light {
     .btn-success:hover,
     .btn-success.dropdown-toggle:hover,
     .btn-success.dropdown-toggle:focus {
-        background-color: #0adc55 !important;
+        background-color: #51ab71 !important;
     }
 
     .btn-success.disabled,
