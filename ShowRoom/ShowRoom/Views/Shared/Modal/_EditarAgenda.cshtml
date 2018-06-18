@@ -33,17 +33,15 @@
                 </div>
 
                 <div class="form-row">
-                    <section class="col-md-3 ml-4 mb-3" style="padding: 0px !important;">
+                    <div class="col-md-5 ml-4 mb-3" style="padding: 0px !important;">
                         <label for="metacolecaoatual" class="active">Meta para a Coleção</label>
                         <input name="metacolecaoatual" class="form-control text-right valor" id="metacolecaoatual" placeholder="0,00" style="text-transform:uppercase" type="text">
-                    </section>
-                </div>
+                    </div>
 
-                <div class="form-row">
-                    <section class="col-md-3 ml-4 mb-3" style="padding: 0px !important;">
+                    <div class="col-md-5 ml-4 mb-3" style="padding: 0px !important;">
                         <label for="realizado" class="active">Meta realizada</label>
                         <input name="realizado" class="form-control text-right valor" id="realizado" placeholder="0,00" style="text-transform:uppercase" type="text">
-                    </section>
+                    </div>
                 </div>
 
                 <div class="form-row">
@@ -96,14 +94,12 @@
                 <hr />
 
                 <div class="form-row mt-4">
-                    <section class="col-md-3 ml-4">
-                        <button type="button" id="btn-agendado" data-valor="1" class="btn btn-primary pull-left confirmacao" data-dismiss="modal">Editar</button>
-                    </section>                     
-                    <div class="col-md-3 ml-4">
-                        <button type="button" id="btn-confirmado" data-valor="2" class="btn btn-default pull-left confirmacao" style="color: #fff!important;background-color: #095616;" data-dismiss="modal">Confirmado</button>
-                    </div>
                     <div class="col">
                         <button type="button" id="btn-faltou" data-valor="4" class="btn btn-default pull-right confirmacao" style="color: #fff!important;background-color: #ff3333!important;" data-dismiss="modal">Faltou</button>
+                    </div>
+                    
+                    <div class="col-md-3 ml-4">
+                        <button type="button" id="btn-confirmado" data-valor="2" class="btn btn-default pull-left confirmacao" style="color: #fff!important;background-color: #095616;" data-dismiss="modal">Confirmado</button>
                     </div>
                 </div>
             </div>

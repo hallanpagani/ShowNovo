@@ -69,6 +69,11 @@ namespace ShowRoom.Controllers
             }
 
             var obj = new PlanoDeVendas();
+            obj.marca = model.marca;
+            obj.nm_marca = model.nm_marca;
+            obj.colecao = model.colecao;
+            obj.nm_colecao = model.nm_colecao;
+            obj.valorcolecaoatual = model.valorcolecaoatual;
             return View(obj);
         }
 

@@ -16,7 +16,7 @@
 
 
     <style>
-        #datatable_tabletools span {
+        #datatable-geral span {
             display: none;
         }
 
@@ -280,7 +280,9 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.percmetaatingida)
                                 </td>
-                                <td></td>
+                                <td>
+                                    <a class="btn btn-success btn-sm btn_modal" data-id="@item.id" data-valor="@item.metacolecaoatual" data-saldo="@item.realizado">Realizar</a>
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -292,6 +294,7 @@
     </div>
 </main>
 
+@Html.Partial("Modal/_EditarAgenda")
 
 <!-- END MAIN CONTENT -->
 @section scripts {
@@ -308,6 +311,16 @@
             var y = document.getElementsByClassName('btn btn-default dropdown-toggle');
             y[0].innerHTML = val + ' <span class="caret"></span>'; // Append
         }
+
+        $('.btn_modal').on('click', function () {
+            $("#idevento").val($(this).data("id"));
+           /* $("#vl_baixa").val(parseFloat($(this).data("saldo")).toFixed(2).replace(',', '').replace('.', ','));
+            $('#vl_max').val(parseFloat($(this).data("saldo")).toFixed(2).replace(',', '').replace('.', ','));
+            $('#dt_pgto').attr("value", today);*/
+            $('.modal-editar-evento').modal('show');
+          /*  $('#vl_baixa').select();*/
+
+        });
 
         $(document).ready(function () {
 
