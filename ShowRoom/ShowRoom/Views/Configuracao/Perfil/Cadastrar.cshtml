@@ -25,9 +25,12 @@
         <h4 class="subtitulo-form">Conceder acesso as opções: </h4>
 
         <div class="form-row">
-            <div class="col-md-4 mb-6">      
+            <div class="col-md-4 mb-6">
                 @Html.CheckBoxFor(model => model.agenda)
-                @Html.LabelFor(model => model.agenda)                
+                @Html.LabelFor(model => model.agenda)
+                <br />
+                @Html.CheckBoxFor(model => model.comissao)
+                @Html.LabelFor(model => model.comissao)
                 <br />
                 @Html.CheckBoxFor(model => model.clientes)
                 @Html.LabelFor(model => model.clientes)

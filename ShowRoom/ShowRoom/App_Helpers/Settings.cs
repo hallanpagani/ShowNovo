@@ -98,6 +98,7 @@ namespace ShowRoom
         public static string MENU_CADASTRO_ESTADO = "estado";
         public static string MENU_CADASTRO_CIDADE = "cidade";
         public static string MENU_CADASTRO_COLECAO = "colecao";
+        public static string MENU_CADASTRO_COMISSAO = "comissao";
         public static string MENU_CADASTRO_GERACAO_SEMANAS = "geracao";
         public static string MENU_CADASTRO_PAIS = "pais";
         public static string MENU_CONFIGURACAO_CONTA = "conta";
