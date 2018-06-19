@@ -46,12 +46,15 @@ namespace ShowRoom.Controllers
             model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
             try
             {
-                var existe = DAL.GetObjeto<PlanoDeVendas>(string.Format("id={0}", model.id)) ?? new PlanoDeVendas();
-                if (existe.id > 0 && model.id == 0)
-                {
-                    this.AddNotification("Plano de vendas já existe!", "Alerta");
-                    return View(model);
+                if (model.id == 0) {
+                    var existe1 = DAL.GetObjeto<PlanoDeVendas>(string.Format("id_colecao={0} and id_marca={1} and id_cliente={2}", model.colecao,model.marca,model.cliente)) ?? new PlanoDeVendas();
+                    if (existe1.id > 0)
+                    {
+                        this.AddNotification("Plano de vendas já existe!", "Alerta");
+                        return View(model);
+                    }
                 }
+
                 long id = DAL.Gravar(model);
 
                 if (model.id > 0 && id == 0)
@@ -153,6 +156,19 @@ namespace ShowRoom.Controllers
 
             return View("Listar", model);
         }
+
+        [HttpPost]
+        public JsonResult GetMetaColecaoAtual(string colecao, string marca, string cliente)
+        {
+            if (colecao.Equals(""))
+            {
+                return Json(new PlanoDeVendas(), JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(DAL.GetObjeto<PlanoDeVendas>(string.Format("id_colecao={0} and id_marca={1} and id_cliente={2}", colecao, marca, cliente)), JsonRequestBehavior.AllowGet);
+        }
+
+        
 
 
     }

@@ -157,7 +157,6 @@ namespace ShowRoomModelo.model.cadastros
         [DataType(DataType.Date, ErrorMessage = "Data em formato inválido")]
         public DateTime? dt_agenda { get; set; }
 
-
         [Timestamp]
         [Column("hr_agenda")]
         [Display(Name = "Horário")]
