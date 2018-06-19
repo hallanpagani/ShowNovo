@@ -35,12 +35,7 @@ namespace ShowRoom.Controllers
         [HttpPost]
         public ActionResult Cadastrar(Cliente model)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            
-            model.razao = model.razao.ToUpper();
+            model.razao = (model.razao ?? string.Empty).ToUpper();
             model.id_usuario = Convert.ToInt64(UsuarioLogado.IdUsuario);
             model.id_conta = Convert.ToInt64(UsuarioLogado.IdConta);
             try
@@ -51,6 +46,39 @@ namespace ShowRoom.Controllers
                     this.AddNotification("Cliente já existe!", "Alerta");
                     return View();
                 }
+                if (model.status == 0)
+                {
+                    if (string.IsNullOrEmpty(model.cnpj))
+                    {
+                        ModelState.AddModelError("cnpj", "Informe o cnpj do cliente.");
+                        return View(model);
+                    }
+
+                    if (string.IsNullOrEmpty(model.razao))
+                    {
+                        ModelState.AddModelError("razao", "Informe a razão social do cliente!");
+                        return View(model);
+                    }
+
+                    if (string.IsNullOrEmpty(model.fantasia))
+                    {
+                        ModelState.AddModelError("fantasia", "Informe o nome fantasia do cliente!");
+                        return View(model);
+                    }
+                } else if (model.status == 2)
+                {
+                    if (string.IsNullOrEmpty(model.fantasia) || string.IsNullOrEmpty(model.razao))
+                    {
+                        ModelState.AddModelError("fantasia", "Informe ao menos o nome fantasia do cliente!");
+                        return View(model);
+                    }
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
                 long id = DAL.Gravar(model);
 
                 if (model.id > 0 && id == 0)

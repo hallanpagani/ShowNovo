@@ -112,6 +112,8 @@
 
         // DO NOT REMOVE : GLOBAL FUNCTIONS!
 
+        $("#realizado").maskMoney({ allowNegative: false, thousands: '.', decimal: ',', affixesStay: false });
+
         function dropdown(val) {
             var y = document.getElementsByClassName('btn btn-default dropdown-toggle');
             y[0].innerHTML = val + ' <span class="caret"></span>'; // Append
@@ -326,7 +328,7 @@
 
                 },
                 eventClick: function (calEvent) {
-                    $("#id-agenda").val(calEvent.id);
+                    $("#id-evento").val(calEvent.id);
 
 
                     $("#Marcas2").empty().append('<option value=' + calEvent.marca + '>' + calEvent.nm_marca + '</option>');
@@ -340,7 +342,7 @@
                     $("#atendeshowroom")[0].checked = calEvent.atendeshowroom;
 
 
-                    $("#link_cadastro").attr("href", "http://showroom.nextcodeapp.com.br/cadastros/editarcliente/" + calEvent.cliente);
+                   /*$("#link_cadastro").attr("href", "http://showroom.nextcodeapp.com.br/cadastros/editarcliente/" + calEvent.cliente);*/
 
 
                    /* $.ajax({
@@ -510,7 +512,7 @@
                 var Url = '@Url.Action("EditarAgenda", "Agendamento")';
                 $.ajax({
                     type: 'POST',
-                    url: Url + "?id=" + $("#id-agenda").val() + "&id_marca=" + $("#Marcas2").val() + "&id_cliente=" + $("#Clientes2").val() + "&id_colecao=" + $("#Colecoes2").val() +
+                    url: Url + "?id=" + $("#id-evento").val() + "&id_marca=" + $("#Marcas2").val() + "&id_cliente=" + $("#Clientes2").val() + "&id_colecao=" + $("#Colecoes2").val() +
                         "&dt_agenda=" + $("#dt_agenda2").val() + "&hr_agenda=" + $("#hr_agenda2").val() + "&tp_status=" + $(this).data("valor"),
                     dataType: "json",
                     contentType: "application/json",

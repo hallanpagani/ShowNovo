@@ -11,7 +11,7 @@
         <div class="modal-content">
             <div class="modal-header">
 
-                <h4 class="modal-title">Editar agendamento</h4>
+                <h4 class="modal-title">Finalizar Agendamento</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
@@ -19,46 +19,40 @@
 
                 <div class="col-md-12 mb-3">
                     <label class="" for="id_cliente2">Cliente</label>
-                    <select id="Clientes2" name="id_cliente2" class="requerido" style="width:100%"></select>
+                    <select id="Clientes2" name="id_cliente2" disabled class="requerido" style="width:100%"></select>
                 </div>
 
                 <div class="col-md-12 mb-3">
                     <label class="" for="id_marca2">Marca</label>
-                    <select id="Marcas2" name="id_marca2" class="requerido" style="width:100%"></select>
+                    <select id="Marcas2" name="id_marca2" disabled class="requerido" style="width:100%"></select>
                 </div>
 
                 <div class="col-md-12 mb-3">
-                    <label class="" for="id_colecao2">Colecao</label>
-                    <select id="Colecoes2" name="id_colecao2" class="requerido" style="width:100%"></select>
+                    <label class="" for="id_colecao2">Coleção</label>
+                    <select id="Colecoes2" name="id_colecao2" disabled class="requerido" style="width:100%"></select>
                 </div>
 
                 <div class="form-row">
-                    <section class="col-md-3 ml-4 mb-3" style="padding: 0px !important;">
+                    <div class="col-md-5 ml-4 mb-3" style="padding: 0px !important;">
                         <label for="metacolecaoatual" class="active">Meta para a Coleção</label>
-                        <input name="metacolecaoatual" class="form-control text-right valor" id="metacolecaoatual" placeholder="0,00" style="text-transform:uppercase" type="text">
-                    </section>
+                        <input name="metacolecaoatual" disabled class="form-control text-right valor" id="metacolecaoatual" placeholder="0,00" style="text-transform:uppercase" type="text">
+                    </div>
+
+                    <div class="col-md-5 ml-4 mb-3" style="padding: 0px !important;">
+                        <label for="realizado" class="active">R$ Realizado</label>
+                        <input name="realizado" class="form-control text-right valor" id="realizado" placeholder="0,00" style="text-transform:uppercase" type="text" autofocus>
+                    </div>
                 </div>
 
                 <div class="form-row">
                     <div class="col-md-5 ml-4 mb-3" style="padding: 0px !important;">
                         <label for="dt_agenda2">Data agendada</label>
-                        <input length="10" name="dt_agenda2" class="form-control " id="dt_agenda2" maxlength="5" data_dateformat="HH:MM" type="text" value="">
+                        <input length="10"  disabled name="dt_agenda2" class="form-control " id="dt_agenda2" maxlength="5" data_dateformat="HH:MM" type="text" value="" style="">
                     </div>
 
                     <div class="col-md-5 ml-4 mb-3">
                         <label for="hr_agenda2">Horário</label>
-                        <input length="10" name="hr_agenda2" class="form-control " id="hr_agenda2" maxlength="5" data_dateformat="HH:MM" type="text" value="">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="col-md-3 ml-4" style="padding: 0px !important;">
-                        <label class="" for="is_secao">Sessão</label>
-                        <select class="form-control" id="is_secao" name="is_secao">
-                            <option value="1"><span style="background-color: #0b51c1;"></span>Agendado</option>
-                            <option value="2"><span style="background-color: #095616;"></span>Confirmado</option>
-                            <option value="4"><span style="background-color: #ff3333;"></span>Faltou</option>
-                        </select>
+                        <input length="10"  disabled name="hr_agenda2" class="form-control " id="hr_agenda2" maxlength="5" data_dateformat="HH:MM" type="text" value="">
                     </div>
                 </div>
 
@@ -66,21 +60,21 @@
                 <div class="form-row mt-3">
                     <div class="col-md-3 ml-4">
                         <label class="checkbox">
-                            <input type="checkbox" name="reservasuite" id="reservasuite">
+                            <input type="checkbox"  disabled name="reservasuite" id="reservasuite">
                             <i></i>Reserva Suíte?
                         </label>
                     </div>
 
                     <div class="col-md-3 ml-2">
                         <label class="checkbox">
-                            <input type="checkbox" name="clientenovo" id="clientenovo">
+                            <input type="checkbox"  disabled name="clientenovo" id="clientenovo">
                             <i></i>Cliente Novo?
                         </label>
                     </div>
 
                     <div class="col-md-4 ml-2">
                         <label class="checkbox">
-                            <input type="checkbox" name="atendeshowroom" id="atendeshowroom">
+                            <input type="checkbox" disabled name="atendeshowroom" id="atendeshowroom">
                             <i></i>Atende ShowRoom?
                         </label>
                     </div>
@@ -89,23 +83,23 @@
                 <hr />
 
                 <div class="form-row mt-4">
-                    <section class="col-md-3 ml-4">
-                        <button type="button" id="btn-agendado" data-valor="1" class="btn btn-primary pull-left confirmacao" data-dismiss="modal">Editar</button>
-                    </section>                     
                     <div class="col-md-3 ml-4">
-                        <button type="button" id="btn-confirmado" data-valor="2" class="btn btn-default pull-left confirmacao" style="color: #fff!important;background-color: #095616;" data-dismiss="modal">Confirmado</button>
+                        <button type="button" id="btn-faltou" data-valor="4" class="btn btn-default pull-left faltou" style="color: #fff!important;background-color: #ff3333!important;" data-dismiss="modal">Faltou</button>
                     </div>
-                    <div class="col">
-                        <button type="button" id="btn-faltou" data-valor="4" class="btn btn-default pull-right confirmacao" style="color: #fff!important;background-color: #ff3333!important;" data-dismiss="modal">Faltou</button>
+                    <div class="col-md-4 ml-4">
+                        <button type="button" id="btn-atendido" data-valor="3" class="btn btn-purple pull-right confirmacao" style="color: #fff!important;margin:0px !important" data-dismiss="modal">Atendido</button>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="button" id="btn-confirmado" data-valor="2" class="btn btn-default pull-right confirmacao" style="color: #fff!important;background-color: #095616 !important;margin:0px !important" data-dismiss="modal">Realizado</button>
                     </div>
                 </div>
             </div>
 
             <div class="modal-footer">
                 <button type="button" id="btn-cancelar-edicao" class="btn btn-warning pull-left" data-dismiss="modal" style="color: #6d6565 !important;">Fechar</button>
-                <a href="#" id="link_cadastro" class="btn btn-primary pull-left" target="_blank">Ir ao Cadastro</a>
-                <!--  <button type="button" id="btn-exluir" data-valor="999" class="btn btn-danger confirmacao" data-dismiss="modal">Excluir</button> -->
-                <input id="id-agenda" style="display:none;" />
+                <!-- <a href="#" id="link_cadastro" class="btn btn-primary pull-left" target="_blank">Ir ao Cadastro</a> -->
+                <!-- <button type="button" id="btn-exluir" data-valor="999" class="btn btn-danger confirmacao" data-dismiss="modal">Excluir</button> -->
+                <input id="id-evento" style="display:none;" />
 
             </div>
         </div>

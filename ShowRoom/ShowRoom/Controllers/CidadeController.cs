@@ -42,7 +42,7 @@ namespace ShowRoom.Controllers
             model.nome = model.nome.ToUpper();
             try
             {
-                var existe = DAL.GetObjeto<Cidade>(string.Format("nome='{1}'", model.nome)) ?? new Cidade();
+                var existe = DAL.GetObjeto<Cidade>(string.Format("nome='{0}' and id_uf='{1}'", model.nome, model.id_uf)) ?? new Cidade();
                 if (existe.id > 0 && model.id == 0)
                 {
                     this.AddNotification("Cidade já existe!", "Alerta");

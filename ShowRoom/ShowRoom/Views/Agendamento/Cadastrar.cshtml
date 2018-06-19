@@ -94,14 +94,14 @@
 
         <div class="col-md-3 mb-3">
             <label for="dt_agenda">Data</label>
-            @Html.TextBox("dt_agenda", "", new { @maxlength = "10", @data_dateformat = "dd/mm/yy", @onkeypress = "mascaraDT(this, DATA)", @autocomplete = "off", @placeholder = "DD/MM/YYYY", @filtrar = "", @onclick = "this.focus();this.select()", @class = "form-control", @data_toggle = "datepicker", @style = "text-align: center;" })
+            @Html.TextBoxFor(x => x.dt_agenda, "{0:dd\\/MM\\/yyyy}", new { @maxlength = "10", @data_dateformat = "dd/mm/yy", @onkeypress = "mascaraDT(this, DATA)", @autocomplete = "off", @placeholder = "DD/MM/YYYY", @filtrar = "", @onclick = "this.focus();this.select()", @class = "form-control", @data_toggle = "datepicker", @style = "text-align: center;" })
             @Html.ValidationMessageFor(model => model.dt_agenda, "", new { @class = "text-danger" })
         </div>
 
         <div class="col-md-3 mb-3">
             <label for="hr_agenda">No horário</label>
-            @Html.TextBox("hr_agenda", "", new { @maxlength = "5", @data_dateformat = "dd/mm/yy", @placeholder = "HH:MM", @autocomplete = "off", @class = "form-control requerido",  @style = "text-transform:uppercase;text-align: center;",  @type = "text" })
-            @Html.ValidationMessageFor(model => model.hr_agenda, "", new { @class = "text-danger"  })
+            @Html.TextBoxFor(x => x.hr_agenda, "{0:hh\\:mm}", new { @maxlength = "5", @data_dateformat = "dd/mm/yy", @placeholder = "HH:MM", @autocomplete = "off", @class = "form-control requerido", @style = "text-transform:uppercase;text-align: center;", @type = "text" })
+            @Html.ValidationMessageFor(model => model.hr_agenda, "", new { @class = "text-danger" })
         </div>
 
     </div>
@@ -161,7 +161,10 @@
     <script type="text/javascript">
 
         $('[data-toggle="datepicker"]').datepicker({ language: 'pt-BR', showButtonPanel: true, autoHide:true});
-        $("#metacolecaoatual").maskMoney({ allowNegative: false, thousands: '', decimal: ',', affixesStay: false });
+
+            $("#metacolecaoatual").val((parseFloat($("#metacolecaoatual").val())).toFixed(2).replace(',', '').replace('.', ','));
+            $("#metacolecaoatual").maskMoney({ allowNegative: false, thousands: '.', decimal: ',', affixesStay: false });
+
 
             $(document).ready(function () {
 
@@ -179,7 +182,7 @@
                     console.log($('#marca').select2('data')[0].text);
                     $('#nm_marca').val($('#marca').select2('data')[0].text); // what you would like to happen
                 });
-                
+
                 $("#metacolecaoatual").click(function () {
                     $(this).select();
                 });
@@ -281,6 +284,24 @@
                     var htm = '<mark><ins><strong>' + linkText + '</strong></ins></mark>';
 
                     $this.html(htm);
+                });
+
+                $('#colecao').on("change", function (e) {
+
+                    $.ajax({
+                        url: '@Url.Action("GetMetaColecaoAtual", "PlanoDeVendas")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: { colecao: $('#colecao').select2('data')[0].id, marca: $('#marca').select2('data')[0].id, cliente: $('#cliente').select2('data')[0].id  }
+                    }).done(function (Dados) {
+
+                        $("#metacolecaoatual").val(Dados.valorcolecaoatual);
+                        $("#metacolecaoatual").val((parseFloat($("#metacolecaoatual").val())).toFixed(2).replace(',', '').replace('.', ','));
+                       
+
+
+                    });
+
                 });
 
 

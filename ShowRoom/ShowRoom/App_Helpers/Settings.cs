@@ -88,7 +88,8 @@ namespace ShowRoom
         }
 
         // Constante para guardar a representação dos menus.
-        public static string MENU_AGENDA_CADASTRAR = "agenda";        
+        public static string MENU_AGENDA_CADASTRAR = "agenda";
+        public static string MENU_PLANODEVENDAS_CADASTRAR = "planodevendas";
         public static string MENU_CADASTRO_CLIENTES = "clientes";
         public static string MENU_CADASTRO_VENDEDORES = "vendedores";
         public static string MENU_CADASTRO_SHOWROOM = "showroom";

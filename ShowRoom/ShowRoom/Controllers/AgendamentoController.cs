@@ -122,7 +122,7 @@ namespace ShowRoom.Controllers
             return Json(list, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult ListarAgenda(string start, string end, int? id_marca, int? id_colecao, int? id_cliente, int? id_cidade, int? id_grupo, string tp_calendario)
+        public ActionResult ListarAgenda(string start, string end, int? id_marca, int? id_colecao, int? id_cliente, int? id_cidade, int? id_grupo, string tp_status)
         {
             //código para trazer os eventos do mês
             DateTime dataInicial = Convert.ToDateTime(start);
@@ -132,8 +132,7 @@ namespace ShowRoom.Controllers
                 dataFinal = dataInicial;
             }
 
-            List<Agendamento> eventosDb = AgendamentoDAL.GetAgendaEventos(Convert.ToInt64(UsuarioLogado.IdConta), dataInicial.Ticks, dataFinal.Ticks, id_marca , id_colecao, id_cliente, id_cidade, id_grupo).
-                Where(item => !(item.tp_status == 999)).ToList();
+            List<Agendamento> eventosDb = AgendamentoDAL.GetAgendaEventos(Convert.ToInt64(UsuarioLogado.IdConta), dataInicial.Ticks, dataFinal.Ticks, id_marca , id_colecao, id_cliente, id_cidade, id_grupo).ToList();
 
             var obj = new List<int>();
             obj.Add(eventosDb.Count());
@@ -171,7 +170,7 @@ namespace ShowRoom.Controllers
             return Json(eventos.ToList(), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult EditarAgenda(string id, string id_marca, string id_cliente, string id_colecao, string dt_agenda, string hr_agenda, string tp_status)
+        public ActionResult EditarAgenda(string id, string id_marca, string id_cliente, string id_colecao, string dt_agenda, string hr_agenda, string tp_status, string realizado)
         {
 
             // if (Convert.ToInt32(tp_status) == 999) /// excluir
@@ -183,13 +182,14 @@ namespace ShowRoom.Controllers
 
             var obj = new Agendamento
             {
-                id = Convert.ToInt32(id),
-                cliente = Convert.ToInt32(id_cliente),
-                marca = Convert.ToInt32(id_marca),
-                colecao = Convert.ToInt32(id_colecao),
+                id = Convert.ToInt64(id),
+                cliente = Convert.ToInt64(id_cliente),
+                marca = Convert.ToInt64(id_marca),
+                colecao = Convert.ToInt64(id_colecao),
                 dt_agenda = Convert.ToDateTime(dt_agenda),
                 hr_agenda = hr_agenda,
-                tp_status = Convert.ToInt32(tp_status)
+                tp_status = Convert.ToInt32(tp_status),
+                realizado = Convert.ToDecimal(realizado)
             };
 
             var Respostas = DAL.Gravar(obj);
@@ -266,6 +266,14 @@ namespace ShowRoom.Controllers
             return View("ListarAgendaGeral", model);
         }
 
+        [HttpPost]
+        public JsonResult GetAgendamentoPorIdJson(int id)
+        {
+            if (id == 0) {
+                return Json(new Agendamento(), JsonRequestBehavior.AllowGet);
+            }
 
+            return Json(DAL.GetObjeto<Agendamento>(string.Format("id={0}", id)), JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -1,0 +1,215 @@
+﻿@model ShowRoomModelo.model.cadastros.PlanoDeVendas
+@using ShowRoom.App_Helpers.Componentes
+
+@{
+    ViewBag.Title = "Cadastro de plano de vendas";
+    ViewBag.SubTitle = "Cadastro de plano de vendas";
+    ViewBag.LinkText = "Consultar";
+    ViewBag.ActionName = "Consultar";
+    ViewBag.Class = "btn btn-primary waves-effect waves-light";
+}
+
+@section css{
+    <style>
+        i[disabled], i:disabled {
+            background-color: lightgray !important;
+        }
+
+        span.select2-hidden-accessible {
+            position: absolute;
+            left: -9999px;
+        }
+    </style>
+    <link rel="stylesheet" href="~/Scripts/assets/plugins/clockpicker/clockpicker.css">
+}
+
+@using (Html.BeginForm("Cadastrar", "PlanoDeVendas", FormMethod.Post, new { @class = "form-horizontal smart-form", @id = "planodevendas", @autocomplete="off" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.id)
+
+
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label class="" for="cliente">Cliente</label>
+            <select id="cliente" name="cliente" class="requerido" style="width:100%">
+                @if ((Model.cliente != 0) && (Model.nm_cliente != null))
+                {
+                    <option value="@Model.cliente">@Model.nm_cliente</option>
+                }
+            </select>
+            @Html.HiddenFor(model => model.nm_cliente)
+            @Html.ValidationMessageFor(model => model.cliente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label class="" for="marca">Marca</label>
+            <select id="marca" name="marca" class="requerido" style="width:100%">
+                @if ((Model.marca != 0) && (Model.nm_marca != null))
+                {
+                    <option value="@Model.marca">@Model.nm_marca</option>
+                }
+            </select>
+            @Html.HiddenFor(model => model.nm_marca)
+            @Html.ValidationMessageFor(model => model.marca, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label class="" for="colecao">Coleção</label>
+            <select id="colecao" name="colecao" class="requerido" style="width:100%">
+                @if ((Model.colecao != 0) && (Model.nm_colecao != null))
+                {
+                    <option value="@Model.colecao">@Model.nm_colecao</option>
+                }
+            </select>
+            @Html.HiddenFor(model => model.nm_colecao)
+            @Html.ValidationMessageFor(model => model.colecao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <section class="col-md-3 mb-3">
+            @Html.LabelFor(model => model.valorcolecaoanterior)
+            @Html.TextBoxPadraoFor(model => model.valorcolecaoanterior, new { @disabled = "true" })
+            @Html.ValidationMessageFor(model => model.valorcolecaoanterior, "", new { @class = "text-danger" })
+        </section>
+
+        <section class="col-md-3 mb-3">
+            @Html.LabelFor(model => model.valorcolecaoatual)
+            @Html.TextBoxPadraoFor(model => model.valorcolecaoatual, new { @maxlength = "15" } )
+            @Html.ValidationMessageFor(model => model.valorcolecaoatual, "", new { @class = "text-danger" })
+        </section>
+    </div>
+
+    <footer>
+        <div class="form-group">
+            <div class="">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </footer>
+
+}
+
+
+@section Scripts {
+
+    <script src="~/Scripts/assets/plugins/select2/i18n/pt-BR.js" type="text/javascript"></script>
+    <script src="~/Scripts/terceiros/data.js" type="text/javascript"></script>
+    <script src="~/Scripts/terceiros/maskmoney.min.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        
+        $("#valorcolecaoanterior").maskMoney({ allowNegative: false, thousands: '', decimal: ',', affixesStay: false });
+        $("#valorcolecaoatual").maskMoney({ allowNegative: false, thousands: '', decimal: ',', affixesStay: false });
+
+            $(document).ready(function () {
+
+                $('#colecao').on("select2:select", function (e) {
+                    console.log($('#colecao').select2('data')[0].text);
+                    $('#nm_colecao').val($('#colecao').select2('data')[0].text); // what you would like to happen
+                });
+
+                $('#cliente').on("select2:select", function (e) {
+                    console.log($('#cliente').select2('data')[0].text);
+                    $('#nm_cliente').val($('#cliente').select2('data')[0].text); // what you would like to happen
+                });
+
+                $('#marca').on("select2:select", function (e) {
+                    console.log($('#marca').select2('data')[0].text);
+                    $('#nm_marca').val($('#marca').select2('data')[0].text); // what you would like to happen
+                });
+                
+                $("#valorcolecaoatual").click(function () {
+                    $(this).select();
+                });
+
+                $('#Servicos').on("change", function (e) {
+                    var data = $(this).select2('data');
+                    var res = data[0].text.split("-");
+                    var moeda = res[1].trim().replace(".", ",").replace(".", "");
+                    $('#vl_servico').val(moeda);
+                });
+
+                var Url = '@Url.Action("GetCliente", "Cliente")';
+                $("#cliente").select2({
+                    placeholder: "Selecione um cliente",
+                    minimumInputLength: 0,
+                    language: "pt-BR",
+                    ajax: {
+                        dataType: "json",
+                        url: Url,
+                        data: function (params) {
+                            return {
+                                term: params.term // search term
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data, function (obj) {
+                                    return { id: obj.id, text: obj.text };
+                                })
+                            };
+                        },
+                        cache: true
+                    }
+                });
+
+                var Url = '@Url.Action("GetMarcas", "Marcas")';
+                $("#marca").select2({
+                    placeholder: "Selecione um marca",
+                    minimumInputLength: 0,
+                    language: "pt-BR",
+                    ajax: {
+                        dataType: "json",
+                        url: Url,
+                        data: function (params) {
+                            return {
+                                term: params.term // search term
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data, function (obj) {
+                                    return { id: obj.id, text: obj.text };
+                                })
+                            };
+                        },
+                        cache: true
+                    }
+                });
+
+                var Url = '@Url.Action("GetColecao", "Colecao")';
+                $("#colecao").select2({
+                    placeholder: "Selecione um coleção",
+                    minimumInputLength: 0,
+                    language: "pt-BR",
+                    ajax: {
+                        dataType: "json",
+                        url: Url,
+                        data: function (params) {
+                            return {
+                                term: params.term // search term
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data, function (obj) {
+                                    return { id: obj.id, text: obj.text };
+                                })
+                            };
+                        },
+                        cache: true
+                    }
+                });
+        });
+
+    </script>
+}

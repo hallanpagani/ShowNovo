@@ -18,19 +18,19 @@ namespace ShowRoomModelo.model.cadastros
 
         [Column("razao")]
         [Display(Name = "Razão Social")]
-        [Required(ErrorMessage = "Campo razão social é obrigatório!", AllowEmptyStrings = false)]
+      //  [Required(ErrorMessage = "Campo razão social é obrigatório!", AllowEmptyStrings = false)]
         [MaxLength(100, ErrorMessage = "Campo 'Razão Social' deve ter no máximo 100 caracteres!")]
         public string razao { get; set; }
 
         [Column("fantasia")]
         [Display(Name = "Nome Fantasia")]
-        [Required(ErrorMessage = "Campo fantasia é obrigatório!", AllowEmptyStrings = false)]
+      //  [Required(ErrorMessage = "Campo fantasia é obrigatório!", AllowEmptyStrings = false)]
         [MaxLength(100, ErrorMessage = "Campo 'Nome Fantasia' deve ter no máximo 100 caracteres!")]
         public string fantasia { get; set; }
 
         [Column("cnpj")]
         [Display(Name = "CNPJ")]
-        [Required(ErrorMessage = "Campo 'CNPJ do cliente' é obrigatório!", AllowEmptyStrings = false)]
+      //  [Required(ErrorMessage = "Campo 'CNPJ do cliente' é obrigatório!", AllowEmptyStrings = false)]
         public string cnpj { get; set; }
 
         [Column("ie")]

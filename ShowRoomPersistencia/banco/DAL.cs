@@ -294,7 +294,7 @@ namespace ShowRoomPersistencia.banco
                         if ((valor != null) && (!(valor is System.DBNull)))
                         {
                             property.SetValue(item,
-                                        valor.GetType().Name.Equals("TimeSpan") ? valor.ToString() : valor.GetType().Name.Equals("SByte") ? (((sbyte)valor == 1) ? true : false) : valor.GetType().Name.Equals("Boolean") ? (((Boolean)valor == true) ? 1 : 0) : valor, null);
+                                        valor.GetType().Name.Equals("TimeSpan") ? valor.ToString() : valor.GetType().Name.Equals("SByte") ? (((sbyte)valor == 1) ? true : false) : valor.GetType().Name.Equals("Boolean") ? (((Boolean)valor == true) ? true : false) : valor, null);
                         }
                     }
             }
@@ -346,7 +346,7 @@ namespace ShowRoomPersistencia.banco
                     if ((valor != null) && (!(valor is System.DBNull)))
                     {
                         property.SetValue(item,
-                            valor.GetType().Name.Equals("TimeSpan") ? valor.ToString() : valor.GetType().Name.Equals("SByte") ? (((sbyte)valor == 1) ? true : false) : valor.GetType().Name.Equals("Boolean") ? (((Boolean)valor == true) ? 1 : 0) : valor, null);
+                            valor.GetType().Name.Equals("TimeSpan") ? valor.ToString() : valor.GetType().Name.Equals("SByte") ? (((sbyte)valor == 1) ? true : false) : valor.GetType().Name.Equals("Boolean") ? (((Boolean)valor == true) ? true : false) : valor, null);
                     }
                 }
             }

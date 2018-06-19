@@ -877,7 +877,7 @@ a.badge-light {
 
 .btn-success,
 .btn-success.dropdown-toggle {
-    background-color: #0ad251 !important;
+    background-color: #237741 !important;
 }
 
     .btn-success:focus,
@@ -885,7 +885,7 @@ a.badge-light {
     .btn-success:hover,
     .btn-success.dropdown-toggle:hover,
     .btn-success.dropdown-toggle:focus {
-        background-color: #0adc55 !important;
+        background-color: #51ab71 !important;
     }
 
     .btn-success.disabled,
@@ -2243,7 +2243,7 @@ a.badge-light {
         }
 
     .card .card-body {
-        padding: 2.083rem;
+        padding: 2.083rem 2.083rem 0.883rem 2.083rem;
         font-weight: 400;
     }
 
@@ -3821,7 +3821,7 @@ textarea.form-control {
 }
 
 .form-control:disabled {
-    text-decoration: line-through;
+    /* text-decoration: line-through; */
 }
 
 input[type=date], input[type=datetime-local], input[type=email], input[type=number], input[type=password], input[type=search-md], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], textarea.md-textarea {

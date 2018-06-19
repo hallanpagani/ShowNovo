@@ -13,281 +13,296 @@
 @section css{
     <link rel="stylesheet" href="~/content/assets/plugins/datatables/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="~/content/assets/plugins/datatables/css/responsive.bootstrap4.min.css">
+
+
+    <style>
+        #datatable-geral span {
+            display: none;
+        }
+
+        .smart-form .inline-group .checkbox, .smart-form .inline-group .radio {
+            margin-right: 9px !important;
+        }
+    </style>
+
 }
 
-<main class="main-content p-5" role="main">
-    <div class="row mb-4">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-body">
-                    <form action="/Agendamento/listaragendageral" class="smart-form" id="pesquisar" method="post">
-                        <div class="form-row">
-                            <div class="col-md-3 mb-3">
 
-                                <label class="" for="filtro_data">Período de</label>
-                                <script>
-                                    function Limpar() {
-                                        document.getElementById('datainicio').value = "";
-                                        document.getElementById('datafinal').value = "";
-                                    }
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <form action="/Agendamento/listaragendageral" class="smart-form" id="pesquisar" method="post">
+                    <div class="form-row">
+                        <div class="col-md-3 mb-3">
 
-                                    function SetDtInicial(dia, mes, ano) {
-                                        document.getElementById('datainicio').value = preencheZerosInt(dia, 2) + "/" + preencheZerosInt(mes, 2) + "/" + preencheZerosInt(ano, 4);
-                                    }
+                            <label class="" for="filtro_data">Período de</label>
+                            <script>
+                                function Limpar() {
+                                    document.getElementById('datainicio').value = "";
+                                    document.getElementById('datafinal').value = "";
+                                }
 
-                                    function SetDtFinal(dia, mes, ano) {
-                                        document.getElementById('datafinal').value = preencheZerosInt(dia, 2) + "/" + preencheZerosInt(mes, 2) + "/" + preencheZerosInt(ano, 4);
-                                    }
+                                function SetDtInicial(dia, mes, ano) {
+                                    document.getElementById('datainicio').value = preencheZerosInt(dia, 2) + "/" + preencheZerosInt(mes, 2) + "/" + preencheZerosInt(ano, 4);
+                                }
 
-                                    function SetHoje() {
-                                        var data = new Date();
+                                function SetDtFinal(dia, mes, ano) {
+                                    document.getElementById('datafinal').value = preencheZerosInt(dia, 2) + "/" + preencheZerosInt(mes, 2) + "/" + preencheZerosInt(ano, 4);
+                                }
 
-                                        SetDtInicial(data.getDate(), data.getMonth() + 1, data.getFullYear());
-                                        SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
-                                    }
+                                function SetHoje() {
+                                    var data = new Date();
 
-                                    function SetOntem() {
-                                        var data = new Date();
+                                    SetDtInicial(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                    SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                }
 
-                                        data.setDate(data.getDate() - 1);
+                                function SetOntem() {
+                                    var data = new Date();
 
-                                        SetDtInicial(data.getDate(), data.getMonth() + 1, data.getFullYear());
-                                        SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
-                                    }
+                                    data.setDate(data.getDate() - 1);
 
-                                    function SetAmanha() {
-                                        var data = new Date();
+                                    SetDtInicial(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                    SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                }
 
-                                        data.setDate(data.getDate() + 1);
+                                function SetAmanha() {
+                                    var data = new Date();
 
-                                        SetDtInicial(data.getDate(), data.getMonth() + 1, data.getFullYear());
-                                        SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
-                                    }
+                                    data.setDate(data.getDate() + 1);
 
-                                    function SetMesPassado() {
-                                        //Inicial
-                                        var data = new Date();
-                                        data.setMonth(data.getMonth() - 1);
-                                        SetDtInicial(1, data.getMonth() + 1, data.getFullYear());
-                                        //Final
-                                        data = new Date(data.getFullYear(), data.getMonth() + 1, 0);
-                                        SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
-                                    }
+                                    SetDtInicial(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                    SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                }
 
-                                    function SetMesAtual() {
-                                        //Inicial
-                                        var data = new Date();
-                                        SetDtInicial(1, data.getMonth() + 1, data.getFullYear());
-                                        //Final
-                                        data = new Date(data.getFullYear(), data.getMonth() + 1, 0);
-                                        SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
-                                    }
+                                function SetMesPassado() {
+                                    //Inicial
+                                    var data = new Date();
+                                    data.setMonth(data.getMonth() - 1);
+                                    SetDtInicial(1, data.getMonth() + 1, data.getFullYear());
+                                    //Final
+                                    data = new Date(data.getFullYear(), data.getMonth() + 1, 0);
+                                    SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                }
 
-                                    function SetProximoMes() {
-                                        //Inicial
-                                        var data = new Date();
-                                        data.setMonth(data.getMonth() + 1);
-                                        SetDtInicial(1, data.getMonth() + 1, data.getFullYear());
-                                        //Final
-                                        data = new Date(data.getFullYear(), data.getMonth() + 1, 0);
-                                        SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
-                                    }
+                                function SetMesAtual() {
+                                    //Inicial
+                                    var data = new Date();
+                                    SetDtInicial(1, data.getMonth() + 1, data.getFullYear());
+                                    //Final
+                                    data = new Date(data.getFullYear(), data.getMonth() + 1, 0);
+                                    SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                }
 
-                                    function preencheZeros(valor, tamanho) {
-                                        var result = valor;
+                                function SetProximoMes() {
+                                    //Inicial
+                                    var data = new Date();
+                                    data.setMonth(data.getMonth() + 1);
+                                    SetDtInicial(1, data.getMonth() + 1, data.getFullYear());
+                                    //Final
+                                    data = new Date(data.getFullYear(), data.getMonth() + 1, 0);
+                                    SetDtFinal(data.getDate(), data.getMonth() + 1, data.getFullYear());
+                                }
 
-                                        if (result != '') {
-                                            var contador = result.length;
+                                function preencheZeros(valor, tamanho) {
+                                    var result = valor;
 
-                                            if (result.length < tamanho) {
-                                                do {
-                                                    result = "0" + result;
-                                                    contador += 1;
-                                                } while (contador < tamanho)
-                                            }
+                                    if (result != '') {
+                                        var contador = result.length;
+
+                                        if (result.length < tamanho) {
+                                            do {
+                                                result = "0" + result;
+                                                contador += 1;
+                                            } while (contador < tamanho)
                                         }
-
-                                        return result;
                                     }
 
-                                    function preencheZerosInt(valor, tamanho) {
-                                        return preencheZeros(valor.toString(), tamanho);
-                                    }
+                                    return result;
+                                }
 
-                                </script>
+                                function preencheZerosInt(valor, tamanho) {
+                                    return preencheZeros(valor.toString(), tamanho);
+                                }
 
-                                <div class="form-row">
-                                    <div class="col-md-5">
-                                        @Html.TextBoxPadraoFor(model => model.DataInicio, new { @filtrar = "", @onclick = "this.focus();this.select()" })
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="input-group">
-                                            @Html.TextBoxPadraoFor(model => model.DataFinal, new { @filtrar = "", @onclick = "this.focus();this.select()" })
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary dropdown-toggle waves-effect waves-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="#" onclick="SetOntem();">Ontem</a>
-                                                    <a class="dropdown-item" href="#" onclick="SetHoje();">Hoje</a>
-                                                    <a class="dropdown-item" href="#" onclick="SetAmanha();">Amanhã</a>
-                                                    <div role="separator" class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#" onclick="SetMesPassado();">Mês passado</a>
-                                                    <a class="dropdown-item" href="#" onclick="SetMesAtual();">Mês atual</a>
-                                                    <a class="dropdown-item" href="#" onclick="SetProximoMes();">Próximo mês</a>
-                                                    <div role="separator" class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#" onclick="Limpar();">Limpar</a>
-                                                </div>
+                            </script>
+
+                            <div class="form-row">
+                                <div class="col-md-5">
+                                    @Html.TextBoxPadraoFor(model => model.DataInicio, new { @filtrar = "", @onclick = "this.focus();this.select()" })
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="input-group">
+                                        @Html.TextBoxPadraoFor(model => model.DataFinal, new { @filtrar = "", @onclick = "this.focus();this.select()" })
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary dropdown-toggle waves-effect waves-light" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#" onclick="SetOntem();">Ontem</a>
+                                                <a class="dropdown-item" href="#" onclick="SetHoje();">Hoje</a>
+                                                <a class="dropdown-item" href="#" onclick="SetAmanha();">Amanhã</a>
+                                                <div role="separator" class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#" onclick="SetMesPassado();">Mês passado</a>
+                                                <a class="dropdown-item" href="#" onclick="SetMesAtual();">Mês atual</a>
+                                                <a class="dropdown-item" href="#" onclick="SetProximoMes();">Próximo mês</a>
+                                                <div role="separator" class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#" onclick="Limpar();">Limpar</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-3 mb-3">
-                                <label class="" for="filtro_cliente">Cliente</label>
-                                <select id="Clientes" name="filtro_cliente" class="requerido" style="width:100%">
-                                    @if (@Model.filtro_cliente != 0)
-                                    {
-                                        <option value="@Model.filtro_cliente">@Model.filtro_nm_cliente</option>
-                                    }
-                                </select>
-                                @Html.HiddenFor(model => model.filtro_nm_cliente)
-                            </div>
-
-                            <div class="col-md-3 mb-3">
-                                <label class="" for="filtro_marca">Marcas</label>
-                                <select id="Marcas" name="filtro_marca" class="requerido" style="width:100%">
-                                    @if (@Model.filtro_marca != 0)
-                                    {
-                                        <option value="@Model.filtro_marca">@Model.filtro_nm_marca</option>
-                                    }
-                                </select>
-                                @Html.HiddenFor(model => model.filtro_nm_marca)
-                            </div>
-
-                            <div class="col-md-3 mb-3">
-                                <label class="" for="filtro_colecao">Coleção</label>
-                                <select id="Colecoes" name="filtro_colecao" class="requerido" style="width:100%">
-                                    @if (@Model.filtro_colecao != 0)
-                                    {
-                                        <option value="@Model.filtro_colecao">@Model.filtro_nm_colecao</option>
-                                    }
-                                </select>
-                                @Html.HiddenFor(model => model.filtro_nm_colecao)
-                            </div>
-                        </div>
-                        <div class="form-row">
-                           
-
-                            <div class="col-md-1 mb-3">
-                                @Html.BotaoFiltrar()
-                            </div>
-
                         </div>
 
-                    </form>
-                </div>
+                        <div class="col-md-3 mb-3">
+                            <label class="" for="filtro_cliente">Cliente</label>
+                            <select id="Clientes" name="filtro_cliente" class="requerido" style="width:100%">
+                                @if (@Model.filtro_cliente != 0)
+                                {
+                                    <option value="@Model.filtro_cliente">@Model.filtro_nm_cliente</option>
+                                }
+                            </select>
+                            @Html.HiddenFor(model => model.filtro_nm_cliente)
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label class="" for="filtro_marca">Marcas</label>
+                            <select id="Marcas" name="filtro_marca" class="requerido" style="width:100%">
+                                @if (@Model.filtro_marca != 0)
+                                {
+                                    <option value="@Model.filtro_marca">@Model.filtro_nm_marca</option>
+                                }
+                            </select>
+                            @Html.HiddenFor(model => model.filtro_nm_marca)
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <label class="" for="filtro_colecao">Coleção</label>
+                            <select id="Colecoes" name="filtro_colecao" class="requerido" style="width:100%">
+                                @if (@Model.filtro_colecao != 0)
+                                {
+                                    <option value="@Model.filtro_colecao">@Model.filtro_nm_colecao</option>
+                                }
+                            </select>
+                            @Html.HiddenFor(model => model.filtro_nm_colecao)
+                        </div>
+                    </div>
+                    <div class="form-row">
+
+
+                        <div class="col-md-1 mb-3">
+                            @Html.BotaoFiltrar()
+                        </div>
+
+                    </div>
+
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <a class="btn btn btn-dark waves-effect waves-light" href="~/Agendamento/Cadastrar">Cadastrar</a>
-        </div>
+<div class="row">
+    <div class="col-md-12">
+        <a class="btn btn btn-dark waves-effect waves-light" href="~/Agendamento/Cadastrar">Cadastrar</a>
     </div>
+</div>
 
-    <div class="row mb-4">
-        <div class="col-md-12">
-            <div class="card">
+<div class="row mb-4">
+    <div class="col-md-12">
+        <div class="card">
 
 
-                <table id="datatable-geral" class="table table-datatable table-striped">
-                    <thead>
+            <table id="datatable-geral" class="table table-datatable">
+                <thead>
+                    <tr>
+                        <th>
+                            Dt.Agenda
+                        </th>
+                        <th>
+                            Horário
+                        </th>
+                        <th>
+                            Cliente
+                        </th>
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Coleção
+                        </th>
+                        <th>
+                            Marca
+                        </th>
+                        <th>
+                            Meta.Coleção
+                        </th>
+                        <th>
+                            Realizado
+                        </th>
+                        <th>
+                            %Atingido
+                        </th>
+                        <th>
+                            Ação
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ListarAgenda)
+                    {
                         <tr>
-                            <th>
-                                Cliente
-                            </th>
-                            <th>
-                                Status
-                            </th>
-                            <th>
-                                Dt.Agenda
-                            </th>
-                            <th>
-                                Horário
-                            </th>
-                            <th>
-                                Coleção
-                            </th>
-                            <th>
-                                Marca
-                            </th>
-                            <th>
-                                Meta.Coleção
-                            </th>
-                            <th>
-                                Realizado
-                            </th>
-                            <th>
-                                %Atingido
-                            </th>
-                            <th>
-                                Ação
-                            </th>
+                            <td>
+                                <span>@String.Format("{0:yyyyMMdd}", item.dt_agenda)</span> @Html.DisplayFor(modelItem => item.dt_agenda)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.hr_agenda)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nm_cliente)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.status_cliente)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nm_colecao)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nm_marca)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.metacolecaoatual)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.realizado)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.percmetaatingida)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Cadastrar", new { id = item.id }, new { @class = "btn btn-primary btn-sm waves-effect waves-light", @target = "_blank" })
+                                <a class="btn btn-success btn-sm btn_modal" data-id="@item.id" data-valor="@item.metacolecaoatual" data-saldo="@item.realizado">Realizar</a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.ListarAgenda)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.nm_cliente)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.status_cliente)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.dt_agenda)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.hr_agenda)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.nm_colecao)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.nm_marca)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.metacolecaoatual)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.realizado)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.percmetaatingida)
-                                </td>
-                                <td>
-                                    
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                    }
+                </tbody>
+            </table>
         </div>
-
-
     </div>
-</main>
 
+
+</div>
+
+
+@Html.Partial("Modal/_EditarAgenda")
 
 <!-- END MAIN CONTENT -->
 @section scripts {
     <!-- PAGE RELATED PLUGIN(S) -->
 
     <script type="text/javascript" src="~/scripts/terceiros/data.js"></script>
-
+    <script src="~/Scripts/terceiros/maskmoney.min.js" type="text/javascript"></script>
 
     <script type="text/javascript">
 
@@ -297,6 +312,83 @@
             var y = document.getElementsByClassName('btn btn-default dropdown-toggle');
             y[0].innerHTML = val + ' <span class="caret"></span>'; // Append
         }
+
+        $("#metacolecaoatual").maskMoney({ allowNegative: false, thousands: '.', decimal: ',', affixesStay: false });
+        $("#realizado").maskMoney({ allowNegative: false, thousands: '.', decimal: ',', affixesStay: false });
+
+
+        $('.btn_modal').on('click', function () {
+
+            $.ajax({
+                url: '@Url.Action("GetAgendamentoPorIdJson", "Agendamento")',
+                method: 'POST',
+                dataType: 'json',
+                data: { id: $(this).data("id") }
+            }).done(function (Dados) {
+
+                $('.modal-editar-evento').modal('show');
+
+                $("#id-evento").val(Dados.id);
+
+                $("#Colecoes2").empty().append('<option value=' + Dados.id_colecao + '>' + Dados.nm_colecao + '</option>');
+                $("#Marcas2").empty().append('<option value="' + Dados.id_marca + '">' + Dados.nm_marca + '</option>');
+                $("#Clientes2").empty().append('<option value="' + Dados.id_cliente + '">' + Dados.nm_cliente + '</option>');
+
+                $("#metacolecaoatual").val(Dados.metacolecaoatual);
+                $("#metacolecaoatual").val((parseFloat($("#metacolecaoatual").val())).toFixed(2).replace(',', '').replace('.', ','));
+                $("#realizado").val(Dados.realizado);
+                $("#realizado").val((parseFloat($("#realizado").val())).toFixed(2).replace(',', '').replace('.', ','));
+
+                $("#reservasuite")[0].checked = Dados.reservasuite;
+                $("#clientenovo")[0].checked = Dados.clientenovo;
+                $("#atendeshowroom")[0].checked = Dados.atendeshowroom;
+
+                var dt = parseJsonDate(Dados.dt_agenda);
+                $("#dt_agenda2").val(dt);
+                $("#hr_agenda2").val(Dados.hr_agenda);
+
+
+
+
+            });
+
+        });
+
+
+        function validateForm()
+        {
+            var realizado = $("#realizado").val();
+            if (realizado == 0) {
+                alert("Realizado deve ser maior que zero!");
+                return false;
+            }
+            return true;
+        }
+
+
+        $(".confirmacao").click(function () {
+
+            if (!validateForm()) {
+                return;
+            }
+
+                var Url = '@Url.Action("EditarAgenda", "Agendamento")';
+                $.ajax({
+                    type: 'POST',
+                    url: Url + "?id=" + $("#id-evento").val() + "&id_marca=" + $("#Marcas2").val() + "&id_cliente=" + $("#Clientes2").val() + "&id_colecao=" + $("#Colecoes2").val() +
+                    "&dt_agenda=" + $("#dt_agenda2").val() + "&hr_agenda=" + $("#hr_agenda2").val() + "&tp_status=" + $(this).data("valor") + "&realizado=" + $("#realizado").val(),
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (data) {
+
+                        if (data.Sucesso) {
+                            $("#calendar").fullCalendar('removeEvents');
+                            $("#calendar").fullCalendar("refetchEvents"); //Atualiza o calendário, assim o evento cadastrado recebe a id cadastrada no banco
+                        }
+                        $('.modal-editar-evento').modal('hide');
+                    }
+                });
+        });
 
         $(document).ready(function () {
 
@@ -438,6 +530,83 @@
 
             var Url = '@Url.Action("GetColecao", "Colecao")';
             $("#Colecoes").select2({
+                placeholder: "Selecione uma coleção",
+                minimumInputLength: 0,
+                allowClear: true,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+
+
+            var Url = '@Url.Action("GetMarcas", "Marcas")';
+            $("#Marcas2").select2({
+                placeholder: "Selecione uma marca",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                allowClear: true,
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetCliente", "Cliente")';
+            $("#Clientes2").select2({
+                placeholder: "Selecione um cliente",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                allowClear: true,
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.id, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+
+            var Url = '@Url.Action("GetColecao", "Colecao")';
+            $("#Colecoes2").select2({
                 placeholder: "Selecione uma coleção",
                 minimumInputLength: 0,
                 allowClear: true,

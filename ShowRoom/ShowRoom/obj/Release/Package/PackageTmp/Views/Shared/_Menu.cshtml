@@ -31,11 +31,32 @@
                         <a class="nav-link  @Html.RouteControllerAction("agendamento/cadastrar", "active")" href="~/agendamento/cadastrar">Cadastrar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  @Html.RouteControllerAction("agendamento/agendavisualizar", "active")" href="~/agendamento/agendavisualizar">Agenda</a>
+                        <a class="nav-link  @Html.RouteControllerAction("agendamento/listaragendageral", "active")" href="~/agendamento/listaragendageral">Geral</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  @Html.RouteControllerAction("agendamento/agendavisualizar", "active")" href="~/agendamento/agendavisualizar">Calendário</a>
+                    </li>
+                </ul>
+            </ul>
+        </li>
+
+        <li class="nav-item  @Html.RouteIf("planodevendas", "open") ">
+            <a class="nav-link nav-parent" href="#">
+                <i class="batch-icon batch-icon-plus"></i>
+                Plano de vendas
+            </a>
+            <ul class="nav nav-pills flex-column" style="@Html.RouteIf("planodevendas", "display: block")">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link  @Html.RouteControllerAction("planodevendas/cadastrar", "active")" href="~/planodevendas/cadastrar">Cadastrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  @Html.RouteControllerAction("planodevendas/consultar", "active")" href="~/planodevendas/consultar">Consultar</a>
                     </li>
                 </ul>
             </ul>
         </li> 
+
 
         <li class="nav-item @Html.RouteIf("marcas", "open") @Html.RouteIf("marcasgrupo", "open") @Html.RouteIf("colecao", "active") @Html.RouteIf("semanacolecao", "active")  @Html.RouteIf("cidade", "active")  @Html.RouteIf("mesorregiao", "active") @Html.RouteIf("estado", "active") @Html.RouteIf("pai", "active")">
             <a class="nav-link nav-parent" href="#">
@@ -108,6 +129,20 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @Html.RouteIf("usuario", "active")" href="~/usuario/cadastrar">Usuários</a>
+                    </li>
+                </ul>
+            </ul>
+        </li>
+
+        <li class="nav-item @Html.RouteIf("utilitarios", "open") @Html.RouteIf("contaacesso", "active") @Html.RouteIf("perfil", "active") @Html.RouteIf("usuario", "active")">
+            <a class="nav-link nav-parent" href="#">
+                <i class="batch-icon batch-icon-browser"></i>
+                Utilitários
+            </a>
+            <ul class="nav nav-pills flex-column" style="@Html.RouteIf("Importador", "display: block")">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link @Html.RouteIf("Importador", "active")" href="~/importador/abrir">Importador</a>
                     </li>
                 </ul>
             </ul>

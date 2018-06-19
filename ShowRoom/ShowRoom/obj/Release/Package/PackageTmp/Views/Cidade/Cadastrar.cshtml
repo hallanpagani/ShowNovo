@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.nome, new { htmlAttributes = new { @class = "form-control", @autocomplete = "nope" } })
                 @Html.ValidationMessageFor(model => model.nome, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             <section class="col col-sm-12 col-md-6 col-lg-6">
                 <label class="" for="mesorregiao">Mesorregião</label>
-                <select id="mesorregiao" name="mesorregiao" class="requerido" style="width:100%">
+                <select id="id_mesorregiao" name="id_mesorregiao" class="requerido" style="width:100%">
                     @if (!Equals(Model.nm_mesorregiao, "") && (!(Model.id_mesorregiao == 0)))
                     {
                         <option value="@Model.id_mesorregiao">@Model.nm_mesorregiao</option>
@@ -109,6 +109,7 @@
 @section Scripts {
     <script type="text/javascript">
         $(document).ready(function () {
+
 
             var Url = '@Url.Action("GetRegiao", "Regiao")';
             $("#Regiao").select2({
@@ -207,7 +208,7 @@
             });
 
             var Url = '@Url.Action("GetMesorregiao", "Mesorregiao")';
-            $("#mesorregiao").select2({
+            $("#id_mesorregiao").select2({
                 placeholder: "Selecione uma Mesorregião",
                 minimumInputLength: 0,
                 language: "pt-BR",

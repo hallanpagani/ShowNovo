@@ -19,13 +19,13 @@
 
             <div class="col-md-3 mb-3">
                 @Html.LabelFor(model => model.cnpj, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.cnpj, htmlAttributes: new { @onkeypress = "mascaraCC(this,CC)", @maxlength = "18", @class = "form-control", @autofocus = "autofocus" })
+                @Html.TextBoxFor(model => model.cnpj, htmlAttributes: new { @onkeypress = "mascaraCC(this,CC)", @maxlength = "18", @class = "form-control", @autocomplete = "nope", @autofocus = "autofocus" })
                 @Html.ValidationMessageFor(model => model.cnpj, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-md-2 mb-2">
                 @Html.LabelFor(model => model.ie, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.ie, htmlAttributes: new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.ie, htmlAttributes: new { @class = "form-control", @autocomplete = "nope" })
                 @Html.ValidationMessageFor(model => model.ie, "", new { @class = "text-danger" })
             </div>
 
@@ -48,19 +48,19 @@
         <div class="form-row">
             <div class="col-md-5 mb-5">
                 @Html.LabelFor(model => model.razao, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.razao, new { @maxlength = "100", @class = "form-control" })
+                @Html.TextBoxFor(model => model.razao, new { @maxlength = "100", @class = "form-control", @autocomplete = "nope" })
                 @Html.ValidationMessageFor(model => model.razao, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-md-5 mb-5">
                 @Html.LabelFor(model => model.fantasia, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.fantasia, new { @maxlength = "100", @class = "form-control" })
+                @Html.TextBoxFor(model => model.fantasia, new { @maxlength = "100", @class = "form-control", @autocomplete = "nope" })
                 @Html.ValidationMessageFor(model => model.fantasia, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-md-2 mb-2">
                 @Html.LabelFor(model => model.fundacao, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBox("fundacao", "", new { @maxlength = "10", @data_dateformat = "dd/mm/yy", @onkeypress = "mascaraDT(this, DATA)", @autocomplete = "off", @placeholder = "DD/MM/YYYY", @filtrar = "", @onclick = "this.focus();this.select()", @class = "form-control date datepicker" })
+                @Html.TextBox("fundacao", "", new { @maxlength = "10", @data_dateformat = "dd/mm/yy", @onkeypress = "mascaraDT(this, DATA)", @autocomplete = "nope", @placeholder = "DD/MM/YYYY", @filtrar = "", @onclick = "this.focus();this.select()", @class = "form-control date datepicker" })
                 @Html.ValidationMessageFor(model => model.fundacao, "", new { @class = "text-danger" })
            </div>
 
@@ -71,12 +71,12 @@
 
             <div class="col-md-6 mb-6">
                 @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.email, new { @maxlength = "60", @class = "form-control", @type = "email" })
+                @Html.TextBoxFor(model => model.email, new { @maxlength = "60", @class = "form-control", @autocomplete = "nope", @type = "email" })
                 @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-6 mb-6">
                 @Html.LabelFor(model => model.email2, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.email2, new { @maxlength = "60", @class = "form-control", @type = "email" })
+                @Html.TextBoxFor(model => model.email2, new { @maxlength = "60", @class = "form-control", @autocomplete = "nope", @type = "email" })
                 @Html.ValidationMessageFor(model => model.email2, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -84,19 +84,19 @@
         <div class="form-row">
             <div class="col-md-3 mb-3">
                 @Html.LabelFor(model => model.fone1, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.fone1, new { @onkeypress = "mascaraFONE(this,FONE)", @maxlength = "15", @class = "form-control", @placeholder = "(XX) XXXX-XXXX" })
+                @Html.TextBoxFor(model => model.fone1, new { @onkeypress = "mascaraFONE(this,FONE)", @maxlength = "15",  @class = "form-control", @autocomplete = "nope",  @placeholder = "(XX) XXXX-XXXX" })
                 @Html.ValidationMessageFor(model => model.fone1, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-md-3 mb-3">
                 @Html.LabelFor(model => model.fone2, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.fone2, new { @onkeypress = "mascaraFONE(this,FONE)", @maxlength = "15", @class = "form-control", @placeholder = "(XX) XXXX-XXXX" })
+                @Html.TextBoxFor(model => model.fone2, new { @onkeypress = "mascaraFONE(this,FONE)", @maxlength = "15", @class = "form-control", @autocomplete = "nope", @placeholder = "(XX) XXXX-XXXX" })
                 @Html.ValidationMessageFor(model => model.fone2, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-md-6 mb-6">
                 @Html.LabelFor(model => model.contato, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.contato, new { @maxlength = "60", @class = "form-control" })
+                @Html.TextBoxFor(model => model.contato, new { @maxlength = "60", @class = "form-control", @autocomplete = "nope" })
                 @Html.ValidationMessageFor(model => model.contato, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -118,13 +118,13 @@
 
             <div class="col-md-2 mb-2">
                 @Html.LabelFor(model => model.cep, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.cep, new { @maxlength = "9", @class = "form-control", @onkeypress = "mascaraCEP(this,CEP)" })
+                @Html.TextBoxFor(model => model.cep, new { @maxlength = "9", @class = "form-control", @autocomplete = "nope", @onkeypress = "mascaraCEP(this,CEP)" })
                 @Html.ValidationMessageFor(model => model.cep, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-md-6 mb-6">
                 @Html.LabelFor(model => model.bairro, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.bairro, new { @maxlength = "30", @class = "form-control" })
+                @Html.TextBoxFor(model => model.bairro, new { @maxlength = "30", @class = "form-control", @autocomplete = "nope" })
                 @Html.ValidationMessageFor(model => model.bairro, "", new { @class = "text-danger" })
             </div>
 
@@ -137,17 +137,17 @@
         <div class="form-row">
             <div class="col-md-6 mb-6">
                 @Html.LabelFor(model => model.endereco, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.endereco, new { @maxlength = "100", @class = "form-control" })
+                @Html.TextBoxFor(model => model.endereco, new { @maxlength = "100", @class = "form-control", @autocomplete = "nope" })
                 @Html.ValidationMessageFor(model => model.endereco, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-3 mb-3">
                 @Html.LabelFor(model => model.corredor, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.corredor, new { @maxlength = "10", @class = "form-control" })
+                @Html.TextBoxFor(model => model.corredor, new { @maxlength = "10", @class = "form-control", @autocomplete = "nope" })
                 @Html.ValidationMessageFor(model => model.corredor, "", new { @class = "text-danger" })
             </div>
             <div class="col-md-3 mb-3">
                 @Html.LabelFor(model => model.numero, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.numero, new { @maxlength = "10", @class = "form-control" })
+                @Html.TextBoxFor(model => model.numero, new { @maxlength = "10", @class = "form-control", @autocomplete = "nope" })
                 @Html.ValidationMessageFor(model => model.numero, "", new { @class = "text-danger" })
             </div>
 
@@ -159,19 +159,19 @@
         <div class="form-row">
             <div class="col-md-3 mb-3">
                 @Html.LabelFor(model => model.facebook, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.facebook, new { @maxlength = "200", @class = "form-control" })
+                @Html.TextBoxFor(model => model.facebook, new { @maxlength = "200", @class = "form-control", @autocomplete = "nope" })
                 @Html.ValidationMessageFor(model => model.facebook, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-md-3 mb-3">
                 @Html.LabelFor(model => model.instagram, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.instagram, new { @maxlength = "200", @class = "form-control" })
+                @Html.TextBoxFor(model => model.instagram, new { @maxlength = "200", @class = "form-control", @autocomplete = "nope" })
                 @Html.ValidationMessageFor(model => model.instagram, "", new { @class = "text-danger" })
             </div>
 
             <div class="col-md-6 mb-6">
                 @Html.LabelFor(model => model.www, htmlAttributes: new { @class = "control-label" })
-                @Html.TextBoxFor(model => model.www, new { @maxlength = "200", @class = "form-control" })
+                @Html.TextBoxFor(model => model.www, new { @maxlength = "200", @class = "form-control", @autocomplete = "nope" })
                 @Html.ValidationMessageFor(model => model.www, "", new { @class = "text-danger" })
             </div>
         </div>
