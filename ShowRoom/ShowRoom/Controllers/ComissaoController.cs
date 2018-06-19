@@ -60,7 +60,7 @@ namespace ShowRoom.Controllers
                     this.AddNotification("Comissão cadastrada!", "Sucesso");
                 }
             }
-            catch (Exception e)
+            catch (Exception e)+/;
             {
                 this.AddNotification("Erro:" + e.Message, "Erro");
             }
