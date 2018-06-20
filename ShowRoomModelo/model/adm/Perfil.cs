@@ -50,6 +50,9 @@ namespace ShowRoomModelo.model.adm
         [Display(Name = "Grupo de Marcas")]
         public bool grupoMarcas { get; set; }
 
+        [Display(Name = "Comissao")]
+        public bool comissao { get; set; }
+
         [Display(Name = "Coleção")]
         public bool colecao { get; set; }
 
@@ -89,6 +92,7 @@ namespace ShowRoomModelo.model.adm
             acessoList.Add("showroom", showroom);
             acessoList.Add("marcas", marcas);
             acessoList.Add("grupoMarcas", grupoMarcas);
+            acessoList.Add("comissao", comissao);
             acessoList.Add("colecao", colecao);
             acessoList.Add("geracao", geracao);
             acessoList.Add("cidade", cidade);

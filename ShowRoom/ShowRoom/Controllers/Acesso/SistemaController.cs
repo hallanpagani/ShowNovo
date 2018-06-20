@@ -88,7 +88,7 @@ namespace ShowRoom.Controllers.Acesso
                             if (usuario.is_ativo == 1)
                             {
                                 // Carrega o perfil do usuário.
-                                Perfil usuarioPerfil = DAL.GetObjeto<Perfil>(string.Format("cd_perfil={0}", usuario.IdPerfil));
+                                Perfil usuarioPerfil = DAL.GetObjeto<Perfil>(string.Format("cd_perfil={0} and id_conta={1}", usuario.IdPerfil, usuario.IdConta));
 
                                 // Se perfil encontrado ...
                                 if (usuarioPerfil != null)

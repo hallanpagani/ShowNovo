@@ -94,6 +94,10 @@ namespace BaseWeb.Controllers.Acesso.ContaAcesso
                     int maxPerfil = DAL.GetMaxColumn("tb_sistema_perfil", "cd_perfil", UsuarioLogado.IdConta);
                     viewModel.cd_perfil = maxPerfil + 1;
                 }
+                else
+                {
+                    viewModel.cd_perfil = DAL.GetObjeto<Perfil>(string.Format("id={0} and id_conta={1}", viewModel.Id, UsuarioLogado.IdConta)).cd_perfil;
+                }
 
                 try
                 {
