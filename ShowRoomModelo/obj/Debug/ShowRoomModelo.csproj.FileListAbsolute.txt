@@ -55,7 +55,6 @@ D:\CSharp\ShowRoom\ShowRoomModelo\bin\Microsoft.CodeDom.Providers.DotNetCompiler
 D:\CSharp\ShowRoom\ShowRoomModelo\obj\Debug\ShowRoomModelo.dll
 D:\CSharp\ShowRoom\ShowRoomModelo\obj\Debug\ShowRoomModelo.pdb
 D:\CSharp\ShowRoom\ShowRoomModelo\obj\Debug\ShowRoomModelo.csproj.CoreCompileInputs.cache
-D:\CSharp\ShowRoom\ShowRoomModelo\obj\Debug\ShowRoomModelo.csprojResolveAssemblyReference.cache
 D:\Matheus\CSharp\ShowRoom\ShowNovo\ShowRoomModelo\bin\ShowRoomModelo.dll.config
 D:\Matheus\CSharp\ShowRoom\ShowNovo\ShowRoomModelo\bin\ShowRoomModelo.dll
 D:\Matheus\CSharp\ShowRoom\ShowNovo\ShowRoomModelo\bin\ShowRoomModelo.pdb

@@ -16,7 +16,7 @@ namespace ShowRoom.Controllers
         [HttpGet]
         public ActionResult Cadastrar(int id = 0)
         {
-            if (Settings.hasPermission(Settings.MENU_CADASTRO_GERACAO_SEMANAS, UsuarioLogado.Perfil))
+            if (Settings.hasPermission(Settings.MENU_CADASTRO_GERACAO_SEMANAS, UsuarioLogado))
             {
                 var model = new ColecaoSemana();
                 if (id > 0)

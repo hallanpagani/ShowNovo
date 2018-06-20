@@ -17,7 +17,7 @@ namespace ShowRoom.Controllers
         [HttpGet]
         public ActionResult Cadastrar(int id = 0)
         {
-            if (Settings.hasPermission(Settings.MENU_CADASTRO_COMISSAO, UsuarioLogado.Perfil))
+            if (Settings.hasPermission(Settings.MENU_CADASTRO_COMISSAO, UsuarioLogado))
             {
                 var model = new Comissao();
                 if (id > 0)

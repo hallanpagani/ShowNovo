@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Importador de Clientes";
+    ViewBag.SubTitle = "Importador de Clientes";
+}
+
+@section css {
+    <link href="~/Scripts/terceiros/bootstrap-colorpicker.min.css" rel="stylesheet" />
+}
+
+@using (Html.BeginForm("Importar", "Importador", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <form id="uploadForm" action="@Url.Action("Importar", "Importador")" title="Importação" class="modal fade" role="dialog" enctype="multipart/form-data" method="POST">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <h4 style="padding-top: 30px !important;padding-left: 10px !important;">Extensões permitidas (csv / txt)</h4>
+                    <div class="modal-body">
+                        <hr />
+                        <h9 style="padding-bottom: 30px !important; padding-top: 10px !important;padding-left: 5px !important;">Clique no botão <b>ESCOLHER ARQUIVO</b> para buscar o arquivo de importação.</h9>
+                        <br />
+                        <br />
+                        <input type="file" name="uploadFile" accept=".csv, text/plain">
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-footer">
+                            <button type="submit" id="salvar" class="btn btn-success">Importar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+
+@section Scripts {
+
+    
+    <script src="~/Scripts/terceiros/bootstrap-colorpicker.min.js"></script>
+    <script type="text/javascript">
+
+        $('#showPopup').click(function () {
+            $('#uploadForm').modal();
+        });
+
+        function upload(input) {
+            var xhr = new XMLHttpRequest();
+            xhr.upload.onprogress = function (e) {
+                console.log(e.loaded, e.total)
+            }
+            xhr.upload.onload = function (e) {
+                console.log('file upload')
+            }
+            xhr.open("POST", "/Importador/Importar", true);
+            xhr.send(new FormData(input.parentElement));
+        }
+
+    </script>
+   @{ /* Scripts.Render("~/bundles/jqueryval") */ }
+}

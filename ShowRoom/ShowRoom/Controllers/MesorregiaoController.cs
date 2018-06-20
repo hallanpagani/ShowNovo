@@ -17,7 +17,7 @@ namespace ShowRoom.Controllers
         [HttpGet]
         public ActionResult Cadastrar(int id = 0)
         {
-            if (Settings.hasPermission(Settings.MENU_CADASTRO_MESOREGIAO, UsuarioLogado.Perfil))
+            if (Settings.hasPermission(Settings.MENU_CADASTRO_MESOREGIAO, UsuarioLogado))
             {
                 var model = new Mesorregiao();
                 if (id > 0)

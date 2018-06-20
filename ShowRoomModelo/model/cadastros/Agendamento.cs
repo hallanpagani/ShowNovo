@@ -167,6 +167,28 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "Status")]
         public int tp_status { get; set; }
 
+        public string tp_status_nome
+        {
+            get
+            {
+                switch (tp_status)
+                {
+                    case 1:
+                        return "AGENDADO";
+                    case 2:
+                        return "REALIZADO";
+                    case 3:
+                        return "ATENDIDO";
+                    case 4:
+                        return "FALTOU";
+                    //case 5:
+                    //    return "Concluído";
+                    default:
+                        return "AGENDADO";
+                };
+            }
+        }
+
         [Column("id_conta")]
         [Display(Name = "Conta")]
         public long id_conta { get; set; }
@@ -178,6 +200,7 @@ namespace ShowRoomModelo.model.cadastros
         public Agendamento()
         {
             metacolecaoatual = 0;
+            tp_status = 1;
         }
 
     }

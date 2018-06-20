@@ -22,7 +22,7 @@ namespace BaseWeb.Controllers.Acesso.ContaAcesso
         [HttpGet]
         public virtual ActionResult Cadastrar(int id = 0)
         {
-            if (Settings.hasPermission(Settings.MENU_CONFIGURACAO_USUARIO, UsuarioLogado.Perfil))
+            if (Settings.hasPermission(Settings.MENU_CONFIGURACAO_USUARIO, UsuarioLogado))
             {
                 var model = new Usuario();
                 if (id > 0)

@@ -20,7 +20,7 @@ namespace ShowRoom.Controllers
         public ActionResult Cadastrar(int id = 0)
         {
 
-            if (Settings.hasPermission(Settings.MENU_AGENDA_CADASTRAR, UsuarioLogado.Perfil))
+            if (Settings.hasPermission(Settings.MENU_AGENDA_CADASTRAR, UsuarioLogado))
             {
                 var model = new Agendamento();
                 if (id > 0)
@@ -156,6 +156,8 @@ namespace ShowRoom.Controllers
                               e.marca,
                               e.tp_status,
                               e.status_cliente,
+                              e.realizado,
+                              e.metacolecaoatual,
                               atendeshowroom = e.atendeshowroom ? "SIM" : "NÃO",
                               reservasuite = e.reservasuite? "SIM" : "NÃO",
                               clientenovo = e.clientenovo ? "SIM" : "NÃO",
@@ -179,6 +181,8 @@ namespace ShowRoom.Controllers
             //    this.AddNotification(x.Mensagem, NotificationType.Sucesso);
             //   return Json(new { Sucesso = true }, JsonRequestBehavior.AllowGet);
             // } 
+            var realizado_aux = string.IsNullOrEmpty(realizado) ? "0" : realizado;
+
 
             var obj = DAL.GetObjeto<Agendamento>(string.Format("id={0}", id));
             obj.id = Convert.ToInt64(id);
@@ -188,9 +192,14 @@ namespace ShowRoom.Controllers
             obj.dt_agenda = Convert.ToDateTime(dt_agenda);
             obj.hr_agenda = hr_agenda;
             obj.tp_status = Convert.ToInt32(tp_status);
-            obj.realizado = Convert.ToDecimal(realizado);
-            obj.percmetaatingida = (Convert.ToDecimal(realizado)*100)/ obj.metacolecaoatual;
-           
+            obj.realizado = Convert.ToDecimal(realizado_aux);
+            if (obj.metacolecaoatual > 0) { 
+                obj.percmetaatingida = (Convert.ToDecimal(realizado_aux) *100)/ obj.metacolecaoatual;
+            } else
+            {
+                obj.percmetaatingida = 0;
+            }
+
 
 
             var Respostas = DAL.Gravar(obj);

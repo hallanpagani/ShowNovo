@@ -193,6 +193,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Acesso\SistemaController.cs" />
+    <Compile Include="Controllers\ComissaoController.cs" />
     <Compile Include="Controllers\ImportadorController.cs" />
     <Compile Include="Controllers\PlanoDeVendasController.cs" />
     <Compile Include="Controllers\AgendamentoController.cs" />
@@ -1391,6 +1392,8 @@
     <Content Include="Views\PlanoDeVendas\Cadastrar.cshtml" />
     <Content Include="Views\PlanoDeVendas\Consultar.cshtml" />
     <Content Include="Views\Importador\Abrir.cshtml" />
+    <Content Include="Views\Comissao\Cadastrar.cshtml" />
+    <Content Include="Views\Configuracao\Conta\Dados.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

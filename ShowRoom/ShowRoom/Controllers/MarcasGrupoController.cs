@@ -18,7 +18,7 @@ namespace ShowRoom.Controllers
         [HttpGet]
         public ActionResult Cadastrar(int id = 0)
         {
-            if (Settings.hasPermission(Settings.MENU_CADASTRO_GRUPO_MARCAS, UsuarioLogado.Perfil))
+            if (Settings.hasPermission(Settings.MENU_CADASTRO_GRUPO_MARCAS, UsuarioLogado))
             {
                 var model = new MarcaGrupo();
                 if (id > 0)

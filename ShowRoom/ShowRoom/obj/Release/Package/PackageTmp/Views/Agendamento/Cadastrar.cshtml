@@ -1,0 +1,312 @@
+﻿@model ShowRoomModelo.model.cadastros.Agendamento
+@using ShowRoom.App_Helpers.Componentes
+
+@{
+    ViewBag.Title = "Cadastro de Agendamento";
+    ViewBag.SubTitle = "Cadastro de Agendamento";
+    ViewBag.LinkText = "agenda";
+    ViewBag.ActionName = "agendavisualizar";
+    ViewBag.Class = "btn btn-primary waves-effect waves-light";
+}
+
+@section css{
+    <style>
+        i[disabled], i:disabled {
+            background-color: lightgray !important;
+        }
+
+        div.content.hideContent {
+            overflow: hidden;
+            height: 0px;
+        }
+
+        div.content.showContent {
+            height: auto;
+        }
+
+        span.select2-hidden-accessible {
+            position: absolute;
+            left: -9999px;
+        }
+    </style>
+    <link rel="stylesheet" href="~/Scripts/assets/plugins/clockpicker/clockpicker.css">
+}
+
+@using (Html.BeginForm("Cadastrar", "Agendamento", FormMethod.Post, new { @class = "form-horizontal smart-form", @id = "agendamento" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.id)
+
+
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label class="" for="cliente">Cliente</label>
+            <select id="cliente" name="cliente" class="requerido" style="width:100%">
+                @if ((Model.cliente != 0) && (Model.nm_cliente != null))
+                {
+                    <option value="@Model.cliente">@Model.nm_cliente</option>
+                }
+            </select>
+            @Html.HiddenFor(model => model.nm_cliente)
+            @Html.ValidationMessageFor(model => model.cliente, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label class="" for="marca">Marca</label>
+            <select id="marca" name="marca" class="requerido" style="width:100%">
+                @if ((Model.marca != 0) && (Model.nm_marca != null))
+                {
+                    <option value="@Model.marca">@Model.nm_marca</option>
+                }
+            </select>
+            @Html.HiddenFor(model => model.nm_marca)
+            @Html.ValidationMessageFor(model => model.marca, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label class="" for="colecao">Coleção</label>
+            <select id="colecao" name="colecao" class="requerido" style="width:100%">
+                @if ((Model.colecao != 0) && (Model.nm_colecao != null))
+                {
+                    <option value="@Model.colecao">@Model.nm_colecao</option>
+                }
+            </select>
+            @Html.HiddenFor(model => model.nm_colecao)
+            @Html.ValidationMessageFor(model => model.colecao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-row">
+        <section class="col-md-3 mb-3">
+            @Html.LabelFor(model => model.metacolecaoatual)
+            @Html.TextBoxPadraoFor(model => model.metacolecaoatual)
+            @Html.ValidationMessageFor(model => model.metacolecaoatual, "", new { @class = "text-danger" })
+        </section>
+    </div>
+
+    <div class="form-row">
+
+        <div class="col-md-3 mb-3">
+            <label for="dt_agenda">Data</label>
+            @Html.TextBoxFor(x => x.dt_agenda, "{0:dd\\/MM\\/yyyy}", new { @maxlength = "10", @data_dateformat = "dd/mm/yy", @onkeypress = "mascaraDT(this, DATA)", @autocomplete = "off", @placeholder = "DD/MM/YYYY", @filtrar = "", @onclick = "this.focus();this.select()", @class = "form-control", @data_toggle = "datepicker", @style = "text-align: center;" })
+            @Html.ValidationMessageFor(model => model.dt_agenda, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <label for="hr_agenda">No horário</label>
+            @Html.TextBoxFor(x => x.hr_agenda, "{0:hh\\:mm}", new { @maxlength = "5", @data_dateformat = "dd/mm/yy", @placeholder = "HH:MM", @autocomplete = "off", @class = "form-control requerido", @style = "text-transform:uppercase;text-align: center;", @type = "text" })
+            @Html.ValidationMessageFor(model => model.hr_agenda, "", new { @class = "text-danger" })
+        </div>
+
+    </div>
+
+    <div class="row" style="margin-left: 0px; margin-bottom: 15px;">
+        <div id="mostrarmais">
+            <a href="#"><mark><ins><strong>Mais opções</strong></ins></mark></a>
+        </div>
+    </div>
+
+    <div class="content hideContent">
+        <hr />
+        <div class="form-row">
+
+            <section class="col-md-2 mb-3">
+                @Html.LabelFor(model => model.reservasuite)
+                @Html.CheckBoxFor(model => model.reservasuite)
+            </section>
+
+
+            <section class="col-md-2 mb-3">
+                @Html.LabelFor(model => model.clientenovo)
+                @Html.CheckBoxFor(model => model.clientenovo)
+            </section>
+
+
+            <section class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.atendeshowroom)
+                @Html.CheckBoxFor(model => model.atendeshowroom)
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <div class="form-group">
+            <div class="">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </div>
+    </footer>
+
+}
+
+
+@section Scripts {
+
+    <script src="~/Scripts/assets/plugins/select2/i18n/pt-BR.js" type="text/javascript"></script>
+    <script src="~/Scripts/terceiros/data.js" type="text/javascript"></script>
+    <script src="~/Scripts/terceiros/maskmoney.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/assets/plugins/clockpicker/clockpicker.min.js" type="text/javascript"></script>
+
+    <!--<script src="/path/to/jquery.js"></script> jQuery is required-->
+    <link href="~/Scripts/assets/plugins/datepicker/datepicker.min.css" rel="stylesheet">
+    <script src="~/Scripts/assets/plugins/datepicker/datepicker.min.js"></script>
+    <script src="~/Scripts/assets/plugins/datepicker/datepicker.pt-BR.js"></script>
+
+    <script type="text/javascript">
+
+        $('[data-toggle="datepicker"]').datepicker({ language: 'pt-BR', showButtonPanel: true, autoHide:true});
+
+            $("#metacolecaoatual").val((parseFloat($("#metacolecaoatual").val())).toFixed(2).replace(',', '').replace('.', ','));
+            $("#metacolecaoatual").maskMoney({ allowNegative: false, thousands: '.', decimal: ',', affixesStay: false });
+
+
+            $(document).ready(function () {
+
+                $('#colecao').on("select2:select", function (e) {
+                    console.log($('#colecao').select2('data')[0].text);
+                    $('#nm_colecao').val($('#colecao').select2('data')[0].text); // what you would like to happen
+                });
+
+                $('#cliente').on("select2:select", function (e) {
+                    console.log($('#cliente').select2('data')[0].text);
+                    $('#nm_cliente').val($('#cliente').select2('data')[0].text); // what you would like to happen
+                });
+
+                $('#marca').on("select2:select", function (e) {
+                    console.log($('#marca').select2('data')[0].text);
+                    $('#nm_marca').val($('#marca').select2('data')[0].text); // what you would like to happen
+                });
+
+                $("#metacolecaoatual").click(function () {
+                    $(this).select();
+                });
+
+                $("#hr_agenda").clockpicker({ autoclose: true });
+
+                $('#Servicos').on("change", function (e) {
+                    var data = $(this).select2('data');
+                    var res = data[0].text.split("-");
+                    var moeda = res[1].trim().replace(".", ",").replace(".", "");
+                    $('#vl_servico').val(moeda);
+                });
+
+                var Url = '@Url.Action("GetCliente", "Cliente")';
+                $("#cliente").select2({
+                    placeholder: "Selecione um cliente",
+                    minimumInputLength: 0,
+                    language: "pt-BR",
+                    ajax: {
+                        dataType: "json",
+                        url: Url,
+                        data: function (params) {
+                            return {
+                                term: params.term // search term
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data, function (obj) {
+                                    return { id: obj.id, text: obj.text };
+                                })
+                            };
+                        },
+                        cache: true
+                    }
+                });
+
+                var Url = '@Url.Action("GetMarcas", "Marcas")';
+                $("#marca").select2({
+                    placeholder: "Selecione um marca",
+                    minimumInputLength: 0,
+                    language: "pt-BR",
+                    ajax: {
+                        dataType: "json",
+                        url: Url,
+                        data: function (params) {
+                            return {
+                                term: params.term // search term
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data, function (obj) {
+                                    return { id: obj.id, text: obj.text };
+                                })
+                            };
+                        },
+                        cache: true
+                    }
+                });
+
+                var Url = '@Url.Action("GetColecao", "Colecao")';
+                $("#colecao").select2({
+                    placeholder: "Selecione um coleção",
+                    minimumInputLength: 0,
+                    language: "pt-BR",
+                    ajax: {
+                        dataType: "json",
+                        url: Url,
+                        data: function (params) {
+                            return {
+                                term: params.term // search term
+                            };
+                        },
+                        processResults: function (data) {
+                            return {
+                                results: $.map(data, function (obj) {
+                                    return { id: obj.id, text: obj.text };
+                                })
+                            };
+                        },
+                        cache: true
+                    }
+                });
+
+                $("#mostrarmais a").on("click", function () {
+                    var $this = $(this);
+                    var $content = $(".content");
+                    var linkText = $this.text().toUpperCase();
+
+                    if (linkText === "MAIS OPÇÕES") {
+                        linkText = "Menos opções";
+                        $content.addClass('showContent').removeClass('hideContent');
+                    } else {
+                        linkText = "Mais opções";
+                        $content.addClass('hideContent').removeClass('showContent');
+                    };
+
+                    var htm = '<mark><ins><strong>' + linkText + '</strong></ins></mark>';
+
+                    $this.html(htm);
+                });
+
+                $('#colecao').on("change", function (e) {
+
+                    $.ajax({
+                        url: '@Url.Action("GetMetaColecaoAtual", "PlanoDeVendas")',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: { colecao: $('#colecao').select2('data')[0].id, marca: $('#marca').select2('data')[0].id, cliente: $('#cliente').select2('data')[0].id  }
+                    }).done(function (Dados) {
+
+                        $("#metacolecaoatual").val(Dados.valorcolecaoatual);
+                        $("#metacolecaoatual").val((parseFloat($("#metacolecaoatual").val())).toFixed(2).replace(',', '').replace('.', ','));
+                       
+
+
+                    });
+
+                });
+
+
+        });
+
+
+    </script>
+}

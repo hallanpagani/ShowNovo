@@ -25,7 +25,7 @@ namespace BaseWeb.Controllers.Acesso.ContaAcesso
         [HttpGet]
         public virtual ActionResult Cadastrar(int id = 0)
         {
-            if (Settings.hasPermission(Settings.MENU_CONFIGURACAO_PERFIL, UsuarioLogado.Perfil))
+            if (Settings.hasPermission(Settings.MENU_CONFIGURACAO_PERFIL, UsuarioLogado))
             {
                 var model = new Perfil();
                 if (id > 0)

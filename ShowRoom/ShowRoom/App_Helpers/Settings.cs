@@ -111,10 +111,10 @@ namespace ShowRoom
         public static string MENU_CADASTRO_REGIAO = "região"; // descontinuado
 
         // Verifica se tem permissão para acessar o menu.
-        public static bool hasPermission(string menu, string perfil)
+        public static bool hasPermission(string menu, AppUsuario UsuarioLogado)
         {
             bool has = false;
-            Perfil userPerfil = DAL.GetObjeto<Perfil>(string.Format("tp_perfil = '{0}'",perfil));
+            Perfil userPerfil = DAL.GetObjeto<Perfil>(string.Format("tp_perfil = '{0}' and id_conta={1}", UsuarioLogado.Perfil, UsuarioLogado.IdConta));
             string[] menusPermitidos = userPerfil.nm_menu.Split(';');
             foreach (string menuPermitido in menusPermitidos)
             {

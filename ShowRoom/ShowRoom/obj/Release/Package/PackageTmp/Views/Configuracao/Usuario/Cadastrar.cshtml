@@ -1,0 +1,129 @@
+﻿@model ShowRoomModelo.model.adm.Usuario
+
+@{
+    ViewBag.Title = "Cadastro de Usuário";
+    ViewBag.SubTitle = "Cadastro de Usuário";
+    ViewBag.LinkText = "Consultar";
+    ViewBag.ActionName = "Consultar";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Email, new { @maxlength = "100", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>            
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.NomeDoUsuario, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.NomeDoUsuario, new { @maxlength = "100", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.NomeDoUsuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.Password, new { @maxlength = "100",  @class = "form-control", @type = "password" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                @Html.LabelFor(model => model.PasswordConfirmacao, htmlAttributes: new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.PasswordConfirmacao, new { @maxlength = "100", @class = "form-control", @type = "password" })
+                @Html.ValidationMessageFor(model => model.PasswordConfirmacao, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                <label class="" for="descricaoPerfil">Perfil</label>
+                <select id="Perfil" name="descricaoPerfil" class="form-control" style="width:100%">
+                    @if (!Equals(@Model.descricaoPerfil, ""))
+                    {
+                        <option value="@Model.descricaoPerfil">@Model.descricaoPerfil</option>
+                    }
+                </select>
+            </div>
+
+        </div>
+        
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                @Html.CheckBoxFor(model => model.ativar_usuario)
+                @Html.LabelFor(model => model.ativar_usuario)
+            </div>
+        </div>
+
+    </div>
+
+    <br />
+    <div class="form-group">
+        <input type="submit" value="Salvar" class="btn btn-default" />
+    </div>
+
+}
+
+@section Scripts {
+    @{ /* Scripts.Render("~/bundles/jqueryval") */ }
+
+    <script src="~/scripts/terceiros/data.js" type="text/javascript"></script>
+    <script src="~/scripts/terceiros/cpfcnpj.js" type="text/javascript"></script>
+    <script src="~/scripts/terceiros/telefone.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+
+        // Validation
+        $(function () {
+
+            var datas = [{ id: 'Sim', text: 'Sim' }, { id: 'Não', text: 'Não' }];
+            $("#is_ativo").select2({
+                placeholder: "Selecione uma opção",
+                minimumInputLength: 0,
+                data: datas,
+                language: $.extend({},
+                    $.fn.select2.defaults.defaults.language, {
+                        noResults: function () {
+                            return $("<span>Nenhum resultado encontrado!</span>");
+                        }
+                    })
+            });
+
+            var Url = '@Url.Action("GetPerfil", "Perfil")';
+            $("#Perfil").select2({
+                placeholder: "Selecione um perfil",
+                minimumInputLength: 0,
+                language: "pt-BR",
+                ajax: {
+                    dataType: "json",
+                    url: Url,
+                    data: function (params) {
+                        return {
+                            term: params.term // search term
+                        };
+                    },
+                    processResults: function (data) {
+                        return {
+                            results: $.map(data, function (obj) {
+                                return { id: obj.text, text: obj.text };
+                            })
+                        };
+                    },
+                    cache: true
+                }
+            });
+        });
+
+    </script>
+}

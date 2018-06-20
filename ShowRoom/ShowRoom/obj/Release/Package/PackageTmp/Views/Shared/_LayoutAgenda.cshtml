@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "_LayoutInicio.cshtml";
+
+}
+
+@RenderSection("css", required: false)
+
+<div class="container-fluid">
+    <div class="row">
+            
+        @Html.Partial("_Menu")
+
+        <div class="right-column">
+
+            @Html.Partial("_MenuTopo")
+
+            @RenderBody() 
+            
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @RenderSection("scripts", required: false)  
+}

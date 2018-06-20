@@ -20,7 +20,7 @@ namespace ShowRoom.Controllers
         public ActionResult Cadastrar(int id = 0)
         {
 
-            if (Settings.hasPermission(Settings.MENU_PLANODEVENDAS_CADASTRAR, UsuarioLogado.Perfil))
+            if (Settings.hasPermission(Settings.MENU_PLANODEVENDAS_CADASTRAR, UsuarioLogado))
             {
                 var model = new PlanoDeVendas();
                 if (id > 0)
