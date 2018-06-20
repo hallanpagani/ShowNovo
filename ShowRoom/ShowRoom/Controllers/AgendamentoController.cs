@@ -180,17 +180,18 @@ namespace ShowRoom.Controllers
             //   return Json(new { Sucesso = true }, JsonRequestBehavior.AllowGet);
             // } 
 
-            var obj = new Agendamento
-            {
-                id = Convert.ToInt64(id),
-                cliente = Convert.ToInt64(id_cliente),
-                marca = Convert.ToInt64(id_marca),
-                colecao = Convert.ToInt64(id_colecao),
-                dt_agenda = Convert.ToDateTime(dt_agenda),
-                hr_agenda = hr_agenda,
-                tp_status = Convert.ToInt32(tp_status),
-                realizado = Convert.ToDecimal(realizado)
-            };
+            var obj = DAL.GetObjeto<Agendamento>(string.Format("id={0}", id));
+            obj.id = Convert.ToInt64(id);
+            obj.cliente = Convert.ToInt64(id_cliente);
+            obj.marca = Convert.ToInt64(id_marca);
+            obj.colecao = Convert.ToInt64(id_colecao);
+            obj.dt_agenda = Convert.ToDateTime(dt_agenda);
+            obj.hr_agenda = hr_agenda;
+            obj.tp_status = Convert.ToInt32(tp_status);
+            obj.realizado = Convert.ToDecimal(realizado);
+            obj.percmetaatingida = (Convert.ToDecimal(realizado)*100)/ obj.metacolecaoatual;
+           
+
 
             var Respostas = DAL.Gravar(obj);
            /* if (!Respostas.Sucesso)

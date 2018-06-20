@@ -236,10 +236,10 @@
                             Marca
                         </th>
                         <th>
-                            Meta.Coleção
+                            R$.Coleção
                         </th>
                         <th>
-                            Realizado
+                            R$.Realizado
                         </th>
                         <th>
                             %Atingido
@@ -271,13 +271,13 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.nm_marca)
                             </td>
-                            <td>
+                            <td style="text-align:right">
                                 @Html.DisplayFor(modelItem => item.metacolecaoatual)
                             </td>
-                            <td>
+                            <td style="text-align:right">
                                 @Html.DisplayFor(modelItem => item.realizado)
                             </td>
-                            <td>
+                            <td style="text-align:right">
                                 @Html.DisplayFor(modelItem => item.percmetaatingida)
                             </td>
                             <td>
@@ -330,9 +330,9 @@
 
                 $("#id-evento").val(Dados.id);
 
-                $("#Colecoes2").empty().append('<option value=' + Dados.id_colecao + '>' + Dados.nm_colecao + '</option>');
-                $("#Marcas2").empty().append('<option value="' + Dados.id_marca + '">' + Dados.nm_marca + '</option>');
-                $("#Clientes2").empty().append('<option value="' + Dados.id_cliente + '">' + Dados.nm_cliente + '</option>');
+                $("#Colecoes2").empty().append('<option value=' + Dados.colecao + '>' + Dados.nm_colecao + '</option>');
+                $("#Marcas2").empty().append('<option value="' + Dados.marca + '">' + Dados.nm_marca + '</option>');
+                $("#Clientes2").empty().append('<option value="' + Dados.cliente + '">' + Dados.nm_cliente + '</option>');
 
                 $("#metacolecaoatual").val(Dados.metacolecaoatual);
                 $("#metacolecaoatual").val((parseFloat($("#metacolecaoatual").val())).toFixed(2).replace(',', '').replace('.', ','));
@@ -358,7 +358,7 @@
         function validateForm()
         {
             var realizado = $("#realizado").val();
-            if (realizado == 0) {
+            if (Number(realizado) == 0) {
                 alert("Realizado deve ser maior que zero!");
                 return false;
             }
@@ -381,10 +381,6 @@
                     contentType: "application/json",
                     success: function (data) {
 
-                        if (data.Sucesso) {
-                            $("#calendar").fullCalendar('removeEvents');
-                            $("#calendar").fullCalendar("refetchEvents"); //Atualiza o calendário, assim o evento cadastrado recebe a id cadastrada no banco
-                        }
                         $('.modal-editar-evento').modal('hide');
                     }
                 });

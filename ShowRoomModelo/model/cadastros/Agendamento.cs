@@ -132,7 +132,6 @@ namespace ShowRoomModelo.model.cadastros
         [Display(Name = "Histórico Coleção 4")]
         public decimal historicocolecao4 { get; set; }
 
-        [DataType(DataType.Currency)]
         [Column("metacolecaoatual")]
         [Display(Name = "Meta para a Coleção")]
         [Range(0.00, 999999999.99, ErrorMessage = "O campo Meta para a Coleção deve ser preenchido corretamente!")]
